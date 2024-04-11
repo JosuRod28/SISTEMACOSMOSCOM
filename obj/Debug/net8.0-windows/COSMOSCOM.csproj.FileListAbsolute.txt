@@ -37,3 +37,4 @@ C:\Users\Josue\source\repos\COSMOSCOM\COSMOSCOM\obj\Debug\net8.0-windows\COSMOSC
 C:\Users\Josue\source\repos\COSMOSCOM\COSMOSCOM\obj\Debug\net8.0-windows\ref\COSMOSCOM.dll
 C:\Users\Josue\source\repos\COSMOSCOM\COSMOSCOM\bin\Debug\net8.0-windows\COSMOSCOM.db
 C:\Users\Josue\source\repos\COSMOSCOM\COSMOSCOM\bin\Debug\net8.0-windows\COSMOSCOM.dll.config
+C:\Users\Josue\source\repos\COSMOSCOM\COSMOSCOM\obj\Debug\net8.0-windows\COSMOSCOM.sourcelink.json

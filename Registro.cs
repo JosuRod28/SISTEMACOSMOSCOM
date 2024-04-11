@@ -8,7 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using COSMOSCOM.Modelo;
 using COSMOSCOM.Logica;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
@@ -20,8 +19,9 @@ namespace COSMOSCOM
         public Registro()
         {
             InitializeComponent();
-
+            // El valor de la duracion se cambian con el componente numericUpDown
             nUpDown.ValueChanged += UpDown_ValueChanged;
+            //Se asigna un valor inicial en el campo monto
             txt_Monto.Text = "170";
 
         }
@@ -56,6 +56,7 @@ namespace COSMOSCOM
 
         private void btn_salir_Click(object sender, EventArgs e)
         {
+            //Mensaje de confirmación para salir del sistema
             DialogResult confirma = MessageBox.Show("¿Estas Seguro de salir del sistema?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (confirma == DialogResult.Yes)
             {
@@ -67,8 +68,10 @@ namespace COSMOSCOM
 
         private void btn_Guardar_Click(object sender, EventArgs e)
         {
+            //Creacion del objeto Clientes que hace referencia a la clase Clientes
             Clientes objeto = new Clientes()
             {
+                //Se inicializan las propiedades con los valores ingresados en os campos de texto.
                 Nombre = txt_Nombre.Text,
                 Apellido_P = txt_Apellido_P.Text,
                 Apellido_M = txt_Apellido_M.Text,
@@ -77,8 +80,11 @@ namespace COSMOSCOM
 
 
             };
+            // Llamamos al metodo Guardar de l clase ClientesLogica y lo  aginamos a una variable de tipo boleano.
+            //Se utiliza la propiedad Instancia de la clase ClientesLogica.
             bool respuesta = ClientesLogica.Instancia.Guardar(objeto);
 
+            //Verificar si la respuesta fue exitosa mostrando un mensaje de confirmación
             if (respuesta)
             {
                 MessageBox.Show("Registro Guardado", "Confirmación", MessageBoxButtons.OK);
@@ -88,9 +94,13 @@ namespace COSMOSCOM
 
         private void btn_Cancelar_Click(object sender, EventArgs e)
         {
+            //Muestra un cuadro de dialogo que pregunta si deseamos cancelar el registro
             DialogResult confirma = MessageBox.Show("¿Desea cancelar el registro?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            //Condicion que verifica si la respuesta fue confirmada si se cancela.
             if (confirma == DialogResult.Yes)
             {
+                //Si se confirma la condicion se limpian los campos y se eliminan las filas del DataGridView
                 txt_Folio.Text = "";
                 txt_Nombre.Text = "";
                 txt_Apellido_P.Text = "";
@@ -99,6 +109,7 @@ namespace COSMOSCOM
                 txt_Telefono1.Text = "";
                 txt_Telefono2.Text = "";
                 DataGrid_Formato.Rows.Clear();
+
             }
 
 
@@ -117,38 +128,63 @@ namespace COSMOSCOM
 
         private void btn_Agregar_Click(object sender, EventArgs e)
         {
+            //Captura de los datos ingresados de en los campos 
             string formato = cb_Formatos.Text;
             string duracion = nUpDown.Value.ToString();
             string monto = txt_Monto.Text;
 
-
+            //Estos valores capturados se agregan como una nueva fila al DataGridView.
             DataGrid_Formato.Rows.Add(formato, duracion, monto);
 
-            int suma = 0;
+            //Se itera sobre todas las filas del DataGridView para calcular la suma de los montos de las filas que tienen un valor en la tercera columna. 
 
-            foreach(DataGridViewRow fila in DataGrid_Formato.Rows)
+            int total = 0; //Inicializar el total en 0
+
+            for (int i = 0; i < DataGrid_Formato.Rows.Count - 1; i++) // Iterar hasta la penúltima fila
             {
-                if (!fila.IsNewRow)
+                DataGridViewRow fila = DataGrid_Formato.Rows[i];
+                if (!fila.IsNewRow && fila.Cells[2].Value != null) //se verifica si la fila actual no es una fila nueva
                 {
-                    // Intenta sumar el valor de la celda de la columna 1
-                    if (fila.Cells[2].Value != null)
-                    {
-                        suma += Convert.ToInt16(fila.Cells[2].Value);
-                    }
+                    total += Convert.ToInt32(fila.Cells[2].Value); //Se itera los valores sumados y se guardan en la variable total
                 }
             }
-            txt_Total.Text=suma.ToString();
+            txt_Total.Text = total.ToString(); //La suma se cuarda en el campo del total
+
+            //Se actualiza el número de formatos mostrado en un control de etiqueta, excluyendo la última fila.
+            int numFormatos = DataGrid_Formato.Rows.Count - 1;
+            label15.Text = numFormatos.ToString();
 
 
         }
 
         private void btn_Quitar_Click(object sender, EventArgs e)
         {
-            if (DataGrid_Formato.SelectedRows.Count > 0)
+            if (DataGrid_Formato.SelectedRows.Count > 0) // se verifica que la fila esta seleccionada
             {
-                DataGrid_Formato.Rows.Remove(DataGrid_Formato.SelectedRows[0]);
+
+                DataGrid_Formato.Rows.Remove(DataGrid_Formato.SelectedRows[0]);//Se Elimina la fila seleccionada
+               
+                //Llama el metodo para actualizar el valor del total.
+                ActualizarTotal();
 
             }
+        }
+
+        private void ActualizarTotal()
+        {
+            int total = 0;
+            for (int i = 0; i < DataGrid_Formato.Rows.Count - 1; i++) // Iterar hasta la penúltima fila
+            {
+                DataGridViewRow fila = DataGrid_Formato.Rows[i];
+                if (!fila.IsNewRow && fila.Cells[2].Value != null)
+                {
+                    total += Convert.ToInt32(fila.Cells[2].Value);
+                }
+            }
+
+            txt_Total.Text = total.ToString();
+            int numFormatos = DataGrid_Formato.Rows.Count - 1;
+            label15.Text = numFormatos.ToString();
         }
 
         private void btn_ConsultarC_Click(object sender, EventArgs e)
@@ -187,6 +223,56 @@ namespace COSMOSCOM
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Registro_Resize(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox2_Resize(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tableLayoutPanel1_Paint_1(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void groupBox3_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void nUpDown_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox4_Enter(object sender, EventArgs e)
         {
 
         }
