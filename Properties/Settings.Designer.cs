@@ -22,5 +22,17 @@ namespace COSMOSCOM.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UltimoValorIngresado {
+            get {
+                return ((string)(this["UltimoValorIngresado"]));
+            }
+            set {
+                this["UltimoValorIngresado"] = value;
+            }
+        }
     }
 }

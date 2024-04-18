@@ -16,8 +16,10 @@ namespace COSMOSCOM
 {
     public partial class Registro : Form
     {
+        private string ultimoValorIngresado="" ;
         public Registro()
         {
+
             InitializeComponent();
             // El valor de la duracion se cambian con el componente numericUpDown
             nUpDown.ValueChanged += UpDown_ValueChanged;
@@ -69,7 +71,7 @@ namespace COSMOSCOM
         private void btn_Guardar_Click(object sender, EventArgs e)
         {
             //Creacion del objeto Clientes que hace referencia a la clase Clientes
-            Clientes objeto = new Clientes()
+            Clientes objetoClientes = new Clientes()
             {
                 //Se inicializan las propiedades con los valores ingresados en os campos de texto.
                 Nombre = txt_Nombre.Text,
@@ -78,16 +80,30 @@ namespace COSMOSCOM
                 Telefono1 = txt_Telefono1.Text,
                 Telefono2 = txt_Telefono2.Text,
 
+            };
+
+            Ventas objetoVentas = new Ventas()
+            {
+                //Se inicializan las propiedades con los valores ingresados en los campos de texto.
+                Folio = int.Parse(txt_Folio.Text),
+                Fecha_atencion = dtp_Fecha_atencion.Text,
+                Fecha_entrega =dtp_Fecha_entrega.Text,
+                Total=txt_Total.Text,
 
             };
             // Llamamos al metodo Guardar de l clase ClientesLogica y lo  aginamos a una variable de tipo boleano.
             //Se utiliza la propiedad Instancia de la clase ClientesLogica.
-            bool respuesta = ClientesLogica.Instancia.Guardar(objeto);
-
+            bool resClientes = ClientesLogica.Instancia.Guardar(objetoClientes);
+            //Se utiliza la propiedad Instancia de la clase VentasLogica.
+            bool resVentas =VentasLogica.Instancia.Guardar(objetoVentas);
             //Verificar si la respuesta fue exitosa mostrando un mensaje de confirmación
-            if (respuesta)
+            if (resClientes)
             {
-                MessageBox.Show("Registro Guardado", "Confirmación", MessageBoxButtons.OK);
+                MessageBox.Show("Registro de clientes guardado", "Confirmación", MessageBoxButtons.OK);
+            }
+            if (resVentas)
+            {
+                MessageBox.Show("Registro de ventas guardado", "Confirmación", MessageBoxButtons.OK);
             }
 
         }
@@ -123,7 +139,10 @@ namespace COSMOSCOM
 
         private void Registro_Load(object sender, EventArgs e)
         {
-
+            // Cargar el último valor ingresado desde la configuración de la aplicación
+            ultimoValorIngresado = Properties.Settings.Default.UltimoValorIngresado;
+            // Mostrar el último valor ingresado en el TextBox
+            txt_Folio.Text = ultimoValorIngresado;
         }
 
         private void btn_Agregar_Click(object sender, EventArgs e)
@@ -163,7 +182,7 @@ namespace COSMOSCOM
             {
 
                 DataGrid_Formato.Rows.Remove(DataGrid_Formato.SelectedRows[0]);//Se Elimina la fila seleccionada
-               
+
                 //Llama el metodo para actualizar el valor del total.
                 ActualizarTotal();
 
@@ -275,6 +294,16 @@ namespace COSMOSCOM
         private void groupBox4_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ultimoValorIngresado = txt_Folio.Text;
+            // Actualiza el TextBox con el último valor ingresado
+            txt_Folio.Text = ultimoValorIngresado;
+
+            Properties.Settings.Default.UltimoValorIngresado = ultimoValorIngresado;
+            Properties.Settings.Default.Save();
         }
     }
 }

@@ -32,12 +32,13 @@
             groupBox1 = new GroupBox();
             btn_Regresar = new Button();
             button4 = new Button();
-            button2 = new Button();
+            btn_Eliminar = new Button();
             tableLayoutPanel5 = new TableLayoutPanel();
             DataGrid_Clientes = new DataGridView();
             tableLayoutPanel3 = new TableLayoutPanel();
-            button3 = new Button();
-            textBox1 = new TextBox();
+            cb_filtro = new ComboBox();
+            btn_buscar = new Button();
+            txt_buscar = new TextBox();
             tableLayoutPanel2 = new TableLayoutPanel();
             tableLayoutPanel1 = new TableLayoutPanel();
             pictureBox1 = new PictureBox();
@@ -54,7 +55,7 @@
             // 
             groupBox1.Controls.Add(btn_Regresar);
             groupBox1.Controls.Add(button4);
-            groupBox1.Controls.Add(button2);
+            groupBox1.Controls.Add(btn_Eliminar);
             groupBox1.Controls.Add(tableLayoutPanel5);
             groupBox1.Dock = DockStyle.Fill;
             groupBox1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -93,17 +94,18 @@
             button4.Text = "Modificar ";
             button4.UseVisualStyleBackColor = false;
             // 
-            // button2
+            // btn_Eliminar
             // 
-            button2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            button2.BackColor = SystemColors.HighlightText;
-            button2.FlatStyle = FlatStyle.Popup;
-            button2.Location = new Point(493, 351);
-            button2.Name = "button2";
-            button2.Size = new Size(95, 46);
-            button2.TabIndex = 9;
-            button2.Text = "Eliminar";
-            button2.UseVisualStyleBackColor = false;
+            btn_Eliminar.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            btn_Eliminar.BackColor = SystemColors.HighlightText;
+            btn_Eliminar.FlatStyle = FlatStyle.Popup;
+            btn_Eliminar.Location = new Point(493, 351);
+            btn_Eliminar.Name = "btn_Eliminar";
+            btn_Eliminar.Size = new Size(95, 46);
+            btn_Eliminar.TabIndex = 9;
+            btn_Eliminar.Text = "Eliminar";
+            btn_Eliminar.UseVisualStyleBackColor = false;
+            btn_Eliminar.Click += button2_Click;
             // 
             // tableLayoutPanel5
             // 
@@ -116,7 +118,7 @@
             tableLayoutPanel5.Name = "tableLayoutPanel5";
             tableLayoutPanel5.RowCount = 2;
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Absolute, 210F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Absolute, 264F));
             tableLayoutPanel5.Size = new Size(584, 316);
             tableLayoutPanel5.TabIndex = 16;
             // 
@@ -124,51 +126,65 @@
             // 
             DataGrid_Clientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             DataGrid_Clientes.Dock = DockStyle.Fill;
-            DataGrid_Clientes.Location = new Point(3, 109);
+            DataGrid_Clientes.Location = new Point(3, 55);
             DataGrid_Clientes.Name = "DataGrid_Clientes";
             DataGrid_Clientes.RowHeadersWidth = 51;
-            DataGrid_Clientes.Size = new Size(578, 204);
+            DataGrid_Clientes.Size = new Size(578, 258);
             DataGrid_Clientes.TabIndex = 7;
             // 
             // tableLayoutPanel3
             // 
             tableLayoutPanel3.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            tableLayoutPanel3.ColumnCount = 2;
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 74.13127F));
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25.8687267F));
-            tableLayoutPanel3.Controls.Add(button3, 1, 0);
-            tableLayoutPanel3.Controls.Add(textBox1, 0, 0);
+            tableLayoutPanel3.ColumnCount = 3;
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 27.16263F));
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 48.4429054F));
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 24.3944645F));
+            tableLayoutPanel3.Controls.Add(cb_filtro, 0, 0);
+            tableLayoutPanel3.Controls.Add(btn_buscar, 2, 0);
+            tableLayoutPanel3.Controls.Add(txt_buscar, 1, 0);
             tableLayoutPanel3.Location = new Point(3, 3);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
             tableLayoutPanel3.RowCount = 1;
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel3.Size = new Size(578, 45);
             tableLayoutPanel3.TabIndex = 14;
             // 
-            // button3
+            // cb_filtro
             // 
-            button3.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            button3.BackColor = Color.MediumBlue;
-            button3.FlatStyle = FlatStyle.Popup;
-            button3.ForeColor = SystemColors.HighlightText;
-            button3.Image = (Image)resources.GetObject("button3.Image");
-            button3.ImageAlign = ContentAlignment.MiddleLeft;
-            button3.Location = new Point(431, 3);
-            button3.Name = "button3";
-            button3.Size = new Size(144, 39);
-            button3.TabIndex = 10;
-            button3.Text = "Buscar";
-            button3.TextAlign = ContentAlignment.MiddleRight;
-            button3.UseVisualStyleBackColor = false;
-            button3.Click += button3_Click;
+            cb_filtro.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            cb_filtro.FormattingEnabled = true;
+            cb_filtro.Items.AddRange(new object[] { "Cualquiera", "Nombre", "Apellido_P", "Apellido_M", "Teléfono 1", "Teléfono 2" });
+            cb_filtro.Location = new Point(3, 8);
+            cb_filtro.Name = "cb_filtro";
+            cb_filtro.Size = new Size(151, 31);
+            cb_filtro.TabIndex = 17;
+            cb_filtro.Text = "Filtrar Por ";
+            cb_filtro.SelectedIndexChanged += cb_filtro_SelectedIndexChanged;
             // 
-            // textBox1
+            // btn_buscar
             // 
-            textBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            textBox1.Location = new Point(3, 3);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(422, 30);
-            textBox1.TabIndex = 12;
+            btn_buscar.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            btn_buscar.BackColor = Color.MediumBlue;
+            btn_buscar.FlatStyle = FlatStyle.Popup;
+            btn_buscar.ForeColor = SystemColors.HighlightText;
+            btn_buscar.Image = (Image)resources.GetObject("btn_buscar.Image");
+            btn_buscar.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_buscar.Location = new Point(440, 3);
+            btn_buscar.Name = "btn_buscar";
+            btn_buscar.Size = new Size(135, 39);
+            btn_buscar.TabIndex = 10;
+            btn_buscar.Text = "Buscar";
+            btn_buscar.TextAlign = ContentAlignment.MiddleRight;
+            btn_buscar.UseVisualStyleBackColor = false;
+            btn_buscar.Click += button3_Click;
+            // 
+            // txt_buscar
+            // 
+            txt_buscar.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            txt_buscar.Location = new Point(160, 7);
+            txt_buscar.Name = "txt_buscar";
+            txt_buscar.Size = new Size(274, 30);
+            txt_buscar.TabIndex = 12;
             // 
             // tableLayoutPanel2
             // 
@@ -224,6 +240,7 @@
             Name = "ConsultarClientes";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "ConsultarClientes";
+            Load += ConsultarClientes_Load;
             groupBox1.ResumeLayout(false);
             tableLayoutPanel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)DataGrid_Clientes).EndInit();
@@ -238,10 +255,10 @@
 
         #endregion
         private GroupBox groupBox1;
-        private Button button3;
-        private Button button2;
+        private Button btn_buscar;
+        private Button btn_Eliminar;
         private DataGridView DataGrid_Clientes;
-        private TextBox textBox1;
+        private TextBox txt_buscar;
         private TableLayoutPanel tableLayoutPanel2;
         private TableLayoutPanel tableLayoutPanel3;
         private TableLayoutPanel tableLayoutPanel5;
@@ -249,5 +266,6 @@
         private PictureBox pictureBox1;
         private Button button4;
         private Button btn_Regresar;
+        private ComboBox cb_filtro;
     }
 }

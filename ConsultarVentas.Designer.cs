@@ -32,10 +32,11 @@
             button1 = new Button();
             groupBox1 = new GroupBox();
             tableLayoutPanel5 = new TableLayoutPanel();
-            DataGrid_Clientes = new DataGridView();
+            DataGrid_Ventas = new DataGridView();
             tableLayoutPanel3 = new TableLayoutPanel();
             button3 = new Button();
-            textBox1 = new TextBox();
+            txt_buscar = new TextBox();
+            cb_filtro = new ComboBox();
             btn_Regresar = new Button();
             button2 = new Button();
             tableLayoutPanel1 = new TableLayoutPanel();
@@ -48,7 +49,7 @@
             textBox2 = new TextBox();
             groupBox1.SuspendLayout();
             tableLayoutPanel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)DataGrid_Clientes).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)DataGrid_Ventas).BeginInit();
             tableLayoutPanel3.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -62,7 +63,7 @@
             // 
             button1.BackColor = SystemColors.HighlightText;
             button1.FlatStyle = FlatStyle.Popup;
-            button1.Location = new Point(599, 360);
+            button1.Location = new Point(596, 360);
             button1.Name = "button1";
             button1.Size = new Size(115, 52);
             button1.TabIndex = 8;
@@ -91,64 +92,80 @@
             tableLayoutPanel5.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             tableLayoutPanel5.ColumnCount = 1;
             tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel5.Controls.Add(DataGrid_Clientes, 0, 1);
+            tableLayoutPanel5.Controls.Add(DataGrid_Ventas, 0, 1);
             tableLayoutPanel5.Controls.Add(tableLayoutPanel3, 0, 0);
             tableLayoutPanel5.Location = new Point(124, 42);
             tableLayoutPanel5.Name = "tableLayoutPanel5";
             tableLayoutPanel5.RowCount = 2;
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Absolute, 210F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Absolute, 251F));
             tableLayoutPanel5.Size = new Size(590, 301);
             tableLayoutPanel5.TabIndex = 17;
             // 
-            // DataGrid_Clientes
+            // DataGrid_Ventas
             // 
-            DataGrid_Clientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DataGrid_Clientes.Dock = DockStyle.Fill;
-            DataGrid_Clientes.Location = new Point(3, 94);
-            DataGrid_Clientes.Name = "DataGrid_Clientes";
-            DataGrid_Clientes.RowHeadersWidth = 51;
-            DataGrid_Clientes.Size = new Size(584, 204);
-            DataGrid_Clientes.TabIndex = 7;
+            DataGrid_Ventas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            DataGrid_Ventas.Dock = DockStyle.Fill;
+            DataGrid_Ventas.Location = new Point(3, 53);
+            DataGrid_Ventas.Name = "DataGrid_Ventas";
+            DataGrid_Ventas.RowHeadersWidth = 51;
+            DataGrid_Ventas.Size = new Size(584, 245);
+            DataGrid_Ventas.TabIndex = 7;
             // 
             // tableLayoutPanel3
             // 
             tableLayoutPanel3.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            tableLayoutPanel3.ColumnCount = 2;
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 74.13127F));
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25.8687267F));
-            tableLayoutPanel3.Controls.Add(button3, 1, 0);
-            tableLayoutPanel3.Controls.Add(textBox1, 0, 0);
+            tableLayoutPanel3.ColumnCount = 3;
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 26.3698635F));
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 48.4589043F));
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25.1712322F));
+            tableLayoutPanel3.Controls.Add(button3, 2, 0);
+            tableLayoutPanel3.Controls.Add(txt_buscar, 1, 0);
+            tableLayoutPanel3.Controls.Add(cb_filtro, 0, 0);
             tableLayoutPanel3.Location = new Point(3, 3);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
             tableLayoutPanel3.RowCount = 1;
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel3.Size = new Size(584, 45);
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel3.Size = new Size(584, 44);
             tableLayoutPanel3.TabIndex = 14;
+            tableLayoutPanel3.Paint += tableLayoutPanel3_Paint;
             // 
             // button3
             // 
-            button3.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            button3.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             button3.BackColor = Color.MediumBlue;
             button3.FlatStyle = FlatStyle.Popup;
             button3.ForeColor = SystemColors.HighlightText;
             button3.Image = (Image)resources.GetObject("button3.Image");
             button3.ImageAlign = ContentAlignment.MiddleLeft;
-            button3.Location = new Point(435, 3);
+            button3.Location = new Point(440, 3);
             button3.Name = "button3";
-            button3.Size = new Size(146, 39);
+            button3.Size = new Size(141, 38);
             button3.TabIndex = 10;
             button3.Text = "Buscar";
             button3.TextAlign = ContentAlignment.MiddleRight;
             button3.UseVisualStyleBackColor = false;
+            button3.Click += button3_Click_1;
             // 
-            // textBox1
+            // txt_buscar
             // 
-            textBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            textBox1.Location = new Point(3, 3);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(426, 30);
-            textBox1.TabIndex = 12;
+            txt_buscar.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            txt_buscar.Location = new Point(157, 7);
+            txt_buscar.Name = "txt_buscar";
+            txt_buscar.Size = new Size(277, 30);
+            txt_buscar.TabIndex = 12;
+            // 
+            // cb_filtro
+            // 
+            cb_filtro.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            cb_filtro.FormattingEnabled = true;
+            cb_filtro.Items.AddRange(new object[] { "Cualquiera", "Folio", "id_Cliente", "Fecha de atención", "Fecha de entrega" });
+            cb_filtro.Location = new Point(3, 8);
+            cb_filtro.Name = "cb_filtro";
+            cb_filtro.Size = new Size(148, 31);
+            cb_filtro.TabIndex = 13;
+            cb_filtro.Text = "Filtrar Por";
+            cb_filtro.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // btn_Regresar
             // 
@@ -174,6 +191,7 @@
             button2.TabIndex = 9;
             button2.Text = "Eliminar";
             button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
             // 
             // tableLayoutPanel1
             // 
@@ -293,7 +311,7 @@
             Text = "ConsultarVentas";
             groupBox1.ResumeLayout(false);
             tableLayoutPanel5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)DataGrid_Clientes).EndInit();
+            ((System.ComponentModel.ISupportInitialize)DataGrid_Ventas).EndInit();
             tableLayoutPanel3.ResumeLayout(false);
             tableLayoutPanel3.PerformLayout();
             tableLayoutPanel1.ResumeLayout(false);
@@ -321,9 +339,10 @@
         private Button button4;
         private TextBox textBox2;
         private TableLayoutPanel tableLayoutPanel5;
-        private DataGridView DataGrid_Clientes;
+        private DataGridView DataGrid_Ventas;
         private TableLayoutPanel tableLayoutPanel3;
         private Button button3;
-        private TextBox textBox1;
+        private TextBox txt_buscar;
+        private ComboBox cb_filtro;
     }
 }
