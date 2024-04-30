@@ -60,9 +60,11 @@
             groupBox1.Dock = DockStyle.Fill;
             groupBox1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             groupBox1.ForeColor = Color.Orange;
-            groupBox1.Location = new Point(3, 3);
+            groupBox1.Location = new Point(4, 4);
+            groupBox1.Margin = new Padding(4);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(753, 518);
+            groupBox1.Padding = new Padding(4);
+            groupBox1.Size = new Size(937, 647);
             groupBox1.TabIndex = 10;
             groupBox1.TabStop = false;
             groupBox1.Text = "Consultar Clientes";
@@ -74,9 +76,10 @@
             btn_Regresar.FlatStyle = FlatStyle.Popup;
             btn_Regresar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btn_Regresar.ForeColor = Color.Orange;
-            btn_Regresar.Location = new Point(609, 444);
+            btn_Regresar.Location = new Point(761, 555);
+            btn_Regresar.Margin = new Padding(4);
             btn_Regresar.Name = "btn_Regresar";
-            btn_Regresar.Size = new Size(96, 46);
+            btn_Regresar.Size = new Size(116, 57);
             btn_Regresar.TabIndex = 13;
             btn_Regresar.Text = "Regresar";
             btn_Regresar.UseVisualStyleBackColor = false;
@@ -87,9 +90,10 @@
             button4.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             button4.BackColor = SystemColors.HighlightText;
             button4.FlatStyle = FlatStyle.Popup;
-            button4.Location = new Point(612, 351);
+            button4.Location = new Point(765, 439);
+            button4.Margin = new Padding(4);
             button4.Name = "button4";
-            button4.Size = new Size(96, 46);
+            button4.Size = new Size(116, 57);
             button4.TabIndex = 8;
             button4.Text = "Modificar ";
             button4.UseVisualStyleBackColor = false;
@@ -99,9 +103,10 @@
             btn_Eliminar.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             btn_Eliminar.BackColor = SystemColors.HighlightText;
             btn_Eliminar.FlatStyle = FlatStyle.Popup;
-            btn_Eliminar.Location = new Point(493, 351);
+            btn_Eliminar.Location = new Point(616, 439);
+            btn_Eliminar.Margin = new Padding(4);
             btn_Eliminar.Name = "btn_Eliminar";
-            btn_Eliminar.Size = new Size(95, 46);
+            btn_Eliminar.Size = new Size(115, 57);
             btn_Eliminar.TabIndex = 9;
             btn_Eliminar.Text = "Eliminar";
             btn_Eliminar.UseVisualStyleBackColor = false;
@@ -114,22 +119,24 @@
             tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel5.Controls.Add(DataGrid_Clientes, 0, 1);
             tableLayoutPanel5.Controls.Add(tableLayoutPanel3, 0, 0);
-            tableLayoutPanel5.Location = new Point(127, 29);
+            tableLayoutPanel5.Location = new Point(159, 36);
+            tableLayoutPanel5.Margin = new Padding(4);
             tableLayoutPanel5.Name = "tableLayoutPanel5";
             tableLayoutPanel5.RowCount = 2;
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Absolute, 264F));
-            tableLayoutPanel5.Size = new Size(584, 316);
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Absolute, 330F));
+            tableLayoutPanel5.Size = new Size(726, 395);
             tableLayoutPanel5.TabIndex = 16;
             // 
             // DataGrid_Clientes
             // 
             DataGrid_Clientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             DataGrid_Clientes.Dock = DockStyle.Fill;
-            DataGrid_Clientes.Location = new Point(3, 55);
+            DataGrid_Clientes.Location = new Point(4, 69);
+            DataGrid_Clientes.Margin = new Padding(4);
             DataGrid_Clientes.Name = "DataGrid_Clientes";
             DataGrid_Clientes.RowHeadersWidth = 51;
-            DataGrid_Clientes.Size = new Size(578, 258);
+            DataGrid_Clientes.Size = new Size(718, 322);
             DataGrid_Clientes.TabIndex = 7;
             // 
             // tableLayoutPanel3
@@ -142,21 +149,23 @@
             tableLayoutPanel3.Controls.Add(cb_filtro, 0, 0);
             tableLayoutPanel3.Controls.Add(btn_buscar, 2, 0);
             tableLayoutPanel3.Controls.Add(txt_buscar, 1, 0);
-            tableLayoutPanel3.Location = new Point(3, 3);
+            tableLayoutPanel3.Location = new Point(4, 4);
+            tableLayoutPanel3.Margin = new Padding(4);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
             tableLayoutPanel3.RowCount = 1;
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel3.Size = new Size(578, 45);
+            tableLayoutPanel3.Size = new Size(718, 56);
             tableLayoutPanel3.TabIndex = 14;
             // 
             // cb_filtro
             // 
             cb_filtro.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             cb_filtro.FormattingEnabled = true;
-            cb_filtro.Items.AddRange(new object[] { "Cualquiera", "Nombre", "Apellido_P", "Apellido_M", "Teléfono 1", "Teléfono 2" });
-            cb_filtro.Location = new Point(3, 8);
+            cb_filtro.Items.AddRange(new object[] { "Todos", "Nombre", "Apellido_P", "Apellido_M", "Teléfono 1", "Teléfono 2" });
+            cb_filtro.Location = new Point(4, 11);
+            cb_filtro.Margin = new Padding(4);
             cb_filtro.Name = "cb_filtro";
-            cb_filtro.Size = new Size(151, 31);
+            cb_filtro.Size = new Size(187, 36);
             cb_filtro.TabIndex = 17;
             cb_filtro.Text = "Filtrar Por ";
             cb_filtro.SelectedIndexChanged += cb_filtro_SelectedIndexChanged;
@@ -169,9 +178,10 @@
             btn_buscar.ForeColor = SystemColors.HighlightText;
             btn_buscar.Image = (Image)resources.GetObject("btn_buscar.Image");
             btn_buscar.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_buscar.Location = new Point(440, 3);
+            btn_buscar.Location = new Point(546, 4);
+            btn_buscar.Margin = new Padding(4);
             btn_buscar.Name = "btn_buscar";
-            btn_buscar.Size = new Size(135, 39);
+            btn_buscar.Size = new Size(168, 48);
             btn_buscar.TabIndex = 10;
             btn_buscar.Text = "Buscar";
             btn_buscar.TextAlign = ContentAlignment.MiddleRight;
@@ -181,9 +191,10 @@
             // txt_buscar
             // 
             txt_buscar.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txt_buscar.Location = new Point(160, 7);
+            txt_buscar.Location = new Point(199, 10);
+            txt_buscar.Margin = new Padding(4);
             txt_buscar.Name = "txt_buscar";
-            txt_buscar.Size = new Size(274, 30);
+            txt_buscar.Size = new Size(339, 35);
             txt_buscar.TabIndex = 12;
             // 
             // tableLayoutPanel2
@@ -192,12 +203,13 @@
             tableLayoutPanel2.ColumnCount = 1;
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel2.Controls.Add(groupBox1, 0, 0);
-            tableLayoutPanel2.Location = new Point(1, 111);
+            tableLayoutPanel2.Location = new Point(1, 139);
+            tableLayoutPanel2.Margin = new Padding(4);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 2;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel2.Size = new Size(759, 544);
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 25F));
+            tableLayoutPanel2.Size = new Size(945, 680);
             tableLayoutPanel2.TabIndex = 19;
             // 
             // tableLayoutPanel1
@@ -206,37 +218,40 @@
             tableLayoutPanel1.AutoSize = true;
             tableLayoutPanel1.ColumnCount = 3;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 460F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 149F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 575F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 186F));
             tableLayoutPanel1.Controls.Add(pictureBox1, 1, 0);
-            tableLayoutPanel1.Location = new Point(-8, 0);
+            tableLayoutPanel1.Location = new Point(-10, 0);
+            tableLayoutPanel1.Margin = new Padding(4);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.Size = new Size(777, 108);
+            tableLayoutPanel1.Size = new Size(971, 136);
             tableLayoutPanel1.TabIndex = 18;
             // 
             // pictureBox1
             // 
             pictureBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             pictureBox1.Image = Properties.Resources.Logo;
-            pictureBox1.Location = new Point(173, 3);
+            pictureBox1.Location = new Point(216, 4);
+            pictureBox1.Margin = new Padding(4);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(452, 102);
+            pictureBox1.Size = new Size(565, 128);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
             // ConsultarClientes
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Info;
-            ClientSize = new Size(762, 653);
+            ClientSize = new Size(948, 805);
             Controls.Add(tableLayoutPanel1);
             Controls.Add(tableLayoutPanel2);
-            MaximumSize = new Size(780, 700);
-            MinimumSize = new Size(780, 700);
+            Margin = new Padding(4);
+            MaximumSize = new Size(970, 861);
+            MinimumSize = new Size(970, 861);
             Name = "ConsultarClientes";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "ConsultarClientes";

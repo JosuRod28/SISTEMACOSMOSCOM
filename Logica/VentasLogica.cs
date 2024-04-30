@@ -40,10 +40,10 @@ namespace COSMOSCOM.Logica
                 conn.Open();
                 string query = "INSERT INTO Venta_Total(Folio,id_Cliente,Fecha_de_atencion,Fecha_de_entrega,Total) values (@folio,(SELECT MAX(id_Cliente) FROM Clientes),@fecha_de_atencion,@fecha_de_entrega,@total)";
                 SQLiteCommand cmd = new SQLiteCommand(query,conn);
-                cmd.Parameters.Add(new SQLiteParameter("@folio",obj.Folio));
-                cmd.Parameters.Add(new SQLiteParameter("@fecha_de_atencion", obj.Fecha_atencion));
-                cmd.Parameters.Add(new SQLiteParameter("@fecha_de_entrega", obj.Fecha_entrega));
-                cmd.Parameters.Add(new SQLiteParameter("@total", obj.Total));
+                cmd.Parameters.Add( new SQLiteParameter("@folio",obj.Folio));
+                cmd.Parameters.Add( new SQLiteParameter("@fecha_de_atencion", obj.Fecha_atencion));
+                cmd.Parameters.Add( new SQLiteParameter("@fecha_de_entrega", obj.Fecha_entrega));
+                cmd.Parameters.Add( new SQLiteParameter("@total", obj.Total));
                 cmd.CommandType = System.Data.CommandType.Text;
 
                 if (cmd.ExecuteNonQuery() < 1)

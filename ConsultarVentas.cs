@@ -34,9 +34,7 @@ namespace COSMOSCOM
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Registro ventana = new Registro();
 
-            ventana.Show();
         }
 
         private void btn_Regresar_Click(object sender, EventArgs e)
@@ -73,7 +71,7 @@ namespace COSMOSCOM
                     case "Fecha de entrega":
                         DataGrid_Ventas.DataSource = VentasLogica.Instancia.consultaFechaEntrega(textoBuscar);
                         break;
-                        case "Cualquiera":
+                        case "Todos":
                         DataGrid_Ventas.DataSource = VentasLogica.Instancia.consultar_todo();
                         break;
                     default:
@@ -94,16 +92,22 @@ namespace COSMOSCOM
                     // Obtener el índice de la fila seleccionada
                     int rowIndex = DataGrid_Ventas.SelectedRows[0].Index;
                     // Obtener el objeto Cliente correspondiente a la fila seleccionada
-                    Ventas clienteSeleccionado = (Ventas)DataGrid_Ventas.Rows[rowIndex].DataBoundItem;
+                    Ventas ventaSeleccionada= (Ventas)DataGrid_Ventas.Rows[rowIndex].DataBoundItem;
                     // Obtener el Folio seleccionado
-                    int folio = clienteSeleccionado.Folio;
+                    int folio = ventaSeleccionada.Folio;
                     // Eliminar el registro de la base de datos
                     bool deleteRegistro = VentasLogica.Instancia.Eliminar(folio);
                     //Verificar si la respuesta fue exitosa mostrando un mensaje de confirmación
                     if (deleteRegistro)
                     {
-                        // Eliminar la fila seleccionada del DataGridView
+                        // // Remover la fila de la fuente de datos
+                        VentasLogica.Instancia.consultar_todo().Remove(ventaSeleccionada);
 
+                        // Actualizar el DataGridView
+                        DataGrid_Ventas.DataSource = null;
+                        DataGrid_Ventas.DataSource = VentasLogica.Instancia.consultar_todo();
+
+                        //Mensaje de confirmación
                         MessageBox.Show("Registro eliminado", "Confirmación", MessageBoxButtons.OK);
                     }
                     else
@@ -130,7 +134,7 @@ namespace COSMOSCOM
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Verificar si se ha seleccionado una opción en el ComboBox
-            if (cb_filtro.SelectedItem.ToString() == "Cualquiera")
+            if (cb_filtro.SelectedItem.ToString() == "Todos")
             {
                 // Bloquear el TextBox
                 txt_buscar.Enabled = false;

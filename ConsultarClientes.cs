@@ -28,7 +28,7 @@ namespace COSMOSCOM
             // Inicializar el origen de datos del DataGridView
             DataGrid_Clientes.DataSource = null;
             // Obtener la filtración seleccionada en el ComboBox
-            string filtracion = cb_filtro.SelectedItem?.ToString(); ;
+            string filtracion = cb_filtro.SelectedItem?.ToString(); 
             // Verificar si se ha seleccionado una opción de filtración
             if (!string.IsNullOrEmpty(filtracion))
             {
@@ -53,13 +53,18 @@ namespace COSMOSCOM
                         DataGrid_Clientes.DataSource = ClientesLogica.Instancia.consulta_telefono2(textoBuscar);
                         break;
 
-                    case "Cualquiera":
+                    case "Todos":
+
                         DataGrid_Clientes.DataSource = ClientesLogica.Instancia.consultarCualquiera();
                         break;
                     default:
                         // En caso de que el valor seleccionado no coincida con ninguno de los casos anteriores
                         txt_buscar.Text = ""; // o cualquier otra acción que desees realizar
                         break;
+                }
+                if (DataGrid_Clientes.Rows.Count == 0)
+                {
+                    MessageBox.Show("No se encontraron resultados para la búsqueda.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
             }
@@ -112,8 +117,14 @@ namespace COSMOSCOM
                     //Verificar si la respuesta fue exitosa mostrando un mensaje de confirmación
                     if (deleteRegistro)
                     {
-                        // Eliminar la fila seleccionada del DataGridView
+                        // // Remover la fila de la fuente de datos
+                        ClientesLogica.Instancia.consultarCualquiera().Remove(clienteSeleccionado);
 
+                        // Actualizar el DataGridView
+                        DataGrid_Clientes.DataSource = null;
+                        DataGrid_Clientes.DataSource = ClientesLogica.Instancia.consultarCualquiera();
+
+                        //Mensaje de confirmación
                         MessageBox.Show("Registro eliminado", "Confirmación", MessageBoxButtons.OK);
                     }
                     else
@@ -137,7 +148,7 @@ namespace COSMOSCOM
         private void cb_filtro_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Verificar si se ha seleccionado una opción en el ComboBox
-            if (cb_filtro.SelectedItem.ToString() == "Cualquiera")
+            if (cb_filtro.SelectedItem.ToString() == "Todos")
             {
                 // Bloquear el TextBox
                 txt_buscar.Enabled = false;

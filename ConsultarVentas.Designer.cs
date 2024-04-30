@@ -63,9 +63,10 @@
             // 
             button1.BackColor = SystemColors.HighlightText;
             button1.FlatStyle = FlatStyle.Popup;
-            button1.Location = new Point(596, 360);
+            button1.Location = new Point(745, 450);
+            button1.Margin = new Padding(4);
             button1.Name = "button1";
-            button1.Size = new Size(115, 52);
+            button1.Size = new Size(144, 65);
             button1.TabIndex = 8;
             button1.Text = "Modificar ";
             button1.UseVisualStyleBackColor = false;
@@ -80,9 +81,11 @@
             groupBox1.Dock = DockStyle.Fill;
             groupBox1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             groupBox1.ForeColor = Color.Orange;
-            groupBox1.Location = new Point(3, 3);
+            groupBox1.Location = new Point(4, 4);
+            groupBox1.Margin = new Padding(4);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(756, 539);
+            groupBox1.Padding = new Padding(4);
+            groupBox1.Size = new Size(940, 661);
             groupBox1.TabIndex = 9;
             groupBox1.TabStop = false;
             groupBox1.Text = "Consultar Venta";
@@ -94,22 +97,24 @@
             tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel5.Controls.Add(DataGrid_Ventas, 0, 1);
             tableLayoutPanel5.Controls.Add(tableLayoutPanel3, 0, 0);
-            tableLayoutPanel5.Location = new Point(124, 42);
+            tableLayoutPanel5.Location = new Point(155, 52);
+            tableLayoutPanel5.Margin = new Padding(4);
             tableLayoutPanel5.Name = "tableLayoutPanel5";
             tableLayoutPanel5.RowCount = 2;
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Absolute, 251F));
-            tableLayoutPanel5.Size = new Size(590, 301);
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Absolute, 314F));
+            tableLayoutPanel5.Size = new Size(733, 376);
             tableLayoutPanel5.TabIndex = 17;
             // 
             // DataGrid_Ventas
             // 
             DataGrid_Ventas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             DataGrid_Ventas.Dock = DockStyle.Fill;
-            DataGrid_Ventas.Location = new Point(3, 53);
+            DataGrid_Ventas.Location = new Point(4, 66);
+            DataGrid_Ventas.Margin = new Padding(4);
             DataGrid_Ventas.Name = "DataGrid_Ventas";
             DataGrid_Ventas.RowHeadersWidth = 51;
-            DataGrid_Ventas.Size = new Size(584, 245);
+            DataGrid_Ventas.Size = new Size(725, 306);
             DataGrid_Ventas.TabIndex = 7;
             // 
             // tableLayoutPanel3
@@ -122,11 +127,12 @@
             tableLayoutPanel3.Controls.Add(button3, 2, 0);
             tableLayoutPanel3.Controls.Add(txt_buscar, 1, 0);
             tableLayoutPanel3.Controls.Add(cb_filtro, 0, 0);
-            tableLayoutPanel3.Location = new Point(3, 3);
+            tableLayoutPanel3.Location = new Point(4, 4);
+            tableLayoutPanel3.Margin = new Padding(4);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
             tableLayoutPanel3.RowCount = 1;
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel3.Size = new Size(584, 44);
+            tableLayoutPanel3.Size = new Size(725, 54);
             tableLayoutPanel3.TabIndex = 14;
             tableLayoutPanel3.Paint += tableLayoutPanel3_Paint;
             // 
@@ -138,9 +144,10 @@
             button3.ForeColor = SystemColors.HighlightText;
             button3.Image = (Image)resources.GetObject("button3.Image");
             button3.ImageAlign = ContentAlignment.MiddleLeft;
-            button3.Location = new Point(440, 3);
+            button3.Location = new Point(546, 4);
+            button3.Margin = new Padding(4);
             button3.Name = "button3";
-            button3.Size = new Size(141, 38);
+            button3.Size = new Size(175, 46);
             button3.TabIndex = 10;
             button3.Text = "Buscar";
             button3.TextAlign = ContentAlignment.MiddleRight;
@@ -150,19 +157,21 @@
             // txt_buscar
             // 
             txt_buscar.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txt_buscar.Location = new Point(157, 7);
+            txt_buscar.Location = new Point(195, 9);
+            txt_buscar.Margin = new Padding(4);
             txt_buscar.Name = "txt_buscar";
-            txt_buscar.Size = new Size(277, 30);
+            txt_buscar.Size = new Size(343, 35);
             txt_buscar.TabIndex = 12;
             // 
             // cb_filtro
             // 
             cb_filtro.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             cb_filtro.FormattingEnabled = true;
-            cb_filtro.Items.AddRange(new object[] { "Cualquiera", "Folio", "id_Cliente", "Fecha de atención", "Fecha de entrega" });
-            cb_filtro.Location = new Point(3, 8);
+            cb_filtro.Items.AddRange(new object[] { "Todos", "Folio", "id_Cliente", "Fecha de atención", "Fecha de entrega" });
+            cb_filtro.Location = new Point(4, 10);
+            cb_filtro.Margin = new Padding(4);
             cb_filtro.Name = "cb_filtro";
-            cb_filtro.Size = new Size(148, 31);
+            cb_filtro.Size = new Size(183, 36);
             cb_filtro.TabIndex = 13;
             cb_filtro.Text = "Filtrar Por";
             cb_filtro.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
@@ -173,9 +182,10 @@
             btn_Regresar.FlatStyle = FlatStyle.Popup;
             btn_Regresar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btn_Regresar.ForeColor = Color.Orange;
-            btn_Regresar.Location = new Point(599, 459);
+            btn_Regresar.Location = new Point(749, 574);
+            btn_Regresar.Margin = new Padding(4);
             btn_Regresar.Name = "btn_Regresar";
-            btn_Regresar.Size = new Size(111, 52);
+            btn_Regresar.Size = new Size(139, 65);
             btn_Regresar.TabIndex = 14;
             btn_Regresar.Text = "Regresar";
             btn_Regresar.UseVisualStyleBackColor = false;
@@ -185,9 +195,10 @@
             // 
             button2.BackColor = SystemColors.HighlightText;
             button2.FlatStyle = FlatStyle.Popup;
-            button2.Location = new Point(474, 360);
+            button2.Location = new Point(592, 450);
+            button2.Margin = new Padding(4);
             button2.Name = "button2";
-            button2.Size = new Size(108, 52);
+            button2.Size = new Size(135, 65);
             button2.TabIndex = 9;
             button2.Text = "Eliminar";
             button2.UseVisualStyleBackColor = false;
@@ -198,24 +209,26 @@
             tableLayoutPanel1.AutoSize = true;
             tableLayoutPanel1.ColumnCount = 3;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 460F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 149F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 575F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 186F));
             tableLayoutPanel1.Controls.Add(pictureBox1, 1, 0);
             tableLayoutPanel1.Dock = DockStyle.Top;
             tableLayoutPanel1.Location = new Point(0, 0);
+            tableLayoutPanel1.Margin = new Padding(4);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.Size = new Size(762, 108);
+            tableLayoutPanel1.Size = new Size(948, 136);
             tableLayoutPanel1.TabIndex = 17;
             // 
             // pictureBox1
             // 
             pictureBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             pictureBox1.Image = Properties.Resources.Logo;
-            pictureBox1.Location = new Point(158, 3);
+            pictureBox1.Location = new Point(193, 4);
+            pictureBox1.Margin = new Padding(4);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(452, 102);
+            pictureBox1.Size = new Size(565, 128);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
@@ -226,11 +239,12 @@
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel2.Controls.Add(groupBox1, 0, 0);
             tableLayoutPanel2.Dock = DockStyle.Fill;
-            tableLayoutPanel2.Location = new Point(0, 108);
+            tableLayoutPanel2.Location = new Point(0, 136);
+            tableLayoutPanel2.Margin = new Padding(4);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 1;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel2.Size = new Size(762, 545);
+            tableLayoutPanel2.Size = new Size(948, 669);
             tableLayoutPanel2.TabIndex = 18;
             // 
             // tableLayoutPanel4
@@ -293,19 +307,20 @@
             textBox2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             textBox2.Location = new Point(3, 3);
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(137, 27);
+            textBox2.Size = new Size(137, 31);
             textBox2.TabIndex = 12;
             // 
             // ConsultarVentas
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Info;
-            ClientSize = new Size(762, 653);
+            ClientSize = new Size(948, 805);
             Controls.Add(tableLayoutPanel2);
             Controls.Add(tableLayoutPanel1);
-            MaximumSize = new Size(780, 700);
-            MinimumSize = new Size(780, 700);
+            Margin = new Padding(4);
+            MaximumSize = new Size(970, 861);
+            MinimumSize = new Size(970, 861);
             Name = "ConsultarVentas";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "ConsultarVentas";

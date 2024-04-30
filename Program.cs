@@ -12,8 +12,9 @@ namespace COSMOSCOM
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             /*Application.Run(new ConsultarClientes());*/
-            Application.Run(new Registro());
+           /* Application.Run(new Autenticacion());*/
             /*Application.Run(new ConsultarVentas());*/
+            Application.Run(new Autenticacion());
         }
     }
 }
