@@ -38,15 +38,15 @@ namespace COSMOSCOM.Logica
             using (SQLiteConnection conn = new SQLiteConnection(conexion))
             {
                 conn.Open();
-                string query = "INSERT INTO Venta_Total(Folio,id_Cliente,Fecha_de_atencion,Fecha_de_entrega,Total) values (@folio,(SELECT MAX(id_Cliente) FROM Clientes),@fecha_de_atencion,@fecha_de_entrega,@total)";
-                SQLiteCommand cmd = new SQLiteCommand(query,conn);
-                cmd.Parameters.Add( new SQLiteParameter("@folio",obj.Folio));
-                cmd.Parameters.Add( new SQLiteParameter("@fecha_de_atencion", obj.Fecha_atencion));
-                cmd.Parameters.Add( new SQLiteParameter("@fecha_de_entrega", obj.Fecha_entrega));
-                cmd.Parameters.Add( new SQLiteParameter("@total", obj.Total));
-                cmd.CommandType = System.Data.CommandType.Text;
+                string queryInsert = "INSERT INTO Venta_Total(Folio,id_Cliente,Fecha_de_atencion,Fecha_de_entrega,Total) values (@folio,(SELECT MAX(id_Cliente) FROM Clientes),@fecha_de_atencion,@fecha_de_entrega,@total)";
+                SQLiteCommand cmdInsert = new SQLiteCommand(queryInsert,conn);
+                cmdInsert.Parameters.Add( new SQLiteParameter("@folio",obj.Folio));
+                cmdInsert.Parameters.Add( new SQLiteParameter("@fecha_de_atencion", obj.Fecha_atencion));
+                cmdInsert.Parameters.Add( new SQLiteParameter("@fecha_de_entrega", obj.Fecha_entrega));
+                cmdInsert.Parameters.Add( new SQLiteParameter("@total", obj.Total));
+                cmdInsert.CommandType = System.Data.CommandType.Text;
 
-                if (cmd.ExecuteNonQuery() < 1)
+                if (cmdInsert.ExecuteNonQuery() < 1)
                 {
                     respuesta = false;
                 }
@@ -56,6 +56,24 @@ namespace COSMOSCOM.Logica
 
             return respuesta;
 
+        }
+
+        public bool BuscarFechasEntrega(string Fecha_entrega)
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(conexion)) 
+            {
+
+                conn.Open();
+                string querySelectFecha = "select * from Venta_Total where Fecha_de_entrega=@fecha_de_entrega";
+                SQLiteCommand cmdSelectFecha = new SQLiteCommand(querySelectFecha, conn);
+                cmdSelectFecha.Parameters.AddWithValue("@fecha_de_entrega", Fecha_entrega);
+                cmdSelectFecha.CommandType = System.Data.CommandType.Text;
+                int count = Convert.ToInt32(cmdSelectFecha.ExecuteScalar());
+
+                // Si count es mayor que 0, significa que hay al menos un registro con la fecha de entrega proporcionada
+                return count > 0;
+
+            }
         }
 
         public List<Ventas> consultar_todo()

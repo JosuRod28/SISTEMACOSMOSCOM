@@ -193,6 +193,11 @@ namespace COSMOSCOM
                 // Reinicia la bandera para futuras comprobaciones
                 seAgregoFila = false;
             }
+            if (VentasLogica.Instancia.BuscarFechasEntrega(dtp_Fecha_entrega.Text)) 
+            {
+                MessageBox.Show($"Ya existe un registro para la fecha de entrega {dtp_Fecha_entrega.Value.ToShortDateString()}, selecciona otra fecha", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
+            }
 
 
             return true;
