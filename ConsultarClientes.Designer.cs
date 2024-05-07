@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConsultarClientes));
             groupBox1 = new GroupBox();
             btn_Regresar = new Button();
-            button4 = new Button();
+            btn_Modificar = new Button();
             btn_Eliminar = new Button();
             tableLayoutPanel5 = new TableLayoutPanel();
             DataGrid_Clientes = new DataGridView();
@@ -54,7 +54,7 @@
             // groupBox1
             // 
             groupBox1.Controls.Add(btn_Regresar);
-            groupBox1.Controls.Add(button4);
+            groupBox1.Controls.Add(btn_Modificar);
             groupBox1.Controls.Add(btn_Eliminar);
             groupBox1.Controls.Add(tableLayoutPanel5);
             groupBox1.Dock = DockStyle.Fill;
@@ -85,18 +85,19 @@
             btn_Regresar.UseVisualStyleBackColor = false;
             btn_Regresar.Click += btn_Regresar_Click;
             // 
-            // button4
+            // btn_Modificar
             // 
-            button4.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            button4.BackColor = SystemColors.HighlightText;
-            button4.FlatStyle = FlatStyle.Popup;
-            button4.Location = new Point(765, 439);
-            button4.Margin = new Padding(4);
-            button4.Name = "button4";
-            button4.Size = new Size(116, 57);
-            button4.TabIndex = 8;
-            button4.Text = "Modificar ";
-            button4.UseVisualStyleBackColor = false;
+            btn_Modificar.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            btn_Modificar.BackColor = SystemColors.HighlightText;
+            btn_Modificar.FlatStyle = FlatStyle.Popup;
+            btn_Modificar.Location = new Point(765, 439);
+            btn_Modificar.Margin = new Padding(4);
+            btn_Modificar.Name = "btn_Modificar";
+            btn_Modificar.Size = new Size(116, 57);
+            btn_Modificar.TabIndex = 8;
+            btn_Modificar.Text = "Modificar ";
+            btn_Modificar.UseVisualStyleBackColor = false;
+            btn_Modificar.Click += button4_Click;
             // 
             // btn_Eliminar
             // 
@@ -279,7 +280,7 @@
         private TableLayoutPanel tableLayoutPanel5;
         private TableLayoutPanel tableLayoutPanel1;
         private PictureBox pictureBox1;
-        private Button button4;
+        private Button btn_Modificar;
         private Button btn_Regresar;
         private ComboBox cb_filtro;
     }

@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConsultarVentas));
             button1 = new Button();
             groupBox1 = new GroupBox();
+            button5 = new Button();
             tableLayoutPanel5 = new TableLayoutPanel();
             DataGrid_Ventas = new DataGridView();
             tableLayoutPanel3 = new TableLayoutPanel();
@@ -74,6 +75,7 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(button5);
             groupBox1.Controls.Add(tableLayoutPanel5);
             groupBox1.Controls.Add(btn_Regresar);
             groupBox1.Controls.Add(button2);
@@ -89,6 +91,19 @@
             groupBox1.TabIndex = 9;
             groupBox1.TabStop = false;
             groupBox1.Text = "Consultar Venta";
+            // 
+            // button5
+            // 
+            button5.BackColor = SystemColors.HighlightText;
+            button5.FlatStyle = FlatStyle.Popup;
+            button5.Location = new Point(155, 450);
+            button5.Margin = new Padding(4);
+            button5.Name = "button5";
+            button5.Size = new Size(191, 65);
+            button5.TabIndex = 18;
+            button5.Text = "Detalle de Venta";
+            button5.UseVisualStyleBackColor = false;
+            button5.Click += button5_Click;
             // 
             // tableLayoutPanel5
             // 
@@ -359,5 +374,6 @@
         private Button button3;
         private TextBox txt_buscar;
         private ComboBox cb_filtro;
+        private Button button5;
     }
 }

@@ -50,3 +50,4 @@ C:\Users\Josue\source\repos\COSMOSCOM\COSMOSCOM\obj\Debug\net8.0-windows\COSMOSC
 C:\Users\Josue\source\repos\COSMOSCOM\COSMOSCOM\obj\Debug\net8.0-windows\COSMOSCOM.AdministraUsuarios.resources
 C:\Users\Josue\source\repos\COSMOSCOM\COSMOSCOM\obj\Debug\net8.0-windows\COSMOSCOM.Registro_admin_.resources
 C:\Users\Josue\source\repos\COSMOSCOM\COSMOSCOM\obj\Debug\net8.0-windows\COSMOSCOM.Registro_user_.resources
+C:\Users\Josue\source\repos\COSMOSCOM\COSMOSCOM\obj\Debug\net8.0-windows\COSMOSCOM.CambiarTarifa.resources

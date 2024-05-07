@@ -13,6 +13,9 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Data.SQLite;
 using static System.ComponentModel.Design.ObjectSelectorEditor;
+using Forms = System.Windows.Forms;
+using System.Configuration;
+
 
 namespace COSMOSCOM
 {
@@ -25,22 +28,25 @@ namespace COSMOSCOM
             InitializeComponent();
             // El valor de la duracion se cambian con el componente numericUpDown
             nUpDown.ValueChanged += UpDown_ValueChanged;
-            //Se asigna un valor inicial en el campo monto
-            txt_Monto.Text = "170";
+            
 
         }
 
+
+
+
         private void UpDown_ValueChanged(object sender, EventArgs e)
         {
-            // Obtener el valor actual de la duracion
-            int valor = (int)nUpDown.Value;
-
-            //Calculo del monto
-            int monto;
-            monto = valor * 170 / 120;
-            // Asignar el monto dependiendo de la duracion
-            txt_Monto.Text = monto.ToString();
-
+                    
+                    // Obtener el valor actual del NumericUpDown
+                    int valor = (int)nUpDown.Value;
+                    int precio = CambiarTarifa.PrecioFormato;
+                    // Calcular el monto utilizando el precio y el valor del NumericUpDown
+                    int monto = (int)(valor * precio / 120);
+                    // Asignar el monto calculado al TextBox txt_Monto
+                    txt_Monto.Text = monto.ToString();
+                
+            
         }
 
         private void label4_Click(object sender, EventArgs e)
@@ -80,7 +86,6 @@ namespace COSMOSCOM
 
         private void btn_Guardar_Click(object sender, EventArgs e)
         {
-            
 
             //Creacion del objeto Clientes que hace referencia a la clase Clientes
             Clientes objetoClientes = new Clientes()
@@ -107,7 +112,7 @@ namespace COSMOSCOM
 
             if (ValidarCampos())
             {
-                int.TryParse(txt_Folio.Text,out int numFolio); //Variable para actualizar el número de folio
+                int.TryParse(txt_Folio.Text, out int numFolio); //Variable para actualizar el número de folio
 
                 // Llamamos al metodo Guardar del clase ClientesLogica y lo  aginamos a una variable de tipo boleano.
                 //Se utiliza la propiedad Instancia de la clase ClientesLogica.
@@ -116,24 +121,31 @@ namespace COSMOSCOM
                 bool resVentas = VentasLogica.Instancia.Guardar(objetoVentas);
                 //Verificar si la respuesta fue exitosa mostrando un mensaje de confirmación
 
+                string formato = cb_Formatos.Text;
+                string duracion = nUpDown.Value.ToString();
+                string monto = txt_Monto.Text;
+                bool resDetalleVenta = DetalleVentaLogica.Instancia.InsertarDetalleVenta(formato, duracion, monto);
+
+
                 if (resClientes)
                 {
                     MessageBox.Show("Registro de clientes guardado", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
-                if (resVentas)
+                if (resVentas && resDetalleVenta)
                 {
                     MessageBox.Show("Registro de ventas guardado", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
                 }
-                
+
                 numFolio++;
 
-                txt_Folio.Text= numFolio.ToString();
+                txt_Folio.Text = numFolio.ToString();
 
                 LimpiarDatos();
 
 
             }
-            
+
 
         }
 
@@ -145,7 +157,7 @@ namespace COSMOSCOM
             txt_Telefono1.Text = "";
             txt_Telefono1.Text = "";
             txt_Telefono2.Text = "";
-            dtv_Formatos.Rows.Clear();
+            dgv_Formatos.Rows.Clear();
 
         }
 
@@ -170,37 +182,40 @@ namespace COSMOSCOM
                 return false;
             }
 
-            if (txt_Telefono1.TextLength!=10 )
+            if (txt_Telefono1.TextLength != 10)
             {
                 MessageBox.Show("El número de teléfono requiere de máximo 10 dígitos", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return false;
             }
-            if (!string.IsNullOrWhiteSpace(txt_Telefono2.Text) && txt_Telefono2.TextLength<10)
+            if (!string.IsNullOrWhiteSpace(txt_Telefono2.Text) && txt_Telefono2.TextLength < 10)
             {
                 MessageBox.Show("Por favor, complete el segundo número de teléfono", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return false;
             }
+            //Verificar si existen fechas de entrega ya  registradas
 
-            // Verifica si se agregó un formato
-            if (!seAgregoFila)
+            if (VentasLogica.Instancia.BuscarFechasEntrega(dtp_Fecha_entrega.Text))
             {
-                // Muestra un mensaje indicando que no se agregó ninguna fila
-                MessageBox.Show("Por favor agrega elementos a la tabla de formatos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Ya existe un registro para la fecha de entrega {dtp_Fecha_entrega.Value.ToShortDateString()}, selecciona otra fecha", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            else
+
+            if (!FormatosAgregados(dgv_Formatos))
             {
-                // Reinicia la bandera para futuras comprobaciones
-                seAgregoFila = false;
-            }
-            if (VentasLogica.Instancia.BuscarFechasEntrega(dtp_Fecha_entrega.Text)) 
-            {
-                MessageBox.Show($"Ya existe un registro para la fecha de entrega {dtp_Fecha_entrega.Value.ToShortDateString()}, selecciona otra fecha", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Por favor, agregue elementos a la tabla de formatos", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return false;
+
             }
+
 
 
             return true;
+        }
+
+        private bool FormatosAgregados(DataGridView filaFormatos)
+        {
+            // Verifica si el DataGridView tiene al menos una fila
+            return filaFormatos.Rows.Count > 0;
         }
 
         private void btn_Cancelar_Click(object sender, EventArgs e)
@@ -251,15 +266,15 @@ namespace COSMOSCOM
             string monto = txt_Monto.Text;
 
             //Estos valores capturados se agregan como una nueva fila al DataGridView.
-            dtv_Formatos.Rows.Add(formato, duracion, monto);
+            dgv_Formatos.Rows.Add(formato, duracion, monto);
 
             //Se itera sobre todas las filas del DataGridView para calcular la suma de los montos de las filas que tienen un valor en la tercera columna. 
 
             int total = 0; //Inicializar el total en 0
 
-            for (int i = 0; i < dtv_Formatos.Rows.Count - 1; i++) // Iterar hasta la penúltima fila
+            for (int i = 0; i < dgv_Formatos.Rows.Count - 1; i++) // Iterar hasta la penúltima fila
             {
-                DataGridViewRow fila = dtv_Formatos.Rows[i];
+                DataGridViewRow fila = dgv_Formatos.Rows[i];
                 if (!fila.IsNewRow && fila.Cells[2].Value != null) //se verifica si la fila actual no es una fila nueva
                 {
                     total += Convert.ToInt32(fila.Cells[2].Value); //Se itera los valores sumados y se guardan en la variable total
@@ -268,7 +283,7 @@ namespace COSMOSCOM
             txt_Total.Text = total.ToString(); //La suma se cuarda en el campo del total
 
             //Se actualiza el número de formatos mostrado en un control de etiqueta, excluyendo la última fila.
-            int numFormatos = dtv_Formatos.Rows.Count - 1;
+            int numFormatos = dgv_Formatos.Rows.Count - 1;
             label15.Text = numFormatos.ToString();
 
             // Establece la bandera como verdadera para indicar que se agregó un formato
@@ -277,10 +292,10 @@ namespace COSMOSCOM
 
         private void btn_Quitar_Click(object sender, EventArgs e)
         {
-            if (dtv_Formatos.SelectedRows.Count > 0) // se verifica que la fila esta seleccionada
+            if (dgv_Formatos.SelectedRows.Count > 0) // se verifica que la fila esta seleccionada
             {
 
-                dtv_Formatos.Rows.Remove(dtv_Formatos.SelectedRows[0]);//Se Elimina la fila seleccionada
+                dgv_Formatos.Rows.Remove(dgv_Formatos.SelectedRows[0]);//Se Elimina la fila seleccionada
 
                 //Llama el metodo para actualizar el valor del total.
                 ActualizarTotal();
@@ -291,9 +306,9 @@ namespace COSMOSCOM
         private void ActualizarTotal()
         {
             int total = 0;
-            for (int i = 0; i < dtv_Formatos.Rows.Count - 1; i++) // Iterar hasta la penúltima fila
+            for (int i = 0; i < dgv_Formatos.Rows.Count - 1; i++) // Iterar hasta la penúltima fila
             {
-                DataGridViewRow fila = dtv_Formatos.Rows[i];
+                DataGridViewRow fila = dgv_Formatos.Rows[i];
                 if (!fila.IsNewRow && fila.Cells[2].Value != null)
                 {
                     total += Convert.ToInt32(fila.Cells[2].Value);
@@ -301,7 +316,7 @@ namespace COSMOSCOM
             }
 
             txt_Total.Text = total.ToString();
-            int numFormatos = dtv_Formatos.Rows.Count - 1;
+            int numFormatos = dgv_Formatos.Rows.Count - 1;
             label15.Text = numFormatos.ToString();
         }
 
@@ -426,6 +441,12 @@ namespace COSMOSCOM
         private void label2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void cambiarTarifaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CambiarTarifa form = new CambiarTarifa();
+            form.ShowDialog();
         }
     }
 }

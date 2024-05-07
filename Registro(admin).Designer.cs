@@ -51,7 +51,7 @@
             label14 = new Label();
             txt_Total = new TextBox();
             label13 = new Label();
-            dtv_Formatos = new DataGridView();
+            dgv_Formatos = new DataGridView();
             Formato = new DataGridViewTextBoxColumn();
             Duración = new DataGridViewTextBoxColumn();
             Monto = new DataGridViewTextBoxColumn();
@@ -90,10 +90,11 @@
             opcionesToolStripMenuItem = new ToolStripMenuItem();
             agregarNuevoUsuario = new ToolStripMenuItem();
             administrarUsuarios = new ToolStripMenuItem();
+            cambiarTarifaToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             gbCliente.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dtv_Formatos).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgv_Formatos).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nUpDown).BeginInit();
             gbOpciones.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
@@ -403,18 +404,18 @@
             label13.TabIndex = 6;
             label13.Text = "Total:";
             // 
-            // dtv_Formatos
+            // dgv_Formatos
             // 
-            dtv_Formatos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtv_Formatos.Columns.AddRange(new DataGridViewColumn[] { Formato, Duración, Monto });
-            dtv_Formatos.Dock = DockStyle.Fill;
-            dtv_Formatos.Location = new Point(4, 4);
-            dtv_Formatos.Margin = new Padding(4);
-            dtv_Formatos.Name = "dtv_Formatos";
-            dtv_Formatos.RowHeadersWidth = 51;
-            dtv_Formatos.Size = new Size(720, 340);
-            dtv_Formatos.TabIndex = 3;
-            dtv_Formatos.CellContentClick += dataGridView1_CellContentClick;
+            dgv_Formatos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgv_Formatos.Columns.AddRange(new DataGridViewColumn[] { Formato, Duración, Monto });
+            dgv_Formatos.Dock = DockStyle.Fill;
+            dgv_Formatos.Location = new Point(4, 4);
+            dgv_Formatos.Margin = new Padding(4);
+            dgv_Formatos.Name = "dgv_Formatos";
+            dgv_Formatos.RowHeadersWidth = 51;
+            dgv_Formatos.Size = new Size(720, 340);
+            dgv_Formatos.TabIndex = 3;
+            dgv_Formatos.CellContentClick += dataGridView1_CellContentClick;
             // 
             // Formato
             // 
@@ -453,18 +454,17 @@
             // txt_Monto
             // 
             txt_Monto.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txt_Monto.Location = new Point(651, 50);
+            txt_Monto.Location = new Point(651, 56);
             txt_Monto.Margin = new Padding(4);
             txt_Monto.Name = "txt_Monto";
             txt_Monto.Size = new Size(222, 35);
             txt_Monto.TabIndex = 14;
-            txt_Monto.Text = "170";
             // 
             // label12
             // 
             label12.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label12.AutoSize = true;
-            label12.Location = new Point(594, 53);
+            label12.Location = new Point(594, 58);
             label12.Margin = new Padding(4, 0, 4, 0);
             label12.Name = "label12";
             label12.Size = new Size(49, 30);
@@ -474,7 +474,7 @@
             // nUpDown
             // 
             nUpDown.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            nUpDown.Location = new Point(294, 50);
+            nUpDown.Location = new Point(294, 56);
             nUpDown.Margin = new Padding(4);
             nUpDown.Maximum = new decimal(new int[] { 3000, 0, 0, 0 });
             nUpDown.Minimum = new decimal(new int[] { 120, 0, 0, 0 });
@@ -489,7 +489,7 @@
             cb_Formatos.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             cb_Formatos.FormattingEnabled = true;
             cb_Formatos.Items.AddRange(new object[] { "VHS", "Beta", "MiniDV", "8mm", "Super8", "DVD" });
-            cb_Formatos.Location = new Point(4, 51);
+            cb_Formatos.Location = new Point(4, 57);
             cb_Formatos.Margin = new Padding(4);
             cb_Formatos.Name = "cb_Formatos";
             cb_Formatos.Size = new Size(282, 36);
@@ -503,7 +503,7 @@
             label10.Location = new Point(651, 0);
             label10.Margin = new Padding(4, 0, 4, 0);
             label10.Name = "label10";
-            label10.Size = new Size(80, 26);
+            label10.Size = new Size(80, 30);
             label10.TabIndex = 2;
             label10.Text = "Monto";
             // 
@@ -513,7 +513,7 @@
             label9.Location = new Point(294, 0);
             label9.Margin = new Padding(4, 0, 4, 0);
             label9.Name = "label9";
-            label9.Size = new Size(102, 26);
+            label9.Size = new Size(102, 30);
             label9.TabIndex = 1;
             label9.Text = "Duración";
             // 
@@ -523,7 +523,7 @@
             label8.Location = new Point(4, 0);
             label8.Margin = new Padding(4, 0, 4, 0);
             label8.Name = "label8";
-            label8.Size = new Size(189, 26);
+            label8.Size = new Size(189, 30);
             label8.TabIndex = 0;
             label8.Text = "Formato de Video";
             // 
@@ -675,7 +675,7 @@
             tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 83.10078F));
             tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 16.8992252F));
             tableLayoutPanel5.Controls.Add(tableLayoutPanel6, 1, 0);
-            tableLayoutPanel5.Controls.Add(dtv_Formatos, 0, 0);
+            tableLayoutPanel5.Controls.Add(dgv_Formatos, 0, 0);
             tableLayoutPanel5.Dock = DockStyle.Top;
             tableLayoutPanel5.Location = new Point(4, 142);
             tableLayoutPanel5.Margin = new Padding(4);
@@ -717,10 +717,10 @@
             // tableLayoutPanel4
             // 
             tableLayoutPanel4.ColumnCount = 4;
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 26.32124F));
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 27.22952F));
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 5.161027F));
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20.6441078F));
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.168602F));
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 34.3131676F));
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 6.503647F));
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 26.0145874F));
             tableLayoutPanel4.Controls.Add(label8, 0, 0);
             tableLayoutPanel4.Controls.Add(label9, 1, 0);
             tableLayoutPanel4.Controls.Add(cb_Formatos, 0, 1);
@@ -733,8 +733,8 @@
             tableLayoutPanel4.Margin = new Padding(4);
             tableLayoutPanel4.Name = "tableLayoutPanel4";
             tableLayoutPanel4.RowCount = 2;
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 24.1867046F));
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 75.81329F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 33.7078667F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 66.29214F));
             tableLayoutPanel4.Size = new Size(877, 110);
             tableLayoutPanel4.TabIndex = 18;
             // 
@@ -901,7 +901,7 @@
             // 
             // opcionesToolStripMenuItem
             // 
-            opcionesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { agregarNuevoUsuario, administrarUsuarios });
+            opcionesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { agregarNuevoUsuario, administrarUsuarios, cambiarTarifaToolStripMenuItem });
             opcionesToolStripMenuItem.Name = "opcionesToolStripMenuItem";
             opcionesToolStripMenuItem.Size = new Size(141, 29);
             opcionesToolStripMenuItem.Text = "Mas Opciones";
@@ -919,6 +919,13 @@
             administrarUsuarios.Size = new Size(295, 34);
             administrarUsuarios.Text = "Administrar usuarios";
             administrarUsuarios.Click += modificarUsuarioYContraseñaToolStripMenuItem_Click;
+            // 
+            // cambiarTarifaToolStripMenuItem
+            // 
+            cambiarTarifaToolStripMenuItem.Name = "cambiarTarifaToolStripMenuItem";
+            cambiarTarifaToolStripMenuItem.Size = new Size(295, 34);
+            cambiarTarifaToolStripMenuItem.Text = "Cambiar tarifa ";
+            cambiarTarifaToolStripMenuItem.Click += cambiarTarifaToolStripMenuItem_Click;
             // 
             // Registro_admin_
             // 
@@ -942,7 +949,7 @@
             gbCliente.ResumeLayout(false);
             tableLayoutPanel2.ResumeLayout(false);
             tableLayoutPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dtv_Formatos).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgv_Formatos).EndInit();
             ((System.ComponentModel.ISupportInitialize)nUpDown).EndInit();
             gbOpciones.ResumeLayout(false);
             tableLayoutPanel3.ResumeLayout(false);
@@ -985,7 +992,7 @@
         private Button btn_ConsultarC;
         private Button btn_Agregar;
         private ComboBox cb_Formatos;
-        private DataGridView dtv_Formatos;
+        private DataGridView dgv_Formatos;
         private NumericUpDown nUpDown;
         private TextBox txt_Monto;
         private Label label12;
@@ -1034,5 +1041,6 @@
         private ToolStripMenuItem opcionesToolStripMenuItem;
         private ToolStripMenuItem agregarNuevoUsuario;
         private ToolStripMenuItem administrarUsuarios;
+        private ToolStripMenuItem cambiarTarifaToolStripMenuItem;
     }
 }

@@ -76,13 +76,14 @@ namespace COSMOSCOM.Logica
             }
         }
 
-        public List<Ventas> consultar_todo()
+        public List<Ventas> ConsultarTodos()
         {
             List<Ventas> olista = new List<Ventas>();
             using (SQLiteConnection conn = new SQLiteConnection(conexion))
             {
                 conn.Open();
                 string query = "select * from Venta_Total";
+
                 SQLiteCommand cmd = new SQLiteCommand(query, conn);
                 cmd.CommandType = System.Data.CommandType.Text;
 
@@ -108,7 +109,7 @@ namespace COSMOSCOM.Logica
 
         }
 
-        public List<Ventas> consulta_folio(int folio)
+        public List<Ventas> ConsultarPorFolio(int folio)
         {
 
             List<Ventas> olista = new List<Ventas>();
@@ -149,7 +150,7 @@ namespace COSMOSCOM.Logica
         }
 
 
-        public List<Ventas> consulta_idCliente(int idCliente)
+        public List<Ventas> ConsultaPorCliente(int idCliente)
         {
 
             List<Ventas> olista = new List<Ventas>();
@@ -189,7 +190,7 @@ namespace COSMOSCOM.Logica
 
         }
 
-        public List<Ventas> consultaFechaAtencion(string fecha_atencion)
+        public List<Ventas> ConsultarPorFechaAtencion(string fecha_atencion)
         {
 
             List<Ventas> olista = new List<Ventas>();
@@ -229,7 +230,7 @@ namespace COSMOSCOM.Logica
 
         }
 
-        public List<Ventas> consultaFechaEntrega(string fecha_entrega)
+        public List<Ventas> ConsultarPorFechaEntrega(string fecha_entrega)
         {
 
             List<Ventas> olista = new List<Ventas>();
@@ -329,5 +330,60 @@ namespace COSMOSCOM.Logica
             }
             return respuesta;
         }
+
+        public bool ActualizarVentas(string queryActualiza)
+        {
+            try
+            {
+                using (SQLiteConnection conn = new SQLiteConnection(conexion))
+                {
+                    conn.Open();
+
+                    SQLiteCommand cmd = new SQLiteCommand(queryActualiza, conn);
+
+                    // Ejecutar la consulta de actualización
+                    int filasActualizadas = cmd.ExecuteNonQuery();
+                    // Verificar si se actualizaron filas
+                    return filasActualizadas > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejar cualquier excepción que ocurra durante la actualización
+                Console.WriteLine("Error al actualizar el cliente: " + ex.Message);
+                return false;
+            }
+
+        }
+
+        public bool InsertarDetalleVenta(string formato,string duracion, string monto)
+        {
+            try
+            {
+                using (SQLiteConnection conn = new SQLiteConnection(conexion))
+                {
+                    conn.Open();
+                    string InsertDetalleVenta = "INSERT INTO Detalle_Venta(Folio_Venta,id_Cliente,id_Formato,Duracion,Monto) values ((SELECT MAX(Folio) FROM Venta_Total),(SELECT MAX(id_Cliente) FROM Clientes),(SELECT id_Formato  from Formatos where Formato=@id_formato),@duracion,@monto)";
+                    SQLiteCommand cmdDetalleVenta = new SQLiteCommand(InsertDetalleVenta, conn);
+                    cmdDetalleVenta.Parameters.AddWithValue("@id_formato", formato);
+                    cmdDetalleVenta.Parameters.AddWithValue("@duracion", duracion);
+                    cmdDetalleVenta.Parameters.AddWithValue("@monto",monto);
+
+                    // Ejecutar el comando para realizar la inserción de datos
+                    int filasInsertadas = cmdDetalleVenta.ExecuteNonQuery();
+
+                    // Devolver true si se insertaron filas correctamente, de lo contrario, devolver false
+                    return filasInsertadas > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejar cualquier excepción que ocurra durante la actualización
+                Console.WriteLine("Error al actualizar el cliente: " + ex.Message);
+                return false;
+            }
+
+        }
+
     }
 }

@@ -23,7 +23,54 @@ namespace COSMOSCOM
 
         private void button1_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (DataGrid_Ventas.SelectedCells.Count > 0)
+                {
+                    // Obtener la celda seleccionada
+                    DataGridViewCell selectedCell = DataGrid_Ventas.SelectedCells[0];
 
+                    // Obtener el ID del cliente
+                    int folio = Convert.ToInt32(DataGrid_Ventas.Rows[selectedCell.RowIndex].Cells["Folio"].Value);
+
+                    string nombreColumna = DataGrid_Ventas.Columns[selectedCell.ColumnIndex].Name;
+
+                    string nuevoValor = selectedCell.Value?.ToString();
+
+                    if (!string.IsNullOrEmpty(nombreColumna) && nuevoValor != null)
+                    {
+                        // Construir la consulta de actualización
+                        string consulta = $"UPDATE Venta_Total SET {nombreColumna} = '{nuevoValor}' WHERE Folio = {folio}";
+                        // Actualizar los datos en la base de dato
+
+                        if (VentasLogica.Instancia.ActualizarVentas(consulta))
+                        {
+                            MessageBox.Show("Datos actualizados correctamente", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                            // Actualizar el DataGridView
+                            DataGrid_Ventas.DataSource = VentasLogica.Instancia.ConsultarTodos();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Error al actualizar los datos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo determinar la celda seleccionada o el valor de la celda es nulo", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo determinar la celda seleccionada o el valor de la celda es nulo", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -58,21 +105,21 @@ namespace COSMOSCOM
                 switch (filtracion)
                 {
 
-                    case "Folio" :
-                        DataGrid_Ventas.DataSource = VentasLogica.Instancia.consulta_folio(int.Parse(textoBuscar));
+                    case "Folio":
+                        DataGrid_Ventas.DataSource = VentasLogica.Instancia.ConsultarPorFolio(int.Parse(textoBuscar));
                         break;
-                       
+
                     case "id_Cliente":
-                        DataGrid_Ventas.DataSource = VentasLogica.Instancia.consulta_idCliente(int.Parse(textoBuscar));
+                        DataGrid_Ventas.DataSource = VentasLogica.Instancia.ConsultaPorCliente(int.Parse(textoBuscar));
                         break;
                     case "Fecha de atención":
-                        DataGrid_Ventas.DataSource = VentasLogica.Instancia.consultaFechaAtencion(textoBuscar);
+                        DataGrid_Ventas.DataSource = VentasLogica.Instancia.ConsultarPorFechaAtencion(textoBuscar);
                         break;
                     case "Fecha de entrega":
-                        DataGrid_Ventas.DataSource = VentasLogica.Instancia.consultaFechaEntrega(textoBuscar);
+                        DataGrid_Ventas.DataSource = VentasLogica.Instancia.ConsultarPorFechaEntrega(textoBuscar);
                         break;
-                        case "Todos":
-                        DataGrid_Ventas.DataSource = VentasLogica.Instancia.consultar_todo();
+                    case "Todos":
+                        DataGrid_Ventas.DataSource = VentasLogica.Instancia.ConsultarTodos();
                         break;
                     default:
                         // En caso de que el valor seleccionado no coincida con ninguno de los casos anteriores
@@ -91,8 +138,8 @@ namespace COSMOSCOM
                 {
                     // Obtener el índice de la fila seleccionada
                     int rowIndex = DataGrid_Ventas.SelectedRows[0].Index;
-                    // Obtener el objeto Cliente correspondiente a la fila seleccionada
-                    Ventas ventaSeleccionada= (Ventas)DataGrid_Ventas.Rows[rowIndex].DataBoundItem;
+                    // Obtener el objeto Venta correspondiente a la fila seleccionada
+                    Ventas ventaSeleccionada = (Ventas)DataGrid_Ventas.Rows[rowIndex].DataBoundItem;
                     // Obtener el Folio seleccionado
                     int folio = ventaSeleccionada.Folio;
                     // Eliminar el registro de la base de datos
@@ -101,11 +148,11 @@ namespace COSMOSCOM
                     if (deleteRegistro)
                     {
                         // // Remover la fila de la fuente de datos
-                        VentasLogica.Instancia.consultar_todo().Remove(ventaSeleccionada);
+                        VentasLogica.Instancia.ConsultarTodos().Remove(ventaSeleccionada);
 
                         // Actualizar el DataGridView
                         DataGrid_Ventas.DataSource = null;
-                        DataGrid_Ventas.DataSource = VentasLogica.Instancia.consultar_todo();
+                        DataGrid_Ventas.DataSource = VentasLogica.Instancia.ConsultarTodos();
 
                         //Mensaje de confirmación
                         MessageBox.Show("Registro eliminado", "Confirmación", MessageBoxButtons.OK);
@@ -142,6 +189,26 @@ namespace COSMOSCOM
             else
             {
                 txt_buscar.Enabled = true;
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (DataGrid_Ventas.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = DataGrid_Ventas.SelectedRows[0];
+                if (selectedRow != null)
+                {
+                    // Obtener el índice de la fila seleccionada
+                    int rowIndex = DataGrid_Ventas.SelectedRows[0].Index;
+                    // Obtener el Folio seleccionado
+                    int folio = (int)DataGrid_Ventas.Rows[rowIndex].Cells[0].Value;
+
+                    DataGrid_Ventas.DataSource = null;
+                    DataGrid_Ventas.DataSource = DetalleVentaLogica.Instancia.ListarDetalleVenta(folio);
+            
+
+                }
             }
         }
     }

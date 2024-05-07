@@ -151,28 +151,31 @@ namespace COSMOSCOM
                 return false;
             }
 
-            // Verifica si se agregó un formato
-            if (!seAgregoFila)
-            {
-                // Muestra un mensaje indicando que no se agregó ninguna fila
-                MessageBox.Show("Por favor agrega elementos a la tabla de formatos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            else
-            {
-                // Reinicia la bandera para futuras comprobaciones
-                seAgregoFila = false;
-            }
+
             //Verificar si existen fechas de entrega ya  registradas
 
             if (VentasLogica.Instancia.BuscarFechasEntrega(dtp_Fecha_Entrega.Text))
             {
-                MessageBox.Show("Ya existe un registro para esa fecha, selecciona otra fecha", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return  false;
+                MessageBox.Show($"Ya existe un registro para la fecha de entrega {dtp_Fecha_Entrega.Value.ToShortDateString()}, selecciona otra fecha", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
             }
+
+            if (!FormatosAgregados(dgvFormatos))
+            {
+                MessageBox.Show("Por favor, agregue elementos a la tabla de formatos", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
+            }
+            
+
 
 
             return true;
+        }
+
+        private bool FormatosAgregados(DataGridView filaFormatos)
+        {
+            // Verifica si el DataGridView tiene al menos una fila
+            return filaFormatos.Rows.Count > 0;
         }
 
         private void btn_Cancelar_Click(object sender, EventArgs e)
@@ -228,14 +231,12 @@ namespace COSMOSCOM
                     total += Convert.ToInt32(fila.Cells[2].Value); //Se itera los valores sumados y se guardan en la variable total
                 }
             }
-            txt_Total.Text = total.ToString(); //La suma se cuarda en el campo del total
+            txt_Total.Text = total.ToString(); //La suma se guarda en el campo del total
 
             //Se actualiza el número de formatos mostrado en un control de etiqueta, excluyendo la última fila.
             int numFormatos = dgvFormatos.Rows.Count - 1;
             label16.Text = numFormatos.ToString();
 
-            // Establece la bandera como verdadera para indicar que se agregó un formato
-            seAgregoFila = true;
         }
 
         private void btn_concultarC_Click(object sender, EventArgs e)

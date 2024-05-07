@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using COSMOSCOM.Modelo;
+using Microsoft.VisualBasic.Devices;
 
 namespace COSMOSCOM.Logica
 {
@@ -62,7 +63,7 @@ namespace COSMOSCOM.Logica
 
         
 
-        public List<Clientes> consultarCualquiera()
+        public List<Clientes> consultarTodos()
         {
 
             List<Clientes> olista = new List<Clientes>();
@@ -352,7 +353,37 @@ namespace COSMOSCOM.Logica
 
         }
 
-        
+        public bool ActualizarCliente(string queryActualiza)
+        {
+            try
+            {
+                using (SQLiteConnection conn = new SQLiteConnection(conexion))
+                {
+                    conn.Open();
+
+                    SQLiteCommand cmd = new SQLiteCommand(queryActualiza, conn);
+
+                    // Ejecutar la consulta de actualización
+                    int filasActualizadas = cmd.ExecuteNonQuery();
+                    // Verificar si se actualizaron filas
+                    return filasActualizadas > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejar cualquier excepción que ocurra durante la actualización
+                Console.WriteLine("Error al actualizar el cliente: " + ex.Message);
+                return false;
+            }
+            
+        }
+
+
+
+
+
+
+
 
 
 
