@@ -933,6 +933,7 @@
             MaximumSize = new Size(1435, 1106);
             MinimumSize = new Size(1435, 1018);
             Name = "Registro_user_";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Registro_user_";
             Load += Registro_user__Load;
             tableLayoutPanel1.ResumeLayout(false);
