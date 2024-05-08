@@ -32,6 +32,35 @@ namespace COSMOSCOM.Logica
 
         }
 
+        public int idCliente()
+        {
+            int idCliente = -1;
+            string query = "SELECT max(id_Cliente) From Clientes;";
+            using (SQLiteConnection connection = new SQLiteConnection(conexion))
+            {
+                try
+                {
+                    connection.Open();
+                    SQLiteCommand cmd = new SQLiteCommand(query, connection);
+                    cmd.CommandType = System.Data.CommandType.Text;
+
+                    // Ejecutar la consulta y obtener el resultado
+                    object result = cmd.ExecuteScalar();
+
+                    // Verificar si se obtuvo un resultado no nulo
+                    if (result != null && result != DBNull.Value)
+                    {
+                        idCliente = Convert.ToInt32(result);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al obtener el ID del cliente: " + ex.Message);
+                }
+            }
+            return idCliente;
+        }
+
         public bool Guardar(Ventas obj)
         {
             bool respuesta = true;

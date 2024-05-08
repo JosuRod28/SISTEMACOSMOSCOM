@@ -26,12 +26,24 @@ namespace COSMOSCOM.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string UltimoValorIngresado {
+        public string FolioActual {
             get {
-                return ((string)(this["UltimoValorIngresado"]));
+                return ((string)(this["FolioActual"]));
             }
             set {
-                this["UltimoValorIngresado"] = value;
+                this["FolioActual"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string MontoActual {
+            get {
+                return ((string)(this["MontoActual"]));
+            }
+            set {
+                this["MontoActual"] = value;
             }
         }
     }

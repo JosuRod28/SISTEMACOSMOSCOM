@@ -17,18 +17,23 @@ using Forms = System.Windows.Forms;
 using System.Configuration;
 
 
+
 namespace COSMOSCOM
 {
     public partial class Registro_admin_ : Form
     {
-        private string ultimoValorIngresado = "";
+
+
+        private string folioActual = "";
+        private string montoActual = CambiarTarifa.PrecioFormato.ToString();
         public Registro_admin_()
         {
 
             InitializeComponent();
             // El valor de la duracion se cambian con el componente numericUpDown
             nUpDown.ValueChanged += UpDown_ValueChanged;
-            
+            txt_Monto.Text = CambiarTarifa.PrecioFormato.ToString();
+
 
         }
 
@@ -37,16 +42,16 @@ namespace COSMOSCOM
 
         private void UpDown_ValueChanged(object sender, EventArgs e)
         {
-                    
-                    // Obtener el valor actual del NumericUpDown
-                    int valor = (int)nUpDown.Value;
-                    int precio = CambiarTarifa.PrecioFormato;
-                    // Calcular el monto utilizando el precio y el valor del NumericUpDown
-                    int monto = (int)(valor * precio / 120);
-                    // Asignar el monto calculado al TextBox txt_Monto
-                    txt_Monto.Text = monto.ToString();
-                
-            
+
+            // Obtener el valor actual del NumericUpDown
+            int valor = (int)nUpDown.Value;
+            int precio = CambiarTarifa.PrecioFormato;
+            // Calcular el monto utilizando el precio y el valor del NumericUpDown
+            int monto = (int)(valor * precio / 120);
+            // Asignar el monto calculado al TextBox txt_Monto
+            txt_Monto.Text = monto.ToString();
+
+
         }
 
         private void label4_Click(object sender, EventArgs e)
@@ -71,11 +76,12 @@ namespace COSMOSCOM
             if (confirma == DialogResult.Yes)
             {
                 this.Hide();
-                ultimoValorIngresado = txt_Folio.Text;
+                folioActual = txt_Folio.Text;
                 // Actualiza el TextBox con el último valor ingresado
-                txt_Folio.Text = ultimoValorIngresado;
+                txt_Folio.Text = folioActual;
+                txt_Monto.Text =montoActual;
 
-                Properties.Settings.Default.UltimoValorIngresado = ultimoValorIngresado;
+                Properties.Settings.Default.FolioActual = folioActual;
                 Properties.Settings.Default.Save();
                 Autenticacion form = new Autenticacion();
                 form.Show();
@@ -91,6 +97,7 @@ namespace COSMOSCOM
             Clientes objetoClientes = new Clientes()
             {
                 //Se inicializan las propiedades con los valores ingresados en os campos de texto.
+
                 Nombre = txt_Nombre.Text,
                 Apellido_P = txt_Apellido_P.Text,
                 Apellido_M = txt_Apellido_M.Text,
@@ -102,7 +109,8 @@ namespace COSMOSCOM
             Ventas objetoVentas = new Ventas()
             {
                 //Se inicializan las propiedades con los valores ingresados en los campos de texto.
-                Folio = int.Parse(txt_Folio.Text),
+                Folio = int.Parse(txt_Folio.Text),  
+                id_Cliente = VentasLogica.Instancia.idCliente(),
                 Fecha_atencion = dtp_Fecha_atencion.Text,
                 Fecha_entrega = dtp_Fecha_entrega.Text,
                 Total = txt_Total.Text,
@@ -121,20 +129,46 @@ namespace COSMOSCOM
                 bool resVentas = VentasLogica.Instancia.Guardar(objetoVentas);
                 //Verificar si la respuesta fue exitosa mostrando un mensaje de confirmación
 
-                string formato = cb_Formatos.Text;
-                string duracion = nUpDown.Value.ToString();
-                string monto = txt_Monto.Text;
-                bool resDetalleVenta = DetalleVentaLogica.Instancia.InsertarDetalleVenta(formato, duracion, monto);
-
+                
 
                 if (resClientes)
                 {
                     MessageBox.Show("Registro de clientes guardado", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
-                if (resVentas && resDetalleVenta)
+                if (resVentas)
                 {
                     MessageBox.Show("Registro de ventas guardado", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
+                }
+
+                int folioVenta = int.Parse(txt_Folio.Text);
+                int idCliente = DetalleVentaLogica.Instancia.idCliente();
+
+                List<DetalleVenta>detalleVentas = new List<DetalleVenta>();
+                foreach (DataGridViewRow fila in dgv_Formatos.Rows)
+                {
+                    // Verificar si la fila es una fila nueva
+                    if (!fila.IsNewRow)
+                    {
+                        DetalleVenta detalle = new DetalleVenta();
+                        detalle.Formato = fila.Cells["Formato"].Value.ToString();
+                        detalle.Duracion = fila.Cells["Duracion"].Value.ToString();
+                        detalle.Monto = fila.Cells["Monto"].Value.ToString();
+                        detalleVentas.Add(detalle);
+
+                    }
+                }
+
+
+                bool resDetalle = DetalleVentaLogica.Instancia.InsertarDetalleVenta(folioVenta,idCliente ,detalleVentas);
+
+                if (resDetalle)
+                {
+                    MessageBox.Show("Detalles de venta insertados correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Error al insertar detalles de venta.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
                 numFolio++;
@@ -145,6 +179,8 @@ namespace COSMOSCOM
 
 
             }
+
+
 
 
         }
@@ -243,10 +279,25 @@ namespace COSMOSCOM
         private void Registro_Load(object sender, EventArgs e)
         {
             // Cargar el último valor ingresado desde la configuración de la aplicación
-            ultimoValorIngresado = Properties.Settings.Default.UltimoValorIngresado;
+            folioActual = Properties.Settings.Default.FolioActual;
+            montoActual = Properties.Settings.Default.MontoActual;
             // Mostrar el último valor ingresado en el TextBox
-            txt_Folio.Text = ultimoValorIngresado;
+            txt_Folio.Text = folioActual;
+            folioActual = txt_Folio.Text;
+            txt_Monto.Text = montoActual;
 
+            CargarFormatos();
+
+        }
+
+        private void CargarFormatos()
+        {
+
+            // Asignar la lista de formatos al ComboBox
+            cb_Formatos.DataSource = Formatos.Instancia.ObtenerFormatos();
+
+            // Especificar la propiedad que se mostrará en el ComboBox
+            cb_Formatos.DisplayMember = "TipoFormato";
         }
 
         // Declara una variable para almacenar el estado de si se agregó un formato
@@ -447,6 +498,11 @@ namespace COSMOSCOM
         {
             CambiarTarifa form = new CambiarTarifa();
             form.ShowDialog();
+        }
+
+        private void tableLayoutPanel4_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

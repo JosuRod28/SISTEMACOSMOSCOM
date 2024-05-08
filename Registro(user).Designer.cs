@@ -75,7 +75,9 @@
             label12 = new Label();
             txt_Monto = new TextBox();
             cb_Formatos = new ComboBox();
+            tableLayoutPanel11 = new TableLayoutPanel();
             nUpDown = new NumericUpDown();
+            label15 = new Label();
             tableLayoutPanel9 = new TableLayoutPanel();
             pictureBox2 = new PictureBox();
             pictureBox3 = new PictureBox();
@@ -87,6 +89,7 @@
             opcionesToolStripMenuItem = new ToolStripMenuItem();
             agregarNuevoUsuarioToolStripMenuItem = new ToolStripMenuItem();
             adToolStripMenuItem = new ToolStripMenuItem();
+            cambiarTarifaToolStripMenuItem = new ToolStripMenuItem();
             tableLayoutPanel5 = new TableLayoutPanel();
             textBox7 = new TextBox();
             textBox11 = new TextBox();
@@ -103,6 +106,7 @@
             tableLayoutPanel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvFormatos).BeginInit();
             tableLayoutPanel4.SuspendLayout();
+            tableLayoutPanel11.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nUpDown).BeginInit();
             tableLayoutPanel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -385,7 +389,7 @@
             label2.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            label2.ForeColor = Color.Orange;
+            label2.ForeColor = Color.Black;
             label2.Location = new Point(4, 97);
             label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
@@ -398,7 +402,7 @@
             label3.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            label3.ForeColor = Color.Orange;
+            label3.ForeColor = Color.Black;
             label3.Location = new Point(4, 172);
             label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
@@ -411,7 +415,7 @@
             label4.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            label4.ForeColor = Color.Orange;
+            label4.ForeColor = Color.Black;
             label4.Location = new Point(4, 247);
             label4.Margin = new Padding(4, 0, 4, 0);
             label4.Name = "label4";
@@ -424,7 +428,7 @@
             label5.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            label5.ForeColor = Color.Orange;
+            label5.ForeColor = Color.Black;
             label5.Location = new Point(4, 322);
             label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
@@ -437,7 +441,7 @@
             label6.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            label6.ForeColor = Color.Orange;
+            label6.ForeColor = Color.Black;
             label6.Location = new Point(4, 397);
             label6.Margin = new Padding(4, 0, 4, 0);
             label6.Name = "label6";
@@ -450,7 +454,7 @@
             label11.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            label11.ForeColor = Color.Orange;
+            label11.ForeColor = Color.Black;
             label11.Location = new Point(4, 473);
             label11.Margin = new Padding(4, 0, 4, 0);
             label11.Name = "label11";
@@ -471,7 +475,7 @@
             label7.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            label7.ForeColor = Color.Orange;
+            label7.ForeColor = Color.Black;
             label7.Location = new Point(4, 22);
             label7.Margin = new Padding(4, 0, 4, 0);
             label7.Name = "label7";
@@ -514,8 +518,8 @@
             // tableLayoutPanel8
             // 
             tableLayoutPanel8.ColumnCount = 5;
-            tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20.4805489F));
-            tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 12.4713955F));
+            tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 26.2013721F));
+            tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 6.63615561F));
             tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 15.217391F));
             tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 31.6933632F));
             tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20.1373F));
@@ -535,10 +539,10 @@
             // 
             label16.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label16.AutoSize = true;
-            label16.Location = new Point(183, 27);
+            label16.Location = new Point(233, 27);
             label16.Margin = new Padding(4, 0, 4, 0);
             label16.Name = "label16";
-            label16.Size = new Size(101, 28);
+            label16.Size = new Size(50, 28);
             label16.TabIndex = 18;
             label16.Text = "0";
             // 
@@ -546,10 +550,10 @@
             // 
             label13.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label13.AutoSize = true;
-            label13.Location = new Point(4, 13);
+            label13.Location = new Point(4, 27);
             label13.Margin = new Padding(4, 0, 4, 0);
             label13.Name = "label13";
-            label13.Size = new Size(171, 56);
+            label13.Size = new Size(221, 28);
             label13.TabIndex = 17;
             label13.Text = "Total de Formatos:";
             // 
@@ -557,7 +561,7 @@
             // 
             label14.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label14.AutoSize = true;
-            label14.Location = new Point(292, 27);
+            label14.Location = new Point(291, 27);
             label14.Margin = new Padding(4, 0, 4, 0);
             label14.Name = "label14";
             label14.Size = new Size(125, 28);
@@ -567,7 +571,7 @@
             // txt_Total
             // 
             txt_Total.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txt_Total.Location = new Point(424, 23);
+            txt_Total.Location = new Point(423, 23);
             txt_Total.Name = "txt_Total";
             txt_Total.Size = new Size(271, 35);
             txt_Total.TabIndex = 19;
@@ -639,9 +643,9 @@
             // tableLayoutPanel4
             // 
             tableLayoutPanel4.ColumnCount = 4;
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 39.4736824F));
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30.434782F));
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 4.91990852F));
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 35.12586F));
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 32.494278F));
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 7.208238F));
             tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
             tableLayoutPanel4.Controls.Add(label8, 0, 0);
             tableLayoutPanel4.Controls.Add(label9, 1, 0);
@@ -649,7 +653,7 @@
             tableLayoutPanel4.Controls.Add(label12, 2, 1);
             tableLayoutPanel4.Controls.Add(txt_Monto, 3, 1);
             tableLayoutPanel4.Controls.Add(cb_Formatos, 0, 1);
-            tableLayoutPanel4.Controls.Add(nUpDown, 1, 1);
+            tableLayoutPanel4.Controls.Add(tableLayoutPanel11, 1, 1);
             tableLayoutPanel4.Dock = DockStyle.Top;
             tableLayoutPanel4.Location = new Point(3, 31);
             tableLayoutPanel4.Name = "tableLayoutPanel4";
@@ -659,6 +663,7 @@
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel4.Size = new Size(874, 133);
             tableLayoutPanel4.TabIndex = 0;
+            tableLayoutPanel4.Paint += tableLayoutPanel4_Paint;
             // 
             // label8
             // 
@@ -667,7 +672,7 @@
             label8.Location = new Point(4, 3);
             label8.Margin = new Padding(4, 0, 4, 0);
             label8.Name = "label8";
-            label8.Size = new Size(337, 28);
+            label8.Size = new Size(299, 28);
             label8.TabIndex = 1;
             label8.Text = "Formato de Video";
             // 
@@ -675,10 +680,10 @@
             // 
             label9.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label9.AutoSize = true;
-            label9.Location = new Point(349, 3);
+            label9.Location = new Point(311, 3);
             label9.Margin = new Padding(4, 0, 4, 0);
             label9.Name = "label9";
-            label9.Size = new Size(258, 28);
+            label9.Size = new Size(276, 28);
             label9.TabIndex = 2;
             label9.Text = "Duración";
             // 
@@ -697,10 +702,10 @@
             // 
             label12.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label12.AutoSize = true;
-            label12.Location = new Point(615, 70);
+            label12.Location = new Point(595, 70);
             label12.Margin = new Padding(4, 0, 4, 0);
             label12.Name = "label12";
-            label12.Size = new Size(35, 28);
+            label12.Size = new Size(55, 28);
             label12.TabIndex = 4;
             label12.Text = "$";
             // 
@@ -719,17 +724,42 @@
             cb_Formatos.Items.AddRange(new object[] { "VHS", "Beta", "MiniDV", "8mm", "Super8", "DVD" });
             cb_Formatos.Location = new Point(3, 67);
             cb_Formatos.Name = "cb_Formatos";
-            cb_Formatos.Size = new Size(339, 36);
+            cb_Formatos.Size = new Size(301, 36);
             cb_Formatos.TabIndex = 15;
             cb_Formatos.Text = "Selecciona un Formato";
+            // 
+            // tableLayoutPanel11
+            // 
+            tableLayoutPanel11.ColumnCount = 2;
+            tableLayoutPanel11.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 79.49641F));
+            tableLayoutPanel11.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20.5035973F));
+            tableLayoutPanel11.Controls.Add(nUpDown, 0, 0);
+            tableLayoutPanel11.Controls.Add(label15, 1, 0);
+            tableLayoutPanel11.Location = new Point(310, 38);
+            tableLayoutPanel11.Name = "tableLayoutPanel11";
+            tableLayoutPanel11.RowCount = 1;
+            tableLayoutPanel11.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel11.Size = new Size(278, 92);
+            tableLayoutPanel11.TabIndex = 17;
             // 
             // nUpDown
             // 
             nUpDown.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            nUpDown.Location = new Point(348, 66);
+            nUpDown.Location = new Point(3, 28);
             nUpDown.Name = "nUpDown";
-            nUpDown.Size = new Size(260, 35);
+            nUpDown.Size = new Size(215, 35);
             nUpDown.TabIndex = 16;
+            // 
+            // label15
+            // 
+            label15.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            label15.AutoSize = true;
+            label15.Location = new Point(224, 32);
+            label15.Name = "label15";
+            label15.Size = new Size(51, 28);
+            label15.TabIndex = 17;
+            label15.Text = "min";
+            label15.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel9
             // 
@@ -831,7 +861,7 @@
             // 
             // opcionesToolStripMenuItem
             // 
-            opcionesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { agregarNuevoUsuarioToolStripMenuItem, adToolStripMenuItem });
+            opcionesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { agregarNuevoUsuarioToolStripMenuItem, adToolStripMenuItem, cambiarTarifaToolStripMenuItem });
             opcionesToolStripMenuItem.Name = "opcionesToolStripMenuItem";
             opcionesToolStripMenuItem.Size = new Size(103, 29);
             opcionesToolStripMenuItem.Text = "Opciones";
@@ -850,6 +880,13 @@
             adToolStripMenuItem.Size = new Size(295, 34);
             adToolStripMenuItem.Text = "Administrar usuarios";
             adToolStripMenuItem.Click += adToolStripMenuItem_Click;
+            // 
+            // cambiarTarifaToolStripMenuItem
+            // 
+            cambiarTarifaToolStripMenuItem.Name = "cambiarTarifaToolStripMenuItem";
+            cambiarTarifaToolStripMenuItem.Size = new Size(295, 34);
+            cambiarTarifaToolStripMenuItem.Text = "Cambiar Tarifa";
+            cambiarTarifaToolStripMenuItem.Click += cambiarTarifaToolStripMenuItem_Click;
             // 
             // tableLayoutPanel5
             // 
@@ -897,6 +934,7 @@
             MinimumSize = new Size(1435, 1018);
             Name = "Registro_user_";
             Text = "Registro_user_";
+            Load += Registro_user__Load;
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -914,6 +952,8 @@
             ((System.ComponentModel.ISupportInitialize)dgvFormatos).EndInit();
             tableLayoutPanel4.ResumeLayout(false);
             tableLayoutPanel4.PerformLayout();
+            tableLayoutPanel11.ResumeLayout(false);
+            tableLayoutPanel11.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)nUpDown).EndInit();
             tableLayoutPanel9.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
@@ -994,5 +1034,8 @@
         private Button btn_Salir;
         private ComboBox cb_Formatos;
         private NumericUpDown nUpDown;
+        private ToolStripMenuItem cambiarTarifaToolStripMenuItem;
+        private TableLayoutPanel tableLayoutPanel11;
+        private Label label15;
     }
 }

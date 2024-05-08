@@ -13,6 +13,7 @@ namespace COSMOSCOM
 {
     public partial class CambiarTarifa : Form
     {
+
         // Propiedad estática para almacenar el precio del formato
         public static int PrecioFormato { get; set; }
         public CambiarTarifa()
@@ -31,6 +32,7 @@ namespace COSMOSCOM
                 MessageBox.Show("Precio guardado correctamente.");
                 this.Close();
 
+                Properties.Settings.Default.Save();
             }
 
         }

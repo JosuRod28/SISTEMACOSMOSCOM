@@ -10,9 +10,9 @@ namespace COSMOSCOM.Modelo
     {
         public int Folio_Venta {  get; set; }
         public int id_Cliente { get; set; }
-        public int id_Formato { get; set; }
-        public string Duracion { get; set; }
-        public string Monto { get; set; }
+        public string? Formato { get; set; }
+        public string? Duracion { get; set; }
+        public string? Monto { get; set; }
 
     }
 }

@@ -19,6 +19,22 @@ namespace COSMOSCOM
         public Registro_user_()
         {
             InitializeComponent();
+            // El valor de la duracion se cambian con el componente numericUpDown
+            nUpDown.ValueChanged += UpDown_ValueChanged;
+        }
+
+        private void UpDown_ValueChanged(object sender, EventArgs e)
+        {
+
+            // Obtener el valor actual del NumericUpDown
+            int valor = (int)nUpDown.Value;
+            int precio = CambiarTarifa.PrecioFormato;
+            // Calcular el monto utilizando el precio y el valor del NumericUpDown
+            int monto = (int)(valor * precio / 120);
+            // Asignar el monto calculado al TextBox txt_Monto
+            txt_Monto.Text = monto.ToString();
+
+
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -57,7 +73,7 @@ namespace COSMOSCOM
                 // Actualiza el TextBox con el último valor ingresado
                 txt_Folio.Text = ultimoValorIngresado;
 
-                Properties.Settings.Default.UltimoValorIngresado = ultimoValorIngresado;
+                Properties.Settings.Default.FolioActual = ultimoValorIngresado;
                 Properties.Settings.Default.Save();
                 Autenticacion form = new Autenticacion();
                 form.Show();
@@ -165,7 +181,7 @@ namespace COSMOSCOM
                 MessageBox.Show("Por favor, agregue elementos a la tabla de formatos", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return false;
             }
-            
+
 
 
 
@@ -271,6 +287,22 @@ namespace COSMOSCOM
                 ConsultarVentas ventana = new ConsultarVentas();
                 ventana.ShowDialog();
             }
+        }
+
+        private void Registro_user__Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cambiarTarifaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CambiarTarifa form = new CambiarTarifa();
+            form.ShowDialog();
+        }
+
+        private void tableLayoutPanel4_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

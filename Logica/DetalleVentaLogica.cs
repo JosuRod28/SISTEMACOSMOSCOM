@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace COSMOSCOM.Logica
 {
@@ -34,30 +35,69 @@ namespace COSMOSCOM.Logica
 
         }
 
-        public bool InsertarDetalleVenta(string formato, string duracion, string monto)
+        public int idCliente()
+        {
+            int idCliente = -1;
+            string query = "SELECT max(id_Cliente) From Clientes;";
+            using (SQLiteConnection connection = new SQLiteConnection(conexion))
+            {
+                try
+                {
+                    connection.Open();
+                    SQLiteCommand cmd = new SQLiteCommand(query, connection);
+                    cmd.CommandType = System.Data.CommandType.Text;
+
+                    // Ejecutar la consulta y obtener el resultado
+                    object result = cmd.ExecuteScalar();
+
+                    // Verificar si se obtuvo un resultado no nulo
+                    if (result != null && result != DBNull.Value)
+                    {
+                        idCliente = Convert.ToInt32(result);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al obtener el ID del cliente: " + ex.Message);
+                }
+            }
+            return idCliente;
+        }
+
+        public bool InsertarDetalleVenta(int folioVenta, int idCliente, List<DetalleVenta> detallesVenta)
         {
             try
             {
                 using (SQLiteConnection conn = new SQLiteConnection(conexion))
                 {
                     conn.Open();
-                    string InsertDetalleVenta = "INSERT INTO Detalle_Venta(Folio_Venta,id_Cliente,id_Formato,Duracion,Monto) values ((SELECT MAX(Folio) FROM Venta_Total),(SELECT MAX(id_Cliente) FROM Clientes),(SELECT id_Formato  from Formatos where Formato=@formato),@duracion,@monto)";
-                    SQLiteCommand cmdDetalleVenta = new SQLiteCommand(InsertDetalleVenta, conn);
-                    cmdDetalleVenta.Parameters.AddWithValue("@formato", formato);
-                    cmdDetalleVenta.Parameters.AddWithValue("@duracion", duracion);
-                    cmdDetalleVenta.Parameters.AddWithValue("@monto", monto);
+                    foreach (var detalle in detallesVenta)
+                    {
+                        // Construir la consulta para insertar cada detalle de venta
+                        string query = "INSERT INTO Detalle_Venta(Folio_Venta, id_Cliente, Formato, Duracion, Monto) " +
+                                       "VALUES (@folioVenta, @idCliente, @formato, @duracion, @monto);";
+                        SQLiteCommand cmdDetalleVenta = new SQLiteCommand(query, conn);
 
-                    // Ejecutar el comando para realizar la inserción de datos
-                    int filasInsertadas = cmdDetalleVenta.ExecuteNonQuery();
+                        // Establecer los parámetros de la consulta para el detalle actual
+                        cmdDetalleVenta.Parameters.AddWithValue("@folioVenta", folioVenta);
+                        cmdDetalleVenta.Parameters.AddWithValue("@idCliente", idCliente);
+                        cmdDetalleVenta.Parameters.AddWithValue("@formato", detalle.Formato); // Supongo que tienes un campo IdFormato en tu clase DetalleVenta
+                        cmdDetalleVenta.Parameters.AddWithValue("@duracion", detalle.Duracion);
+                        cmdDetalleVenta.Parameters.AddWithValue("@monto", detalle.Monto);
 
-                    // Devolver true si se insertaron filas correctamente, de lo contrario, devolver false
-                    return filasInsertadas > 0;
+                        // Ejecutar la consulta para insertar el detalle de venta actual
+                        cmdDetalleVenta.ExecuteNonQuery();
+
+
+                    }
+                    // Devolver true si se insertaron todos los detalles de venta correctamente
+                    return true;
                 }
             }
             catch (Exception ex)
             {
                 // Manejar cualquier excepción que ocurra durante la actualización
-                Console.WriteLine("Error al actualizar el cliente: " + ex.Message);
+                Console.WriteLine("Error al insertar datos " + ex.Message);
                 return false;
             }
 
@@ -87,7 +127,7 @@ namespace COSMOSCOM.Logica
                         {
                            Folio_Venta= int.Parse(dataReader["Folio_Venta"].ToString()),
                             id_Cliente = int.Parse(dataReader["id_Cliente"].ToString()),
-                            id_Formato = int.Parse(dataReader["id_Formato"].ToString()),
+                            Formato = dataReader["Formato"].ToString(),
                             Duracion = dataReader["Duracion"].ToString(),
                             Monto = dataReader["Monto"].ToString(),
 
