@@ -143,5 +143,26 @@ namespace COSMOSCOM.Logica
             return olista;
 
         }
+
+        public bool EliminarDetalleVenta(int folio)
+        {
+
+            bool respuesta = false;
+            using (SQLiteConnection conn = new SQLiteConnection(conexion))
+            {
+                conn.Open();
+                string query = "DELETE FROM Detalle_Venta WHERE Folio_Venta = @folio";
+                SQLiteCommand cmd = new SQLiteCommand(query, conn);
+                cmd.Parameters.AddWithValue("@folio", folio);
+                int filasAfectadas = cmd.ExecuteNonQuery(); // Obtiene el número de filas afectadas por la operación
+
+                if (filasAfectadas > 0)
+                {
+                    respuesta = true; // Si se eliminó al menos una fila, establece la respuesta como true
+                }
+                conn.Close();
+            }
+            return respuesta;
+        }
     }
 }

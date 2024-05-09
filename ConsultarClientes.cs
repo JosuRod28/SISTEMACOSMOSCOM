@@ -105,12 +105,20 @@ namespace COSMOSCOM
                         int id_Cliente = clienteSeleccionado.id_Cliente;
 
                         // Verificar si el cliente está siendo referenciado en otra tabla
-                        bool estaReferenciado = ClientesLogica.Instancia.refFK(id_Cliente);
+                        bool refFKVentas = ClientesLogica.Instancia.refFKVentas(id_Cliente);
+                        bool refFKDetalleVentas = ClientesLogica.Instancia.refFKDetalleVentas(id_Cliente);
 
                         // Si está referenciado, mostrar un mensaje de advertencia y no eliminar el registro
-                        if (estaReferenciado)
+                        if (refFKVentas)
                         {
                             MessageBox.Show("No se puede eliminar el cliente porque tiene registros relacionados en la tabla de Ventas. Elimine primero los registros de las ventas asociados a este cliente.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return; // Salir del método sin eliminar el registro
+                        }
+
+                        // Si está referenciado, mostrar un mensaje de advertencia y no eliminar el registro
+                        if (refFKDetalleVentas)
+                        {
+                            MessageBox.Show("No se puede eliminar el cliente porque tiene registros relacionados en la tabla de Detalle Ventas. Elimine primero los registros de las ventas asociados a este cliente.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             return; // Salir del método sin eliminar el registro
                         }
 

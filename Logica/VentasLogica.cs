@@ -339,7 +339,7 @@ namespace COSMOSCOM.Logica
 
         }
 
-        public bool Eliminar(int folio)
+        public bool EliminarVenta(int folio)
         {
 
             bool respuesta = false;

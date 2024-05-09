@@ -338,17 +338,34 @@ namespace COSMOSCOM.Logica
             return respuesta; 
         }
 
-        public bool refFK(int idCliente)
+        public bool refFKVentas(int idCliente)
         {
           
             using (SQLiteConnection conn = new SQLiteConnection(conexion))
             {
                 conn.Open();
-                string query = "SELECT COUNT(*) FROM Venta_Total WHERE id_Cliente = @id_cliente";
-                SQLiteCommand cmd = new SQLiteCommand(query, conn);
+                string query1 = "SELECT COUNT(*) FROM Venta_Total WHERE id_Cliente = @id_cliente";
+                SQLiteCommand cmd = new SQLiteCommand(query1, conn);
                 cmd.Parameters.AddWithValue("@id_cliente", idCliente);
                 int cantidad = Convert.ToInt32(cmd.ExecuteScalar());
                 return cantidad > 0;
+
+            }
+
+        }
+
+        public bool refFKDetalleVentas(int idCliente)
+        {
+
+            using (SQLiteConnection conn = new SQLiteConnection(conexion))
+            {
+                conn.Open();
+                string query1 = "SELECT COUNT(*) FROM Detalle_Venta WHERE id_Cliente = @id_cliente";
+                SQLiteCommand cmd = new SQLiteCommand(query1, conn);
+                cmd.Parameters.AddWithValue("@id_cliente", idCliente);
+                int cantidad = Convert.ToInt32(cmd.ExecuteScalar());
+                return cantidad > 0;
+
             }
 
         }

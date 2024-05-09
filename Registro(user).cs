@@ -177,7 +177,7 @@ namespace COSMOSCOM
                 MessageBox.Show("Por favor ingrese el nombre del cliente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            if (string.IsNullOrWhiteSpace(txt_ApellidoP.Text))
+            if (string.IsNullOrWhiteSpace(txt_Apellido_P.Text))
             {
                 MessageBox.Show("Se necesita al menos un apellido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
@@ -201,18 +201,48 @@ namespace COSMOSCOM
             }
             //Verificar si existen fechas de entrega ya  registradas
 
-            if (VentasLogica.Instancia.BuscarFechasEntrega(dtp_Fecha_Entrega.Text))
+            if (VentasLogica.Instancia.BuscarFechasEntrega(dtp_Fecha_entrega.Text))
             {
-                MessageBox.Show($"Ya existe un registro para la fecha de entrega {dtp_Fecha_Entrega.Value.ToShortDateString()}, selecciona otra fecha", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"Ya existe un registro para la fecha de entrega {dtp_Fecha_entrega.Value.ToShortDateString()}, selecciona otra fecha", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
-            if (!FormatosAgregados(dgvFormatos))
+            if (!FormatosAgregados(dgv_Formatos))
             {
                 MessageBox.Show("Por favor, agregue elementos a la tabla de formatos", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return false;
+
             }
 
+            if (!int.TryParse(txt_Telefono1.Text, out _))
+            {
+                MessageBox.Show("El campo Teléfono1 solo acepta números", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
+            }
+            if (!int.TryParse(txt_Telefono2.Text, out _))
+            {
+                MessageBox.Show("El campo Teléfono2 solo acepta números", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
+            }
+
+            if (!txt_Nombre.Text.All(char.IsLetter))
+            {
+                MessageBox.Show("El campo Nombre debe ser de tipo texto", "MEnsaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
+
+            }
+            if (!txt_Apellido_P.Text.All(char.IsLetter))
+            {
+                MessageBox.Show("El campo Apellido_P debe ser de tipo texto", "MEnsaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
+
+            }
+            if (!txt_Apellido_M.Text.All(char.IsLetter))
+            {
+                MessageBox.Show("El campo Apellido_M debe ser de tipo texto", "MEnsaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
+
+            }
 
             return true;
         }

@@ -131,6 +131,7 @@
             DataGrid_Ventas.RowHeadersWidth = 51;
             DataGrid_Ventas.Size = new Size(725, 306);
             DataGrid_Ventas.TabIndex = 7;
+            DataGrid_Ventas.CellContentClick += DataGrid_Ventas_CellContentClick;
             // 
             // tableLayoutPanel3
             // 
@@ -183,7 +184,7 @@
             cb_filtro.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             cb_filtro.FormattingEnabled = true;
             cb_filtro.Items.AddRange(new object[] { "Todos", "Folio", "id_Cliente", "Fecha de atención", "Fecha de entrega" });
-            cb_filtro.Location = new Point(4, 10);
+            cb_filtro.Location = new Point(4, 9);
             cb_filtro.Margin = new Padding(4);
             cb_filtro.Name = "cb_filtro";
             cb_filtro.Size = new Size(183, 36);
