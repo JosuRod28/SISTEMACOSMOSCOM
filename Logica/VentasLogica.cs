@@ -67,18 +67,35 @@ namespace COSMOSCOM.Logica
             using (SQLiteConnection conn = new SQLiteConnection(conexion))
             {
                 conn.Open();
-                string queryInsert = "INSERT INTO Venta_Total(Folio,id_Cliente,Fecha_de_atencion,Fecha_de_entrega,Total) values (@folio,(SELECT MAX(id_Cliente) FROM Clientes),@fecha_de_atencion,@fecha_de_entrega,@total)";
-                SQLiteCommand cmdInsert = new SQLiteCommand(queryInsert,conn);
-                cmdInsert.Parameters.Add( new SQLiteParameter("@folio",obj.Folio));
-                cmdInsert.Parameters.Add( new SQLiteParameter("@fecha_de_atencion", obj.Fecha_atencion));
-                cmdInsert.Parameters.Add( new SQLiteParameter("@fecha_de_entrega", obj.Fecha_entrega));
-                cmdInsert.Parameters.Add( new SQLiteParameter("@total", obj.Total));
-                cmdInsert.CommandType = System.Data.CommandType.Text;
+                // Verificar si ya existe un registro con la misma clave primaria
+                string queryVerificacion = "SELECT COUNT(*) FROM Venta_Total WHERE Folio = @folio";
+                SQLiteCommand cmdVerificacion = new SQLiteCommand(queryVerificacion, conn);
+                cmdVerificacion.Parameters.AddWithValue("@folio", obj.Folio);
+                int cantidadRegistros = Convert.ToInt32(cmdVerificacion.ExecuteScalar());
 
-                if (cmdInsert.ExecuteNonQuery() < 1)
+                // Si ya existe un registro con la misma clave primaria, abortar la inserción
+                if (cantidadRegistros > 0)
                 {
+                    MessageBox.Show("Ya existe un registro con el mismo numero de folio, por favor ingrese un folio distinto o borre el que se encuentra actualmente registrado","Advertencia",MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     respuesta = false;
+
                 }
+                else
+                {
+                    string queryInsert = "INSERT INTO Venta_Total(Folio,id_Cliente,Fecha_de_atencion,Fecha_de_entrega,Total) values (@folio,(SELECT MAX(id_Cliente) FROM Clientes),@fecha_de_atencion,@fecha_de_entrega,@total)";
+                    SQLiteCommand cmdInsert = new SQLiteCommand(queryInsert, conn);
+                    cmdInsert.Parameters.Add(new SQLiteParameter("@folio", obj.Folio));
+                    cmdInsert.Parameters.Add(new SQLiteParameter("@fecha_de_atencion", obj.Fecha_atencion));
+                    cmdInsert.Parameters.Add(new SQLiteParameter("@fecha_de_entrega", obj.Fecha_entrega));
+                    cmdInsert.Parameters.Add(new SQLiteParameter("@total", obj.Total));
+                    cmdInsert.CommandType = System.Data.CommandType.Text;
+
+                    if (cmdInsert.ExecuteNonQuery() < 1)
+                    {
+                        respuesta = false;
+                    }
+                }
+
 
             }
 

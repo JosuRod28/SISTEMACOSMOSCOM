@@ -214,36 +214,6 @@ namespace COSMOSCOM
 
             }
 
-            if (!int.TryParse(txt_Telefono1.Text, out _))
-            {
-                MessageBox.Show("El campo Teléfono1 solo acepta números", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return false;
-            }
-            if (!int.TryParse(txt_Telefono2.Text, out _))
-            {
-                MessageBox.Show("El campo Teléfono2 solo acepta números", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return false;
-
-            }
-
-            if (!txt_Nombre.Text.All(char.IsLetter))
-            {
-                MessageBox.Show("El campo Nombre debe ser de tipo texto", "MEnsaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return false;
-
-            }
-            if (!txt_ApellidoP.Text.All(char.IsLetter))
-            {
-                MessageBox.Show("El campo Apellido_P debe ser de tipo texto", "MEnsaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return false;
-
-            }
-            if (!txt_ApellidoM.Text.All(char.IsLetter))
-            {
-                MessageBox.Show("El campo Apellido_M debe ser de tipo texto", "MEnsaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return false;
-
-            }
 
             return true;
         }

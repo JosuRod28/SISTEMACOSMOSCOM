@@ -34,6 +34,12 @@ namespace COSMOSCOM
             nUpDown.ValueChanged += UpDown_ValueChanged;
             txt_Monto.Text = CambiarTarifa.PrecioFormato.ToString();
 
+            // Asociar el método de los textbox con el evento KeyPress del TextBox
+            txt_Nombre.KeyPress += new KeyPressEventHandler(txt_Nombre_KeyPress);
+            txt_Apellido_P.KeyPress += new KeyPressEventHandler(txt_Apellido_P_KeyPress);
+            txt_Apellido_M.KeyPress += new KeyPressEventHandler(txt_Apellido_M_KeyPress);
+            txt_Telefono1.KeyPress += new KeyPressEventHandler(txt_Telefono1_KeyPress);
+            txt_Telefono2.KeyPress += new KeyPressEventHandler(txt_Telefono2_KeyPress);
 
         }
 
@@ -79,7 +85,7 @@ namespace COSMOSCOM
                 folioActual = txt_Folio.Text;
                 // Actualiza el TextBox con el último valor ingresado
                 txt_Folio.Text = folioActual;
-                txt_Monto.Text =montoActual;
+                txt_Monto.Text = montoActual;
 
                 Properties.Settings.Default.FolioActual = folioActual;
                 Properties.Settings.Default.Save();
@@ -97,7 +103,7 @@ namespace COSMOSCOM
             Clientes objetoClientes = new Clientes()
             {
                 //Se inicializan las propiedades con los valores ingresados en os campos de texto.
-
+                id_Cliente = ClientesLogica.Instancia.idCliente(),
                 Nombre = txt_Nombre.Text,
                 Apellido_P = txt_Apellido_P.Text,
                 Apellido_M = txt_Apellido_M.Text,
@@ -109,8 +115,8 @@ namespace COSMOSCOM
             Ventas objetoVentas = new Ventas()
             {
                 //Se inicializan las propiedades con los valores ingresados en los campos de texto.
-                Folio = int.Parse(txt_Folio.Text),  
-                id_Cliente = VentasLogica.Instancia.idCliente(),
+                Folio = int.Parse(txt_Folio.Text),
+                id_Cliente = ClientesLogica.Instancia.idCliente(),
                 Fecha_atencion = dtp_Fecha_atencion.Text,
                 Fecha_entrega = dtp_Fecha_entrega.Text,
                 Total = txt_Total.Text,
@@ -129,7 +135,7 @@ namespace COSMOSCOM
                 bool resVentas = VentasLogica.Instancia.Guardar(objetoVentas);
                 //Verificar si la respuesta fue exitosa mostrando un mensaje de confirmación
 
-                
+
 
                 if (resClientes)
                 {
@@ -144,7 +150,7 @@ namespace COSMOSCOM
                 int folioVenta = int.Parse(txt_Folio.Text);
                 int idCliente = DetalleVentaLogica.Instancia.idCliente();
 
-                List<DetalleVenta>detalleVentas = new List<DetalleVenta>();
+                List<DetalleVenta> detalleVentas = new List<DetalleVenta>();
                 foreach (DataGridViewRow fila in dgv_Formatos.Rows)
                 {
                     // Verificar si la fila es una fila nueva
@@ -160,7 +166,7 @@ namespace COSMOSCOM
                 }
 
 
-                bool resDetalle = DetalleVentaLogica.Instancia.InsertarDetalleVenta(folioVenta,idCliente ,detalleVentas);
+                bool resDetalle = DetalleVentaLogica.Instancia.InsertarDetalleVenta(folioVenta, idCliente, detalleVentas);
 
                 if (resDetalle)
                 {
@@ -243,35 +249,6 @@ namespace COSMOSCOM
 
             }
 
-            if (!int.TryParse(txt_Telefono1.Text,out _))
-            {
-                MessageBox.Show("El campo Teléfono1 solo acepta números", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return false;
-            }
-            if (!int.TryParse(txt_Telefono2.Text, out _))
-            {
-                MessageBox.Show("El campo Teléfono2 solo acepta números", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return false;
-            }
-
-            if (!txt_Nombre.Text.All(char.IsLetter) ) 
-            {
-                MessageBox.Show("El campo Nombre debe ser de tipo texto", "MEnsaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return false;
-
-            }
-            if (!txt_Apellido_P.Text.All(char.IsLetter))
-            {
-                MessageBox.Show("El campo Apellido_P debe ser de tipo texto", "MEnsaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return false;
-
-            }
-            if (!txt_Apellido_M.Text.All(char.IsLetter))
-            {
-                MessageBox.Show("El campo Apellido_M debe ser de tipo texto", "MEnsaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return false;
-
-            }
 
 
             return true;
@@ -532,6 +509,61 @@ namespace COSMOSCOM
         private void tableLayoutPanel4_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void txt_Nombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Verificar si la tecla pulsada es una letra o una tecla de control
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                // Si la tecla no es una letra y no es una tecla de control, se ignora
+                e.Handled = true;
+            }
+        }
+
+        private void txt_Apellido_P_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_Apellido_P_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Verificar si la tecla pulsada es una letra o una tecla de control
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                // Si la tecla no es una letra y no es una tecla de control, se ignora
+                e.Handled = true;
+            }
+        }
+
+        private void txt_Apellido_M_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Verificar si la tecla pulsada es una letra o una tecla de control
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                // Si la tecla no es una letra y no es una tecla de control, se ignora
+                e.Handled = true;
+            }
+        }
+
+        private void txt_Telefono1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Verificar si la tecla pulsada es un número o una tecla de control
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                // Si la tecla no es un número y no es una tecla de control, se ignora
+                e.Handled = true;
+            }
+        }
+
+        private void txt_Telefono2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Verificar si la tecla pulsada es un número o una tecla de control
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                // Si la tecla no es un número y no es una tecla de control, se ignora
+                e.Handled = true;
+            }
         }
     }
 }

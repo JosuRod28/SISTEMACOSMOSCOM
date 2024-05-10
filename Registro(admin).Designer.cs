@@ -216,6 +216,7 @@
             txt_Telefono2.Name = "txt_Telefono2";
             txt_Telefono2.Size = new Size(239, 35);
             txt_Telefono2.TabIndex = 10;
+            txt_Telefono2.KeyPress += txt_Telefono2_KeyPress;
             // 
             // dtp_Fecha_entrega
             // 
@@ -285,6 +286,7 @@
             txt_Nombre.Name = "txt_Nombre";
             txt_Nombre.Size = new Size(239, 35);
             txt_Nombre.TabIndex = 6;
+            txt_Nombre.KeyPress += txt_Nombre_KeyPress;
             // 
             // label5
             // 
@@ -320,6 +322,8 @@
             txt_Apellido_P.Name = "txt_Apellido_P";
             txt_Apellido_P.Size = new Size(239, 35);
             txt_Apellido_P.TabIndex = 7;
+            txt_Apellido_P.TextChanged += txt_Apellido_P_TextChanged;
+            txt_Apellido_P.KeyPress += txt_Apellido_P_KeyPress;
             // 
             // label4
             // 
@@ -343,6 +347,7 @@
             txt_Apellido_M.Name = "txt_Apellido_M";
             txt_Apellido_M.Size = new Size(239, 35);
             txt_Apellido_M.TabIndex = 8;
+            txt_Apellido_M.KeyPress += txt_Apellido_M_KeyPress;
             // 
             // txt_Telefono1
             // 
@@ -352,6 +357,7 @@
             txt_Telefono1.Name = "txt_Telefono1";
             txt_Telefono1.Size = new Size(239, 35);
             txt_Telefono1.TabIndex = 9;
+            txt_Telefono1.KeyPress += txt_Telefono1_KeyPress;
             // 
             // dtp_Fecha_atencion
             // 
