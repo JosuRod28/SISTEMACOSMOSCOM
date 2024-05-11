@@ -184,7 +184,7 @@
             cb_filtro.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             cb_filtro.FormattingEnabled = true;
             cb_filtro.Items.AddRange(new object[] { "Todos", "Folio", "id_Cliente", "Fecha de atención", "Fecha de entrega" });
-            cb_filtro.Location = new Point(4, 9);
+            cb_filtro.Location = new Point(4, 10);
             cb_filtro.Margin = new Padding(4);
             cb_filtro.Name = "cb_filtro";
             cb_filtro.Size = new Size(183, 36);

@@ -35,7 +35,7 @@ namespace COSMOSCOM.Logica
         public int idCliente()
         {
             int idCliente = -1;
-            string query = "SELECT max(id_Cliente) From Clientes;";
+            string query = "SELECT max(id_Cliente)+1 From Venta_Total;";
             using (SQLiteConnection connection = new SQLiteConnection(conexion))
             {
                 try
@@ -64,24 +64,11 @@ namespace COSMOSCOM.Logica
         public bool Guardar(Ventas obj)
         {
             bool respuesta = true;
+            
             using (SQLiteConnection conn = new SQLiteConnection(conexion))
             {
                 conn.Open();
-                // Verificar si ya existe un registro con la misma clave primaria
-                string queryVerificacion = "SELECT COUNT(*) FROM Venta_Total WHERE Folio = @folio";
-                SQLiteCommand cmdVerificacion = new SQLiteCommand(queryVerificacion, conn);
-                cmdVerificacion.Parameters.AddWithValue("@folio", obj.Folio);
-                int cantidadRegistros = Convert.ToInt32(cmdVerificacion.ExecuteScalar());
 
-                // Si ya existe un registro con la misma clave primaria, abortar la inserción
-                if (cantidadRegistros > 0)
-                {
-                    MessageBox.Show("Ya existe un registro con el mismo numero de folio, por favor ingrese un folio distinto o borre el que se encuentra actualmente registrado","Advertencia",MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    respuesta = false;
-
-                }
-                else
-                {
                     string queryInsert = "INSERT INTO Venta_Total(Folio,id_Cliente,Fecha_de_atencion,Fecha_de_entrega,Total) values (@folio,(SELECT MAX(id_Cliente) FROM Clientes),@fecha_de_atencion,@fecha_de_entrega,@total)";
                     SQLiteCommand cmdInsert = new SQLiteCommand(queryInsert, conn);
                     cmdInsert.Parameters.Add(new SQLiteParameter("@folio", obj.Folio));
@@ -94,8 +81,6 @@ namespace COSMOSCOM.Logica
                     {
                         respuesta = false;
                     }
-                }
-
 
             }
 
@@ -431,5 +416,48 @@ namespace COSMOSCOM.Logica
 
         }
 
+        public bool ver_Folio(int folio)
+        {
+            bool respuesta = false;
+
+            using (SQLiteConnection conn = new SQLiteConnection(conexion))
+            {
+                conn.Open();
+                // Verificar si ya existe un registro con la misma clave primaria
+                string queryVerificacion = "SELECT COUNT(*) FROM Venta_Total WHERE Folio = @folio";
+                SQLiteCommand cmdVerificacion = new SQLiteCommand(queryVerificacion, conn);
+                cmdVerificacion.Parameters.AddWithValue("@folio", folio);
+                int cantidadRegistros = Convert.ToInt32(cmdVerificacion.ExecuteScalar());
+                // Si ya existe un registro con la misma clave primaria, abortar la inserción
+                if (cantidadRegistros > 0)
+                {
+
+                    respuesta = true;
+                }
+            }
+            return respuesta;
+        }
+
+        public bool ver_FKCliente(int idCliente)
+        {
+            bool respuesta = false;
+
+            using (SQLiteConnection conn = new SQLiteConnection(conexion))
+            {
+                conn.Open();
+                // Verificar si ya existe un registro con la misma clave primaria
+                string queryVerificacion = "SELECT COUNT(*) FROM Venta_Total WHERE id_Cliente=@id_cliente";
+                SQLiteCommand cmdVerificacion = new SQLiteCommand(queryVerificacion, conn);
+                cmdVerificacion.Parameters.AddWithValue("@id_cliente", idCliente);
+                int cantidadRegistros = Convert.ToInt32(cmdVerificacion.ExecuteScalar());
+                // Si ya existe un registro con la misma clave primaria, abortar la inserción
+                if (cantidadRegistros > 0)
+                {
+
+                    respuesta = true;
+                }
+            }
+            return respuesta;
+        }
     }
 }

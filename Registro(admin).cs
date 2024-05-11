@@ -205,7 +205,16 @@ namespace COSMOSCOM
 
         private bool ValidarCampos()
         {
+            Clientes idCliente = new Clientes();
+            Ventas folio = new Ventas();
 
+            folio.Folio = int.Parse(txt_Folio.Text);
+            idCliente.id_Cliente = ClientesLogica.Instancia.idCliente();
+            folio.id_Cliente = VentasLogica.Instancia.idCliente();
+
+            bool ConsultaIdClientes = ClientesLogica.Instancia.ver_idCliente(idCliente.id_Cliente);
+            bool ConsultaFolio = VentasLogica.Instancia.ver_Folio(folio.Folio);
+            bool ConsultaFKClientes = VentasLogica.Instancia.ver_FKCliente(folio.id_Cliente);
             // Validar que los campos de texto no estén vacíos
             if (string.IsNullOrWhiteSpace(txt_Nombre.Text))
             {
@@ -248,6 +257,25 @@ namespace COSMOSCOM
                 return false;
 
             }
+
+            if (ConsultaIdClientes)
+            {
+                MessageBox.Show($"Ya existe un registro con el mismo número de cliente{idCliente.id_Cliente} , por favor borre el cliente que se encuentra actualmente registrado", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+
+            }
+
+            if (ConsultaFolio)
+            {
+                MessageBox.Show($"Ya existe un registro con el número de folio {txt_Folio.Text}, por favor borre la venta relacionado a este folio", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (ConsultaFKClientes)
+            {
+                MessageBox.Show($"Ya existe un registro con el número de cliente {folio.id_Cliente}, por favor borre el cliente asociado a esta venta", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
 
 
 
@@ -317,6 +345,14 @@ namespace COSMOSCOM
                 MessageBox.Show("Por favor, seleccione un formato antes de agregar una fila.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
+            // Verifica si hay un valor  en el campo de monto
+            if (string.IsNullOrWhiteSpace(txt_Monto.Text))
+            {
+                MessageBox.Show("Por favor seleccione el monto inicial.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             //Captura de los datos ingresados de en los campos 
             string formato = cb_Formatos.Text;
             string duracion = nUpDown.Value.ToString();

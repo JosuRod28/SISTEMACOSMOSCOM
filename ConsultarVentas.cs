@@ -166,9 +166,9 @@ namespace COSMOSCOM
 
                 if (eliminacionExitosa)
                 {
-                    MessageBox.Show("Venta eliminada correctamente.");
+                    MessageBox.Show("Detalles de la Venta eliminada correctamente.");
                     // Actualizar el DataGridView después de la eliminación
-                    DataGrid_Ventas.DataSource = VentasLogica.Instancia.ConsultarTodos();
+                    DataGrid_Ventas.DataSource = DetalleVentaLogica.Instancia.ListarDetalleVenta(folio);
                 }
             }
 

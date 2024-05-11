@@ -39,7 +39,7 @@ namespace COSMOSCOM.Logica
         public int idCliente()
         {
             int idCliente = -1;
-            string query = "SELECT max(id_Cliente) From Clientes;";
+            string query = "SELECT max(id_Cliente)+1 From Clientes;";
             using (SQLiteConnection connection = new SQLiteConnection(conexion))
             {
                 try
@@ -71,22 +71,9 @@ namespace COSMOSCOM.Logica
             using(SQLiteConnection conn = new SQLiteConnection(conexion))
             {
                 conn.Open();
-                // Verificar si ya existe un registro con la misma clave primaria
-                string queryVerificacion = "SELECT COUNT(*) FROM Clientes WHERE id_Cliente = @id_cliente";
-                SQLiteCommand cmdVerificacion = new SQLiteCommand(queryVerificacion, conn);
-                cmdVerificacion.Parameters.AddWithValue("id_cliente", obj.id_Cliente);
-                int cantidadRegistros = Convert.ToInt32(cmdVerificacion.ExecuteScalar());
-                // Si ya existe un registro con la misma clave primaria, abortar la inserción
-                if (cantidadRegistros > 0)
-                {
-                    MessageBox.Show("Ya existe un registro con el mismo número de cliente, por favor borre el cliente que se encuentra actualmente registrado", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    respuesta = false;
-                }
-                else
-                {
-                    // Si no existe, insertar el nuevo registro
-                    string queryInsertar = "INSERT INTO Clientes(Nombre, Apellido_P, Apellido_M, Telefono1, Telefono2) VALUES (@nombre, @apellido_p, @apellido_m, @telefono1, @telefono2)";
+                    string queryInsertar = "INSERT INTO Clientes(id_Cliente,Nombre, Apellido_P, Apellido_M, Telefono1, Telefono2) VALUES (@id_cliente,@nombre, @apellido_p, @apellido_m, @telefono1, @telefono2)";
                     SQLiteCommand cmdInsertar = new SQLiteCommand(queryInsertar, conn);
+                cmdInsertar.Parameters.AddWithValue("@id_cliente",obj.id_Cliente);
                     cmdInsertar.Parameters.AddWithValue("@nombre", obj.Nombre);
                     cmdInsertar.Parameters.AddWithValue("@apellido_p", obj.Apellido_P);
                     cmdInsertar.Parameters.AddWithValue("@apellido_m", obj.Apellido_M);
@@ -97,13 +84,36 @@ namespace COSMOSCOM.Logica
                     {
                         respuesta = false;
                     }
-                }
+                
 
             }
             return respuesta;
 
         }
 
+
+
+        public bool ver_idCliente(int idCliente)
+        {
+            bool respuesta = false;
+
+            using (SQLiteConnection conn = new SQLiteConnection(conexion))
+            {
+                conn.Open();
+                // Verificar si ya existe un registro con la misma clave primaria
+                string queryVerificacion = "SELECT COUNT(*) FROM Clientes WHERE id_Cliente = @id_cliente";
+                SQLiteCommand cmdVerificacion = new SQLiteCommand(queryVerificacion, conn);
+                cmdVerificacion.Parameters.AddWithValue("@id_cliente",idCliente );
+                int cantidadRegistros = Convert.ToInt32(cmdVerificacion.ExecuteScalar());
+                // Si ya existe un registro con la misma clave primaria, abortar la inserción
+                if (cantidadRegistros > 0)
+                {
+                    
+                    respuesta = true;
+                }
+            }
+            return respuesta;
+        }
         
 
         public List<Clientes> consultarTodos()
