@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConsultarClientes));
             groupBox1 = new GroupBox();
             btn_Regresar = new Button();
@@ -53,21 +54,23 @@
             // 
             // groupBox1
             // 
+            groupBox1.BackColor = Color.DimGray;
             groupBox1.Controls.Add(btn_Regresar);
             groupBox1.Controls.Add(btn_Modificar);
             groupBox1.Controls.Add(btn_Eliminar);
             groupBox1.Controls.Add(tableLayoutPanel5);
             groupBox1.Dock = DockStyle.Fill;
             groupBox1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            groupBox1.ForeColor = Color.Orange;
+            groupBox1.ForeColor = Color.White;
             groupBox1.Location = new Point(4, 4);
             groupBox1.Margin = new Padding(4);
             groupBox1.Name = "groupBox1";
             groupBox1.Padding = new Padding(4);
-            groupBox1.Size = new Size(937, 647);
+            groupBox1.Size = new Size(937, 633);
             groupBox1.TabIndex = 10;
             groupBox1.TabStop = false;
             groupBox1.Text = "Consultar Clientes";
+            groupBox1.Enter += groupBox1_Enter;
             // 
             // btn_Regresar
             // 
@@ -75,11 +78,11 @@
             btn_Regresar.BackColor = SystemColors.HighlightText;
             btn_Regresar.FlatStyle = FlatStyle.Popup;
             btn_Regresar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btn_Regresar.ForeColor = Color.Orange;
-            btn_Regresar.Location = new Point(761, 555);
+            btn_Regresar.ForeColor = Color.MediumBlue;
+            btn_Regresar.Location = new Point(736, 546);
             btn_Regresar.Margin = new Padding(4);
             btn_Regresar.Name = "btn_Regresar";
-            btn_Regresar.Size = new Size(116, 57);
+            btn_Regresar.Size = new Size(141, 67);
             btn_Regresar.TabIndex = 13;
             btn_Regresar.Text = "Regresar";
             btn_Regresar.UseVisualStyleBackColor = false;
@@ -90,10 +93,11 @@
             btn_Modificar.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             btn_Modificar.BackColor = SystemColors.HighlightText;
             btn_Modificar.FlatStyle = FlatStyle.Popup;
-            btn_Modificar.Location = new Point(765, 439);
+            btn_Modificar.ForeColor = Color.MediumBlue;
+            btn_Modificar.Location = new Point(736, 439);
             btn_Modificar.Margin = new Padding(4);
             btn_Modificar.Name = "btn_Modificar";
-            btn_Modificar.Size = new Size(116, 57);
+            btn_Modificar.Size = new Size(145, 72);
             btn_Modificar.TabIndex = 8;
             btn_Modificar.Text = "Modificar ";
             btn_Modificar.UseVisualStyleBackColor = false;
@@ -104,10 +108,11 @@
             btn_Eliminar.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             btn_Eliminar.BackColor = SystemColors.HighlightText;
             btn_Eliminar.FlatStyle = FlatStyle.Popup;
-            btn_Eliminar.Location = new Point(616, 439);
+            btn_Eliminar.ForeColor = Color.MediumBlue;
+            btn_Eliminar.Location = new Point(570, 439);
             btn_Eliminar.Margin = new Padding(4);
             btn_Eliminar.Name = "btn_Eliminar";
-            btn_Eliminar.Size = new Size(115, 57);
+            btn_Eliminar.Size = new Size(149, 72);
             btn_Eliminar.TabIndex = 9;
             btn_Eliminar.Text = "Eliminar";
             btn_Eliminar.UseVisualStyleBackColor = false;
@@ -132,6 +137,14 @@
             // DataGrid_Clientes
             // 
             DataGrid_Clientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.White;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = Color.DarkGray;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
+            DataGrid_Clientes.DefaultCellStyle = dataGridViewCellStyle1;
             DataGrid_Clientes.Dock = DockStyle.Fill;
             DataGrid_Clientes.Location = new Point(4, 69);
             DataGrid_Clientes.Margin = new Padding(4);
@@ -139,6 +152,7 @@
             DataGrid_Clientes.RowHeadersWidth = 51;
             DataGrid_Clientes.Size = new Size(718, 322);
             DataGrid_Clientes.TabIndex = 7;
+            DataGrid_Clientes.CellContentClick += DataGrid_Clientes_CellContentClick;
             // 
             // tableLayoutPanel3
             // 
@@ -201,6 +215,7 @@
             // tableLayoutPanel2
             // 
             tableLayoutPanel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            tableLayoutPanel2.BackColor = Color.Transparent;
             tableLayoutPanel2.ColumnCount = 1;
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel2.Controls.Add(groupBox1, 0, 0);
@@ -210,34 +225,36 @@
             tableLayoutPanel2.RowCount = 2;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 25F));
-            tableLayoutPanel2.Size = new Size(945, 680);
+            tableLayoutPanel2.Size = new Size(945, 666);
             tableLayoutPanel2.TabIndex = 19;
             // 
             // tableLayoutPanel1
             // 
             tableLayoutPanel1.Anchor = AnchorStyles.Top;
             tableLayoutPanel1.AutoSize = true;
+            tableLayoutPanel1.BackColor = Color.Transparent;
+            tableLayoutPanel1.BackgroundImage = Properties.Resources.Login_Fondo;
             tableLayoutPanel1.ColumnCount = 3;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 575F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 186F));
-            tableLayoutPanel1.Controls.Add(pictureBox1, 1, 0);
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 295F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 466F));
+            tableLayoutPanel1.Controls.Add(pictureBox1, 2, 0);
             tableLayoutPanel1.Location = new Point(-10, 0);
             tableLayoutPanel1.Margin = new Padding(4);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.Size = new Size(971, 136);
+            tableLayoutPanel1.Size = new Size(956, 136);
             tableLayoutPanel1.TabIndex = 18;
             // 
             // pictureBox1
             // 
             pictureBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             pictureBox1.Image = Properties.Resources.Logo;
-            pictureBox1.Location = new Point(216, 4);
+            pictureBox1.Location = new Point(512, 4);
             pictureBox1.Margin = new Padding(4);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(565, 128);
+            pictureBox1.Size = new Size(440, 128);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
@@ -246,7 +263,8 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.Info;
+            BackColor = Color.Black;
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(948, 805);
             Controls.Add(tableLayoutPanel1);
             Controls.Add(tableLayoutPanel2);

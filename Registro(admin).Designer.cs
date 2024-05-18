@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             pictureBox1 = new PictureBox();
             label1 = new Label();
             gbCliente = new GroupBox();
@@ -65,11 +66,11 @@
             label8 = new Label();
             gbOpciones = new GroupBox();
             tableLayoutPanel3 = new TableLayoutPanel();
+            button1 = new Button();
             btn_Guardar = new Button();
             btn_salir = new Button();
             btn_Cancelar = new Button();
             btn_ConsultarC = new Button();
-            btn_ConsultarV = new Button();
             gbFormato = new GroupBox();
             tableLayoutPanel8 = new TableLayoutPanel();
             tableLayoutPanel5 = new TableLayoutPanel();
@@ -126,7 +127,7 @@
             pictureBox1.Location = new Point(4, 4);
             pictureBox1.Margin = new Padding(4);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(342, 105);
+            pictureBox1.Size = new Size(403, 105);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
@@ -136,12 +137,13 @@
             // 
             label1.Anchor = AnchorStyles.None;
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.MediumBlue;
-            label1.Location = new Point(560, 37);
+            label1.BackColor = Color.Transparent;
+            label1.Font = new Font("Arial Rounded MT Bold", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(581, 40);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(315, 38);
+            label1.Size = new Size(335, 32);
             label1.TabIndex = 1;
             label1.Text = "Transferencia de Video";
             // 
@@ -149,14 +151,15 @@
             // 
             gbCliente.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             gbCliente.AutoSize = true;
+            gbCliente.BackColor = Color.DimGray;
             gbCliente.Controls.Add(tableLayoutPanel2);
             gbCliente.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            gbCliente.ForeColor = Color.Orange;
+            gbCliente.ForeColor = Color.White;
             gbCliente.Location = new Point(4, 4);
             gbCliente.Margin = new Padding(4);
             gbCliente.Name = "gbCliente";
             gbCliente.Padding = new Padding(4);
-            gbCliente.Size = new Size(512, 549);
+            gbCliente.Size = new Size(504, 529);
             gbCliente.TabIndex = 2;
             gbCliente.TabStop = false;
             gbCliente.Text = "Datos del cliente";
@@ -192,7 +195,7 @@
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
-            tableLayoutPanel2.Size = new Size(494, 504);
+            tableLayoutPanel2.Size = new Size(486, 484);
             tableLayoutPanel2.TabIndex = 12;
             // 
             // label7
@@ -200,21 +203,21 @@
             label7.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            label7.ForeColor = Color.Black;
-            label7.Location = new Point(4, 21);
+            label7.ForeColor = Color.White;
+            label7.Location = new Point(4, 19);
             label7.Margin = new Padding(4, 0, 4, 0);
             label7.Name = "label7";
-            label7.Size = new Size(239, 30);
+            label7.Size = new Size(235, 30);
             label7.TabIndex = 5;
             label7.Text = "Folio";
             // 
             // txt_Telefono2
             // 
             txt_Telefono2.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txt_Telefono2.Location = new Point(251, 378);
+            txt_Telefono2.Location = new Point(247, 362);
             txt_Telefono2.Margin = new Padding(4);
             txt_Telefono2.Name = "txt_Telefono2";
-            txt_Telefono2.Size = new Size(239, 35);
+            txt_Telefono2.Size = new Size(235, 35);
             txt_Telefono2.TabIndex = 10;
             txt_Telefono2.KeyPress += txt_Telefono2_KeyPress;
             // 
@@ -223,10 +226,10 @@
             dtp_Fecha_entrega.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             dtp_Fecha_entrega.CalendarFont = new Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             dtp_Fecha_entrega.Format = DateTimePickerFormat.Short;
-            dtp_Fecha_entrega.Location = new Point(251, 450);
+            dtp_Fecha_entrega.Location = new Point(247, 431);
             dtp_Fecha_entrega.Margin = new Padding(4);
             dtp_Fecha_entrega.Name = "dtp_Fecha_entrega";
-            dtp_Fecha_entrega.Size = new Size(239, 35);
+            dtp_Fecha_entrega.Size = new Size(235, 35);
             dtp_Fecha_entrega.TabIndex = 2;
             // 
             // label11
@@ -234,21 +237,21 @@
             label11.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            label11.ForeColor = Color.Black;
-            label11.Location = new Point(4, 453);
+            label11.ForeColor = Color.White;
+            label11.Location = new Point(4, 434);
             label11.Margin = new Padding(4, 0, 4, 0);
             label11.Name = "label11";
-            label11.Size = new Size(239, 30);
+            label11.Size = new Size(235, 30);
             label11.TabIndex = 11;
             label11.Text = "Fecha de Entrega*";
             // 
             // txt_Folio
             // 
             txt_Folio.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txt_Folio.Location = new Point(251, 18);
+            txt_Folio.Location = new Point(247, 17);
             txt_Folio.Margin = new Padding(4);
             txt_Folio.Name = "txt_Folio";
-            txt_Folio.Size = new Size(239, 35);
+            txt_Folio.Size = new Size(235, 35);
             txt_Folio.TabIndex = 4;
             // 
             // label2
@@ -256,11 +259,11 @@
             label2.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            label2.ForeColor = Color.Black;
-            label2.Location = new Point(4, 93);
+            label2.ForeColor = Color.White;
+            label2.Location = new Point(4, 88);
             label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new Size(239, 30);
+            label2.Size = new Size(235, 30);
             label2.TabIndex = 0;
             label2.Text = "Nombre*";
             label2.Click += label2_Click;
@@ -270,21 +273,21 @@
             label6.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            label6.ForeColor = Color.Black;
-            label6.Location = new Point(4, 381);
+            label6.ForeColor = Color.White;
+            label6.Location = new Point(4, 364);
             label6.Margin = new Padding(4, 0, 4, 0);
             label6.Name = "label6";
-            label6.Size = new Size(239, 30);
+            label6.Size = new Size(235, 30);
             label6.TabIndex = 4;
             label6.Text = "Teléfono2";
             // 
             // txt_Nombre
             // 
             txt_Nombre.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txt_Nombre.Location = new Point(251, 90);
+            txt_Nombre.Location = new Point(247, 86);
             txt_Nombre.Margin = new Padding(4);
             txt_Nombre.Name = "txt_Nombre";
-            txt_Nombre.Size = new Size(239, 35);
+            txt_Nombre.Size = new Size(235, 35);
             txt_Nombre.TabIndex = 6;
             txt_Nombre.KeyPress += txt_Nombre_KeyPress;
             // 
@@ -293,11 +296,11 @@
             label5.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            label5.ForeColor = Color.Black;
-            label5.Location = new Point(4, 309);
+            label5.ForeColor = Color.White;
+            label5.Location = new Point(4, 295);
             label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
-            label5.Size = new Size(239, 30);
+            label5.Size = new Size(235, 30);
             label5.TabIndex = 3;
             label5.Text = "Teléfono1*";
             // 
@@ -306,21 +309,21 @@
             label3.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            label3.ForeColor = Color.Black;
-            label3.Location = new Point(4, 165);
+            label3.ForeColor = Color.White;
+            label3.Location = new Point(4, 157);
             label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
-            label3.Size = new Size(239, 30);
+            label3.Size = new Size(235, 30);
             label3.TabIndex = 1;
             label3.Text = "Apellido_P*";
             // 
             // txt_Apellido_P
             // 
             txt_Apellido_P.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txt_Apellido_P.Location = new Point(251, 162);
+            txt_Apellido_P.Location = new Point(247, 155);
             txt_Apellido_P.Margin = new Padding(4);
             txt_Apellido_P.Name = "txt_Apellido_P";
-            txt_Apellido_P.Size = new Size(239, 35);
+            txt_Apellido_P.Size = new Size(235, 35);
             txt_Apellido_P.TabIndex = 7;
             txt_Apellido_P.TextChanged += txt_Apellido_P_TextChanged;
             txt_Apellido_P.KeyPress += txt_Apellido_P_KeyPress;
@@ -330,11 +333,11 @@
             label4.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            label4.ForeColor = Color.Black;
-            label4.Location = new Point(4, 237);
+            label4.ForeColor = Color.White;
+            label4.Location = new Point(4, 226);
             label4.Margin = new Padding(4, 0, 4, 0);
             label4.Name = "label4";
-            label4.Size = new Size(239, 30);
+            label4.Size = new Size(235, 30);
             label4.TabIndex = 2;
             label4.Text = "Apellido_M";
             label4.Click += label4_Click;
@@ -342,20 +345,20 @@
             // txt_Apellido_M
             // 
             txt_Apellido_M.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txt_Apellido_M.Location = new Point(251, 234);
+            txt_Apellido_M.Location = new Point(247, 224);
             txt_Apellido_M.Margin = new Padding(4);
             txt_Apellido_M.Name = "txt_Apellido_M";
-            txt_Apellido_M.Size = new Size(239, 35);
+            txt_Apellido_M.Size = new Size(235, 35);
             txt_Apellido_M.TabIndex = 8;
             txt_Apellido_M.KeyPress += txt_Apellido_M_KeyPress;
             // 
             // txt_Telefono1
             // 
             txt_Telefono1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txt_Telefono1.Location = new Point(251, 306);
+            txt_Telefono1.Location = new Point(247, 293);
             txt_Telefono1.Margin = new Padding(4);
             txt_Telefono1.Name = "txt_Telefono1";
-            txt_Telefono1.Size = new Size(239, 35);
+            txt_Telefono1.Size = new Size(235, 35);
             txt_Telefono1.TabIndex = 9;
             txt_Telefono1.KeyPress += txt_Telefono1_KeyPress;
             // 
@@ -374,10 +377,10 @@
             // 
             label15.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label15.AutoSize = true;
-            label15.Location = new Point(218, 28);
+            label15.Location = new Point(215, 28);
             label15.Margin = new Padding(4, 0, 4, 0);
             label15.Name = "label15";
-            label15.Size = new Size(38, 28);
+            label15.Size = new Size(37, 28);
             label15.TabIndex = 17;
             label15.Text = "0";
             // 
@@ -388,17 +391,17 @@
             label14.Location = new Point(4, 28);
             label14.Margin = new Padding(4, 0, 4, 0);
             label14.Name = "label14";
-            label14.Size = new Size(206, 28);
+            label14.Size = new Size(203, 28);
             label14.TabIndex = 16;
             label14.Text = "Total de Formatos:";
             // 
             // txt_Total
             // 
             txt_Total.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txt_Total.Location = new Point(396, 24);
+            txt_Total.Location = new Point(390, 24);
             txt_Total.Margin = new Padding(4);
             txt_Total.Name = "txt_Total";
-            txt_Total.Size = new Size(274, 35);
+            txt_Total.Size = new Size(270, 35);
             txt_Total.TabIndex = 15;
             txt_Total.TextChanged += textBox1_TextChanged;
             // 
@@ -406,10 +409,10 @@
             // 
             label13.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label13.AutoSize = true;
-            label13.Location = new Point(264, 28);
+            label13.Location = new Point(260, 28);
             label13.Margin = new Padding(4, 0, 4, 0);
             label13.Name = "label13";
-            label13.Size = new Size(124, 28);
+            label13.Size = new Size(122, 28);
             label13.TabIndex = 6;
             label13.Text = "Total:";
             // 
@@ -417,12 +420,20 @@
             // 
             dgv_Formatos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgv_Formatos.Columns.AddRange(new DataGridViewColumn[] { Formato, Duracion, Monto });
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Window;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI Black", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = Color.DarkGray;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
+            dgv_Formatos.DefaultCellStyle = dataGridViewCellStyle1;
             dgv_Formatos.Dock = DockStyle.Fill;
             dgv_Formatos.Location = new Point(4, 4);
             dgv_Formatos.Margin = new Padding(4);
             dgv_Formatos.Name = "dgv_Formatos";
             dgv_Formatos.RowHeadersWidth = 51;
-            dgv_Formatos.Size = new Size(720, 340);
+            dgv_Formatos.Size = new Size(709, 340);
             dgv_Formatos.TabIndex = 3;
             dgv_Formatos.CellContentClick += dataGridView1_CellContentClick;
             // 
@@ -451,6 +462,7 @@
             // 
             btn_Agregar.BackColor = SystemColors.HighlightText;
             btn_Agregar.Dock = DockStyle.Fill;
+            btn_Agregar.ForeColor = Color.MediumBlue;
             btn_Agregar.Location = new Point(4, 4);
             btn_Agregar.Margin = new Padding(4);
             btn_Agregar.Name = "btn_Agregar";
@@ -463,20 +475,20 @@
             // txt_Monto
             // 
             txt_Monto.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txt_Monto.Location = new Point(651, 56);
+            txt_Monto.Location = new Point(642, 56);
             txt_Monto.Margin = new Padding(4);
             txt_Monto.Name = "txt_Monto";
-            txt_Monto.Size = new Size(222, 35);
+            txt_Monto.Size = new Size(217, 35);
             txt_Monto.TabIndex = 14;
             // 
             // label12
             // 
             label12.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label12.AutoSize = true;
-            label12.Location = new Point(594, 59);
+            label12.Location = new Point(586, 59);
             label12.Margin = new Padding(4, 0, 4, 0);
             label12.Name = "label12";
-            label12.Size = new Size(49, 28);
+            label12.Size = new Size(48, 28);
             label12.TabIndex = 13;
             label12.Text = "$";
             // 
@@ -488,7 +500,7 @@
             nUpDown.Maximum = new decimal(new int[] { 3000, 0, 0, 0 });
             nUpDown.Minimum = new decimal(new int[] { 120, 0, 0, 0 });
             nUpDown.Name = "nUpDown";
-            nUpDown.Size = new Size(219, 35);
+            nUpDown.Size = new Size(215, 35);
             nUpDown.TabIndex = 12;
             nUpDown.Value = new decimal(new int[] { 120, 0, 0, 0 });
             nUpDown.ValueChanged += nUpDown_ValueChanged;
@@ -500,7 +512,7 @@
             cb_Formatos.Location = new Point(4, 57);
             cb_Formatos.Margin = new Padding(4);
             cb_Formatos.Name = "cb_Formatos";
-            cb_Formatos.Size = new Size(282, 36);
+            cb_Formatos.Size = new Size(278, 36);
             cb_Formatos.TabIndex = 4;
             cb_Formatos.Text = "Selecciona Formato";
             cb_Formatos.SelectedIndexChanged += cb_Formatos_SelectedIndexChanged;
@@ -508,7 +520,7 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(651, 0);
+            label10.Location = new Point(642, 0);
             label10.Margin = new Padding(4, 0, 4, 0);
             label10.Name = "label10";
             label10.Size = new Size(79, 28);
@@ -519,10 +531,10 @@
             // 
             label9.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label9.AutoSize = true;
-            label9.Location = new Point(294, 4);
+            label9.Location = new Point(290, 4);
             label9.Margin = new Padding(4, 0, 4, 0);
             label9.Name = "label9";
-            label9.Size = new Size(292, 28);
+            label9.Size = new Size(288, 28);
             label9.TabIndex = 1;
             label9.Text = "Duración";
             label9.TextAlign = ContentAlignment.MiddleCenter;
@@ -542,14 +554,15 @@
             // 
             gbOpciones.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             gbOpciones.AutoSize = true;
+            gbOpciones.BackColor = Color.DimGray;
             gbOpciones.Controls.Add(tableLayoutPanel3);
             gbOpciones.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            gbOpciones.ForeColor = Color.Orange;
-            gbOpciones.Location = new Point(4, 561);
+            gbOpciones.ForeColor = Color.White;
+            gbOpciones.Location = new Point(4, 541);
             gbOpciones.Margin = new Padding(4);
             gbOpciones.Name = "gbOpciones";
             gbOpciones.Padding = new Padding(4);
-            gbOpciones.Size = new Size(512, 339);
+            gbOpciones.Size = new Size(504, 327);
             gbOpciones.TabIndex = 4;
             gbOpciones.TabStop = false;
             gbOpciones.Text = "Opciones";
@@ -561,11 +574,11 @@
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            tableLayoutPanel3.Controls.Add(button1, 0, 1);
             tableLayoutPanel3.Controls.Add(btn_Guardar, 0, 0);
             tableLayoutPanel3.Controls.Add(btn_salir, 2, 0);
             tableLayoutPanel3.Controls.Add(btn_Cancelar, 1, 0);
             tableLayoutPanel3.Controls.Add(btn_ConsultarC, 0, 1);
-            tableLayoutPanel3.Controls.Add(btn_ConsultarV, 1, 1);
             tableLayoutPanel3.Location = new Point(28, 52);
             tableLayoutPanel3.Margin = new Padding(4);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -575,10 +588,25 @@
             tableLayoutPanel3.Size = new Size(445, 261);
             tableLayoutPanel3.TabIndex = 10;
             // 
+            // button1
+            // 
+            button1.BackColor = SystemColors.HighlightText;
+            button1.Dock = DockStyle.Fill;
+            button1.ForeColor = Color.MediumBlue;
+            button1.Location = new Point(152, 132);
+            button1.Margin = new Padding(4);
+            button1.Name = "button1";
+            button1.Size = new Size(140, 125);
+            button1.TabIndex = 10;
+            button1.Text = "Consultar Ventas";
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click_1;
+            // 
             // btn_Guardar
             // 
             btn_Guardar.BackColor = SystemColors.HighlightText;
             btn_Guardar.Dock = DockStyle.Fill;
+            btn_Guardar.ForeColor = Color.MediumBlue;
             btn_Guardar.Location = new Point(4, 4);
             btn_Guardar.Margin = new Padding(4);
             btn_Guardar.Name = "btn_Guardar";
@@ -592,6 +620,7 @@
             // 
             btn_salir.BackColor = SystemColors.HighlightText;
             btn_salir.Dock = DockStyle.Fill;
+            btn_salir.ForeColor = Color.MediumBlue;
             btn_salir.Location = new Point(300, 4);
             btn_salir.Margin = new Padding(4);
             btn_salir.Name = "btn_salir";
@@ -605,6 +634,7 @@
             // 
             btn_Cancelar.BackColor = SystemColors.HighlightText;
             btn_Cancelar.Dock = DockStyle.Fill;
+            btn_Cancelar.ForeColor = Color.MediumBlue;
             btn_Cancelar.Location = new Point(152, 4);
             btn_Cancelar.Margin = new Padding(4);
             btn_Cancelar.Name = "btn_Cancelar";
@@ -618,6 +648,7 @@
             // 
             btn_ConsultarC.BackColor = SystemColors.HighlightText;
             btn_ConsultarC.Dock = DockStyle.Fill;
+            btn_ConsultarC.ForeColor = Color.MediumBlue;
             btn_ConsultarC.Location = new Point(4, 132);
             btn_ConsultarC.Margin = new Padding(4);
             btn_ConsultarC.Name = "btn_ConsultarC";
@@ -627,33 +658,21 @@
             btn_ConsultarC.UseVisualStyleBackColor = false;
             btn_ConsultarC.Click += btn_ConsultarC_Click;
             // 
-            // btn_ConsultarV
-            // 
-            btn_ConsultarV.BackColor = SystemColors.HighlightText;
-            btn_ConsultarV.Dock = DockStyle.Fill;
-            btn_ConsultarV.Location = new Point(152, 132);
-            btn_ConsultarV.Margin = new Padding(4);
-            btn_ConsultarV.Name = "btn_ConsultarV";
-            btn_ConsultarV.Size = new Size(140, 125);
-            btn_ConsultarV.TabIndex = 7;
-            btn_ConsultarV.Text = "Consultar Ventas";
-            btn_ConsultarV.UseVisualStyleBackColor = false;
-            btn_ConsultarV.Click += btn_ConsultarV_Click;
-            // 
             // gbFormato
             // 
             gbFormato.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             gbFormato.AutoSize = true;
+            gbFormato.BackColor = Color.DimGray;
             gbFormato.Controls.Add(tableLayoutPanel8);
             gbFormato.Controls.Add(tableLayoutPanel5);
             gbFormato.Controls.Add(tableLayoutPanel4);
             gbFormato.Font = new Font("Segoe UI Black", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            gbFormato.ForeColor = Color.Orange;
-            gbFormato.Location = new Point(524, 4);
+            gbFormato.ForeColor = Color.White;
+            gbFormato.Location = new Point(516, 4);
             gbFormato.Margin = new Padding(4);
             gbFormato.Name = "gbFormato";
             gbFormato.Padding = new Padding(4);
-            gbFormato.Size = new Size(885, 549);
+            gbFormato.Size = new Size(871, 529);
             gbFormato.TabIndex = 5;
             gbFormato.TabStop = false;
             gbFormato.Text = "Formato";
@@ -661,6 +680,7 @@
             // 
             // tableLayoutPanel8
             // 
+            tableLayoutPanel8.BackColor = Color.Transparent;
             tableLayoutPanel8.ColumnCount = 5;
             tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 24.4868031F));
             tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 5.27859259F));
@@ -672,16 +692,17 @@
             tableLayoutPanel8.Controls.Add(label13, 2, 0);
             tableLayoutPanel8.Controls.Add(txt_Total, 3, 0);
             tableLayoutPanel8.Dock = DockStyle.Bottom;
-            tableLayoutPanel8.Location = new Point(4, 461);
+            tableLayoutPanel8.Location = new Point(4, 441);
             tableLayoutPanel8.Margin = new Padding(4);
             tableLayoutPanel8.Name = "tableLayoutPanel8";
             tableLayoutPanel8.RowCount = 1;
             tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel8.Size = new Size(877, 84);
+            tableLayoutPanel8.Size = new Size(863, 84);
             tableLayoutPanel8.TabIndex = 20;
             // 
             // tableLayoutPanel5
             // 
+            tableLayoutPanel5.BackColor = Color.Black;
             tableLayoutPanel5.ColumnCount = 2;
             tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 83.10078F));
             tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 16.8992252F));
@@ -693,17 +714,18 @@
             tableLayoutPanel5.Name = "tableLayoutPanel5";
             tableLayoutPanel5.RowCount = 1;
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel5.Size = new Size(877, 348);
+            tableLayoutPanel5.Size = new Size(863, 348);
             tableLayoutPanel5.TabIndex = 19;
             // 
             // tableLayoutPanel6
             // 
             tableLayoutPanel6.Anchor = AnchorStyles.Top;
+            tableLayoutPanel6.BackColor = Color.DimGray;
             tableLayoutPanel6.ColumnCount = 1;
             tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel6.Controls.Add(btn_Agregar, 0, 0);
             tableLayoutPanel6.Controls.Add(btn_Quitar, 0, 1);
-            tableLayoutPanel6.Location = new Point(734, 4);
+            tableLayoutPanel6.Location = new Point(722, 4);
             tableLayoutPanel6.Margin = new Padding(4);
             tableLayoutPanel6.Name = "tableLayoutPanel6";
             tableLayoutPanel6.RowCount = 2;
@@ -716,6 +738,7 @@
             // 
             btn_Quitar.BackColor = SystemColors.HighlightText;
             btn_Quitar.Dock = DockStyle.Fill;
+            btn_Quitar.ForeColor = Color.MediumBlue;
             btn_Quitar.Location = new Point(4, 82);
             btn_Quitar.Margin = new Padding(4);
             btn_Quitar.Name = "btn_Quitar";
@@ -746,7 +769,7 @@
             tableLayoutPanel4.RowCount = 2;
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 33.7078667F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 66.29214F));
-            tableLayoutPanel4.Size = new Size(877, 110);
+            tableLayoutPanel4.Size = new Size(863, 110);
             tableLayoutPanel4.TabIndex = 18;
             tableLayoutPanel4.Paint += tableLayoutPanel4_Paint;
             // 
@@ -757,18 +780,18 @@
             tableLayoutPanel10.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 22.7891159F));
             tableLayoutPanel10.Controls.Add(nUpDown, 0, 0);
             tableLayoutPanel10.Controls.Add(label17, 1, 0);
-            tableLayoutPanel10.Location = new Point(293, 40);
+            tableLayoutPanel10.Location = new Point(289, 40);
             tableLayoutPanel10.Name = "tableLayoutPanel10";
             tableLayoutPanel10.RowCount = 1;
             tableLayoutPanel10.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel10.Size = new Size(294, 67);
+            tableLayoutPanel10.Size = new Size(290, 67);
             tableLayoutPanel10.TabIndex = 15;
             // 
             // label17
             // 
             label17.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label17.AutoSize = true;
-            label17.Location = new Point(230, 19);
+            label17.Location = new Point(226, 19);
             label17.Name = "label17";
             label17.Size = new Size(61, 28);
             label17.TabIndex = 13;
@@ -778,9 +801,11 @@
             // tableLayoutPanel7
             // 
             tableLayoutPanel7.AutoSize = true;
+            tableLayoutPanel7.BackgroundImage = Properties.Resources.Login_Fondo;
+            tableLayoutPanel7.BackgroundImageLayout = ImageLayout.None;
             tableLayoutPanel7.ColumnCount = 4;
-            tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 24.80664F));
-            tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 52.05105F));
+            tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 29.08705F));
+            tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 47.7707024F));
             tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 7.20145845F));
             tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 15.8614407F));
             tableLayoutPanel7.Controls.Add(pictureBox1, 0, 0);
@@ -790,6 +815,8 @@
             tableLayoutPanel7.Dock = DockStyle.Top;
             tableLayoutPanel7.Location = new Point(0, 33);
             tableLayoutPanel7.Margin = new Padding(4);
+            tableLayoutPanel7.MaximumSize = new Size(1413, 113);
+            tableLayoutPanel7.MinimumSize = new Size(1413, 113);
             tableLayoutPanel7.Name = "tableLayoutPanel7";
             tableLayoutPanel7.RowCount = 1;
             tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
@@ -801,18 +828,20 @@
             label16.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label16.AutoEllipsis = true;
             label16.AutoSize = true;
-            label16.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label16.ForeColor = Color.Orange;
-            label16.Location = new Point(1090, 41);
+            label16.BackColor = Color.Transparent;
+            label16.Font = new Font("Segoe UI Black", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label16.ForeColor = Color.White;
+            label16.Location = new Point(1090, 42);
             label16.Margin = new Padding(4, 0, 4, 0);
             label16.Name = "label16";
-            label16.Size = new Size(93, 30);
+            label16.Size = new Size(93, 28);
             label16.TabIndex = 11;
             label16.Text = "Fecha";
             // 
             // tableLayoutPanel1
             // 
             tableLayoutPanel1.AutoSize = true;
+            tableLayoutPanel1.BackColor = Color.Black;
             tableLayoutPanel1.ColumnCount = 2;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 36.82771F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 63.17229F));
@@ -827,7 +856,7 @@
             tableLayoutPanel1.RowCount = 2;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 61.6150436F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 38.3849564F));
-            tableLayoutPanel1.Size = new Size(1413, 904);
+            tableLayoutPanel1.Size = new Size(1391, 872);
             tableLayoutPanel1.TabIndex = 7;
             // 
             // tableLayoutPanel9
@@ -844,13 +873,13 @@
             tableLayoutPanel9.Controls.Add(pictureBox6, 1, 1);
             tableLayoutPanel9.Controls.Add(pictureBox7, 2, 1);
             tableLayoutPanel9.Dock = DockStyle.Fill;
-            tableLayoutPanel9.Location = new Point(524, 561);
+            tableLayoutPanel9.Location = new Point(516, 541);
             tableLayoutPanel9.Margin = new Padding(4);
             tableLayoutPanel9.Name = "tableLayoutPanel9";
             tableLayoutPanel9.RowCount = 2;
             tableLayoutPanel9.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel9.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel9.Size = new Size(885, 339);
+            tableLayoutPanel9.Size = new Size(871, 327);
             tableLayoutPanel9.TabIndex = 6;
             // 
             // pictureBox2
@@ -860,7 +889,7 @@
             pictureBox2.Location = new Point(4, 4);
             pictureBox2.Margin = new Padding(4);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(286, 161);
+            pictureBox2.Size = new Size(282, 155);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 0;
             pictureBox2.TabStop = false;
@@ -869,10 +898,10 @@
             // 
             pictureBox3.Dock = DockStyle.Fill;
             pictureBox3.Image = Properties.Resources.beta;
-            pictureBox3.Location = new Point(298, 4);
+            pictureBox3.Location = new Point(294, 4);
             pictureBox3.Margin = new Padding(4);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(286, 161);
+            pictureBox3.Size = new Size(282, 155);
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox3.TabIndex = 1;
             pictureBox3.TabStop = false;
@@ -881,10 +910,10 @@
             // 
             pictureBox4.Dock = DockStyle.Fill;
             pictureBox4.Image = Properties.Resources._8mm;
-            pictureBox4.Location = new Point(592, 4);
+            pictureBox4.Location = new Point(584, 4);
             pictureBox4.Margin = new Padding(4);
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(289, 161);
+            pictureBox4.Size = new Size(283, 155);
             pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox4.TabIndex = 2;
             pictureBox4.TabStop = false;
@@ -893,10 +922,10 @@
             // 
             pictureBox5.Dock = DockStyle.Fill;
             pictureBox5.Image = Properties.Resources.minidv;
-            pictureBox5.Location = new Point(4, 173);
+            pictureBox5.Location = new Point(4, 167);
             pictureBox5.Margin = new Padding(4);
             pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(286, 162);
+            pictureBox5.Size = new Size(282, 156);
             pictureBox5.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox5.TabIndex = 3;
             pictureBox5.TabStop = false;
@@ -905,10 +934,10 @@
             // 
             pictureBox6.Dock = DockStyle.Fill;
             pictureBox6.Image = Properties.Resources.dvd;
-            pictureBox6.Location = new Point(298, 173);
+            pictureBox6.Location = new Point(294, 167);
             pictureBox6.Margin = new Padding(4);
             pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(286, 162);
+            pictureBox6.Size = new Size(282, 156);
             pictureBox6.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox6.TabIndex = 4;
             pictureBox6.TabStop = false;
@@ -917,10 +946,10 @@
             // 
             pictureBox7.Dock = DockStyle.Fill;
             pictureBox7.Image = Properties.Resources.super8;
-            pictureBox7.Location = new Point(592, 173);
+            pictureBox7.Location = new Point(584, 167);
             pictureBox7.Margin = new Padding(4);
             pictureBox7.Name = "pictureBox7";
-            pictureBox7.Size = new Size(289, 162);
+            pictureBox7.Size = new Size(283, 156);
             pictureBox7.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox7.TabIndex = 5;
             pictureBox7.TabStop = false;
@@ -932,7 +961,7 @@
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new Padding(8, 2, 0, 2);
-            menuStrip1.Size = new Size(1413, 33);
+            menuStrip1.Size = new Size(1391, 33);
             menuStrip1.TabIndex = 8;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -968,14 +997,15 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.Info;
-            ClientSize = new Size(1413, 1050);
+            BackColor = Color.Black;
+            ClientSize = new Size(1391, 1018);
             Controls.Add(tableLayoutPanel1);
             Controls.Add(tableLayoutPanel7);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
             Margin = new Padding(4);
-            MinimumSize = new Size(1435, 1018);
+            MaximumSize = new Size(1413, 1074);
+            MinimumSize = new Size(1413, 1018);
             Name = "Registro_admin_";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Registro";
@@ -1026,7 +1056,6 @@
         private GroupBox gbOpciones;
         private Button btn_Guardar;
         private Button btn_Cancelar;
-        private Button btn_ConsultarV;
         private Button btn_ConsultarC;
         private Button btn_Agregar;
         private ComboBox cb_Formatos;
@@ -1082,5 +1111,6 @@
         private DataGridViewTextBoxColumn Formato;
         private DataGridViewTextBoxColumn Duracion;
         private DataGridViewTextBoxColumn Monto;
+        private Button button1;
     }
 }

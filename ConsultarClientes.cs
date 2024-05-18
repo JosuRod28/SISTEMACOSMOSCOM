@@ -153,11 +153,11 @@ namespace COSMOSCOM
                 }
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        
+
 
         }
 
@@ -231,6 +231,16 @@ namespace COSMOSCOM
                 MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DataGrid_Clientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
         }
     }

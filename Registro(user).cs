@@ -17,12 +17,73 @@ namespace COSMOSCOM
     {
         private string folioActual = "";
         private string montoActual = CambiarTarifa.PrecioFormato.ToString();
+        private bool seAgregoFila;
+
+
         public Registro_user_()
         {
             InitializeComponent();
             // El valor de la duracion se cambian con el componente numericUpDown
             nUpDown.ValueChanged += UpDown_ValueChanged;
             txt_Monto.Text = CambiarTarifa.PrecioFormato.ToString();
+
+            // Asociar el método de los textbox con el evento KeyPress del TextBox
+            txt_Nombre.KeyPress += new KeyPressEventHandler(txt_Nombre_KeyPress);
+            txt_ApellidoP.KeyPress += new KeyPressEventHandler(txt_Apellido_P_KeyPress);
+            txt_ApellidoM.KeyPress += new KeyPressEventHandler(txt_Apellido_M_KeyPress);
+            txt_Telefono1.KeyPress += new KeyPressEventHandler(txt_Telefono1_KeyPress);
+            txt_Telefono2.KeyPress += new KeyPressEventHandler(txt_Telefono2_KeyPress);
+
+        }
+
+        private void txt_Telefono2_KeyPress(object? sender, KeyPressEventArgs e)
+        {
+            // Verificar si la tecla pulsada es un número o una tecla de control
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                // Si la tecla no es un número y no es una tecla de control, se ignora
+                e.Handled = true;
+            }
+        }
+
+        private void txt_Telefono1_KeyPress(object? sender, KeyPressEventArgs e)
+        {
+            // Verificar si la tecla pulsada es un número o una tecla de control
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                // Si la tecla no es un número y no es una tecla de control, se ignora
+                e.Handled = true;
+            }
+        }
+
+        private void txt_Apellido_M_KeyPress(object? sender, KeyPressEventArgs e)
+        {
+            // Verificar si la tecla pulsada es una letra o una tecla de control
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                // Si la tecla no es una letra y no es una tecla de control, se ignora
+                e.Handled = true;
+            }
+        }
+
+        private void txt_Apellido_P_KeyPress(object? sender, KeyPressEventArgs e)
+        {
+            // Verificar si la tecla pulsada es una letra o una tecla de control
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                // Si la tecla no es una letra y no es una tecla de control, se ignora
+                e.Handled = true;
+            }
+        }
+
+        private void txt_Nombre_KeyPress(object? sender, KeyPressEventArgs e)
+        {
+            // Verificar si la tecla pulsada es una letra o una tecla de control
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                // Si la tecla no es una letra y no es una tecla de control, se ignora
+                e.Handled = true;
+            }
         }
 
         private void UpDown_ValueChanged(object sender, EventArgs e)
@@ -110,24 +171,6 @@ namespace COSMOSCOM
 
             if (ValidarCampos())
             {
-                int.TryParse(txt_Folio.Text, out int numFolio); //Variable para actualizar el número de folio
-
-                // Llamamos al metodo Guardar del clase ClientesLogica y lo  aginamos a una variable de tipo boleano.
-                //Se utiliza la propiedad Instancia de la clase ClientesLogica.
-                bool resClientes = ClientesLogica.Instancia.Guardar(objetoClientes);
-                //Se utiliza la propiedad Instancia de la clase VentasLogica.
-                bool resVentas = VentasLogica.Instancia.Guardar(objetoVentas);
-                //Verificar si la respuesta fue exitosa mostrando un mensaje de confirmación
-
-                if (resClientes)
-                {
-                    MessageBox.Show("Registro de clientes guardado", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-                if (resVentas)
-                {
-                    MessageBox.Show("Registro de ventas guardado", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-
                 int folioVenta = int.Parse(txt_Folio.Text);
                 int idCliente = DetalleVentaLogica.Instancia.idCliente();
 
@@ -146,8 +189,27 @@ namespace COSMOSCOM
                     }
                 }
 
+                int.TryParse(txt_Folio.Text, out int numFolio); //Variable para actualizar el número de folio
+
+                // Llamamos al metodo Guardar del clase ClientesLogica y lo  aginamos a una variable de tipo boleano.
+                //Se utiliza la propiedad Instancia de la clase ClientesLogica.
+                bool resClientes = ClientesLogica.Instancia.Guardar(objetoClientes);
+                //Se utiliza la propiedad Instancia de la clase VentasLogica.
+                bool resVentas = VentasLogica.Instancia.Guardar(objetoVentas);
+                //Verificar si la respuesta fue exitosa mostrando un mensaje de confirmación
 
                 bool resDetalle = DetalleVentaLogica.Instancia.InsertarDetalleVenta(folioVenta, idCliente, detalleVentas);
+
+
+                if (resClientes)
+                {
+                    MessageBox.Show("Registro de clientes guardado", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                if (resVentas)
+                {
+                    MessageBox.Show("Registro de ventas guardado", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                }
 
                 if (resDetalle)
                 {
@@ -171,12 +233,27 @@ namespace COSMOSCOM
 
         private bool ValidarCampos()
         {
+            Clientes idCliente = new Clientes();
+            Ventas folio = new Ventas();
+
+            folio.Folio = int.Parse(txt_Folio.Text);
+            idCliente.id_Cliente = ClientesLogica.Instancia.idCliente();
+            folio.id_Cliente = VentasLogica.Instancia.idCliente();
+
+            bool ConsultaIdClientes = ClientesLogica.Instancia.ver_idCliente(idCliente.id_Cliente);
+            bool ConsultaFolio = VentasLogica.Instancia.ver_Folio(folio.Folio);
+            bool ConsultaFKClientes = VentasLogica.Instancia.ver_FKCliente(folio.id_Cliente);
             // Validar que los campos de texto no estén vacíos
+
+
+
+
             if (string.IsNullOrWhiteSpace(txt_Nombre.Text))
             {
                 MessageBox.Show("Por favor ingrese el nombre del cliente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
+
             if (string.IsNullOrWhiteSpace(txt_ApellidoP.Text))
             {
                 MessageBox.Show("Se necesita al menos un apellido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -199,6 +276,8 @@ namespace COSMOSCOM
                 MessageBox.Show("Por favor, complete el segundo número de teléfono", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return false;
             }
+
+
             //Verificar si existen fechas de entrega ya  registradas
 
             if (VentasLogica.Instancia.BuscarFechasEntrega(dtp_Fecha_Entrega.Text))
@@ -207,23 +286,65 @@ namespace COSMOSCOM
                 return false;
             }
 
-            if (!FormatosAgregados(dgvFormatos))
+            // Verificar si alguna celda en alguna fila del DataGridView tiene un valor
+
+
+            // Si no se encontraron elementos agregados a la tabla de formatos
+            if (!ElementosAgregados(dgvFormatos))
             {
                 MessageBox.Show("Por favor, agregue elementos a la tabla de formatos", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return false;
+            }
 
+
+            if (ConsultaIdClientes)
+            {
+                MessageBox.Show($"Ya existe un registro con el mismo número de cliente{idCliente.id_Cliente} , por favor borre el cliente que se encuentra actualmente registrado", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+
+            }
+
+            if (ConsultaFolio)
+            {
+                MessageBox.Show($"Ya existe un registro con el número de folio {txt_Folio.Text}, por favor borre la venta relacionado a este folio", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (ConsultaFKClientes)
+            {
+                MessageBox.Show($"Ya existe un registro con el número de cliente {folio.id_Cliente}, por favor borre el cliente asociado a esta venta", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
             }
 
 
             return true;
         }
 
-        private bool FormatosAgregados(DataGridView filaFormatos)
+        private bool ElementosAgregados(DataGridView dataGridView)
         {
-            // Verifica si el DataGridView tiene al menos una fila
-            return filaFormatos.Rows.Count > 0;
+            foreach (DataGridViewRow fila in dataGridView.Rows)
+            {
+                foreach (DataGridViewCell celda in fila.Cells)
+                {
+                    // Verificar si la celda no está vacía
+                    if (celda.Value != null && !string.IsNullOrWhiteSpace(celda.Value.ToString()))
+                    {
+                        // Si se encuentra algún valor, retornar verdadero y salir de la función
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
-
+        private void LimpiarDatos()
+        {
+            txt_Nombre.Text = "";
+            txt_ApellidoP.Text = "";
+            txt_ApellidoM.Text = "";
+            txt_Telefono1.Text = "";
+            txt_Telefono1.Text = "";
+            txt_Telefono2.Text = "";
+            dgvFormatos.Rows.Clear();
+        }
         private void btn_Cancelar_Click(object sender, EventArgs e)
         {
             //Muestra un cuadro de dialogo que pregunta si deseamos cancelar el registro
@@ -238,17 +359,6 @@ namespace COSMOSCOM
             }
         }
 
-        private void LimpiarDatos()
-        {
-            txt_Nombre.Text = "";
-            txt_ApellidoP.Text = "";
-            txt_ApellidoM.Text = "";
-            txt_Telefono1.Text = "";
-            txt_Telefono1.Text = "";
-            txt_Telefono2.Text = "";
-            dgvFormatos.Rows.Clear();
-        }
-        private bool seAgregoFila = false;
         private void btn_Agregar_Click(object sender, EventArgs e)
         {
             // Verifica si se ha seleccionado un ítem en el ComboBox
@@ -257,6 +367,14 @@ namespace COSMOSCOM
                 MessageBox.Show("Por favor, seleccione un formato antes de agregar una fila.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
+            // Verifica si hay un valor  en el campo de monto
+            if (string.IsNullOrWhiteSpace(txt_Monto.Text))
+            {
+                MessageBox.Show("Por favor seleccione el monto inicial.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             //Captura de los datos ingresados de en los campos 
             string formato = cb_Formatos.Text;
             string duracion = nUpDown.Value.ToString();
@@ -277,12 +395,14 @@ namespace COSMOSCOM
                     total += Convert.ToInt32(fila.Cells[2].Value); //Se itera los valores sumados y se guardan en la variable total
                 }
             }
-            txt_Total.Text = total.ToString(); //La suma se guarda en el campo del total
+            txt_Total.Text = total.ToString(); //La suma se cuarda en el campo del total
 
             //Se actualiza el número de formatos mostrado en un control de etiqueta, excluyendo la última fila.
             int numFormatos = dgvFormatos.Rows.Count - 1;
-            label16.Text = numFormatos.ToString();
+            label15.Text = numFormatos.ToString();
 
+            // Establece la bandera como verdadera para indicar que se agregó un formato
+            seAgregoFila = true;
         }
 
         private void btn_concultarC_Click(object sender, EventArgs e)
@@ -330,6 +450,12 @@ namespace COSMOSCOM
             txt_Monto.Text = montoActual;
 
             CargarFormatos();
+            LimpiarDataGridView();
+        }
+
+        private void LimpiarDataGridView()
+        {
+            dgvFormatos.Rows.Clear();
         }
 
         private void CargarFormatos()
@@ -349,6 +475,54 @@ namespace COSMOSCOM
         }
 
         private void tableLayoutPanel4_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvFormatos.IsCurrentCellInEditMode)
+                {
+                    dgvFormatos.EndEdit();
+
+                }
+                if (dgvFormatos.CurrentRow != null && !dgvFormatos.CurrentRow.IsNewRow)
+                {
+                    dgvFormatos.Rows.RemoveAt(dgvFormatos.CurrentRow.Index);
+
+                }
+                else
+                {
+                    MessageBox.Show("No hay una fila seleccionada o la fila es nueva.");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        private void ActualizarTotal()
+        {
+            int total = 0;
+            for (int i = 0; i < dgvFormatos.Rows.Count - 1; i++) // Iterar hasta la penúltima fila
+            {
+                DataGridViewRow fila = dgvFormatos.Rows[i];
+                if (!fila.IsNewRow && fila.Cells[2].Value != null)
+                {
+                    total += Convert.ToInt32(fila.Cells[2].Value);
+                }
+            }
+
+            txt_Total.Text = total.ToString();
+            int numFormatos = dgvFormatos.Rows.Count - 1;
+            label15.Text = numFormatos.ToString();
+        }
+
+        private void nUpDown_ValueChanged(object sender, EventArgs e)
         {
 
         }

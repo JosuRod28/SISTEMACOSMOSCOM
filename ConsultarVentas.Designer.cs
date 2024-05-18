@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConsultarVentas));
             button1 = new Button();
             groupBox1 = new GroupBox();
@@ -64,6 +65,7 @@
             // 
             button1.BackColor = SystemColors.HighlightText;
             button1.FlatStyle = FlatStyle.Popup;
+            button1.ForeColor = Color.MediumBlue;
             button1.Location = new Point(745, 450);
             button1.Margin = new Padding(4);
             button1.Name = "button1";
@@ -75,6 +77,7 @@
             // 
             // groupBox1
             // 
+            groupBox1.BackColor = Color.DimGray;
             groupBox1.Controls.Add(button5);
             groupBox1.Controls.Add(tableLayoutPanel5);
             groupBox1.Controls.Add(btn_Regresar);
@@ -82,7 +85,7 @@
             groupBox1.Controls.Add(button1);
             groupBox1.Dock = DockStyle.Fill;
             groupBox1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            groupBox1.ForeColor = Color.Orange;
+            groupBox1.ForeColor = Color.White;
             groupBox1.Location = new Point(4, 4);
             groupBox1.Margin = new Padding(4);
             groupBox1.Name = "groupBox1";
@@ -96,6 +99,7 @@
             // 
             button5.BackColor = SystemColors.HighlightText;
             button5.FlatStyle = FlatStyle.Popup;
+            button5.ForeColor = Color.MediumBlue;
             button5.Location = new Point(155, 450);
             button5.Margin = new Padding(4);
             button5.Name = "button5";
@@ -124,6 +128,14 @@
             // DataGrid_Ventas
             // 
             DataGrid_Ventas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Window;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = Color.Gray;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
+            DataGrid_Ventas.DefaultCellStyle = dataGridViewCellStyle1;
             DataGrid_Ventas.Dock = DockStyle.Fill;
             DataGrid_Ventas.Location = new Point(4, 66);
             DataGrid_Ventas.Margin = new Padding(4);
@@ -197,7 +209,7 @@
             btn_Regresar.BackColor = SystemColors.HighlightText;
             btn_Regresar.FlatStyle = FlatStyle.Popup;
             btn_Regresar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btn_Regresar.ForeColor = Color.Orange;
+            btn_Regresar.ForeColor = Color.MediumBlue;
             btn_Regresar.Location = new Point(749, 574);
             btn_Regresar.Margin = new Padding(4);
             btn_Regresar.Name = "btn_Regresar";
@@ -211,7 +223,8 @@
             // 
             button2.BackColor = SystemColors.HighlightText;
             button2.FlatStyle = FlatStyle.Popup;
-            button2.Location = new Point(592, 450);
+            button2.ForeColor = Color.MediumBlue;
+            button2.Location = new Point(591, 450);
             button2.Margin = new Padding(4);
             button2.Name = "button2";
             button2.Size = new Size(135, 65);
@@ -223,11 +236,12 @@
             // tableLayoutPanel1
             // 
             tableLayoutPanel1.AutoSize = true;
+            tableLayoutPanel1.BackgroundImage = Properties.Resources.Login_Fondo;
             tableLayoutPanel1.ColumnCount = 3;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 575F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 186F));
-            tableLayoutPanel1.Controls.Add(pictureBox1, 1, 0);
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 348F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 429F));
+            tableLayoutPanel1.Controls.Add(pictureBox1, 2, 0);
             tableLayoutPanel1.Dock = DockStyle.Top;
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Margin = new Padding(4);
@@ -240,17 +254,19 @@
             // pictureBox1
             // 
             pictureBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            pictureBox1.BackColor = Color.Transparent;
             pictureBox1.Image = Properties.Resources.Logo;
-            pictureBox1.Location = new Point(193, 4);
+            pictureBox1.Location = new Point(523, 4);
             pictureBox1.Margin = new Padding(4);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(565, 128);
+            pictureBox1.Size = new Size(421, 128);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
             // tableLayoutPanel2
             // 
+            tableLayoutPanel2.BackColor = Color.Transparent;
             tableLayoutPanel2.ColumnCount = 1;
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel2.Controls.Add(groupBox1, 0, 0);
@@ -330,7 +346,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.Info;
+            BackColor = Color.Black;
             ClientSize = new Size(948, 805);
             Controls.Add(tableLayoutPanel2);
             Controls.Add(tableLayoutPanel1);

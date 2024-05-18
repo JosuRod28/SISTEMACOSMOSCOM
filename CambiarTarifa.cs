@@ -18,8 +18,8 @@ namespace COSMOSCOM
         public static int PrecioFormato { get; set; }
         public CambiarTarifa()
         {
-            InitializeComponent();  
-            
+            InitializeComponent();
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -28,13 +28,18 @@ namespace COSMOSCOM
             if (int.TryParse(txt_Precio.Text, out int precio))
             {
                 PrecioFormato = precio;
-             
+
                 MessageBox.Show("Precio guardado correctamente.");
                 this.Close();
 
                 Properties.Settings.Default.Save();
             }
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

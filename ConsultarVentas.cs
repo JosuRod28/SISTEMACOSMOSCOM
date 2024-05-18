@@ -142,7 +142,7 @@ namespace COSMOSCOM
                 // Si el origen de datos es una lista de ventas, significa que proviene de VentasLogica
                 // Obtener la fila seleccionada
                 DataGridViewRow selectedRow = DataGrid_Ventas.SelectedRows[0];
-                // Obtener el ID de la venta desde la fila seleccionada
+                // Obtener el Folio de la venta desde la fila seleccionada
                 int folio = (int)selectedRow.Cells["Folio"].Value;
                 // Llamar al método para eliminar la venta usando el Folio
                 bool eliminacionExitosa = VentasLogica.Instancia.EliminarVenta(folio);
@@ -159,7 +159,7 @@ namespace COSMOSCOM
                 // Si el origen de datos es una lista de detalle de ventas, significa que proviene de DetalleVentasLogica
                 // Obtener la fila seleccionada
                 DataGridViewRow selectedRow = DataGrid_Ventas.SelectedRows[0];
-                // Obtener el ID de la venta desde la fila seleccionada
+                // Obtener el Folio  de la venta desde la fila seleccionada
                 int folio = (int)selectedRow.Cells["Folio_Venta"].Value;
                 // Llamar al método para eliminar la venta usando el Folio_Venta
                 bool eliminacionExitosa = DetalleVentaLogica.Instancia.EliminarDetalleVenta(folio);

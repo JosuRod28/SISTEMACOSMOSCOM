@@ -46,39 +46,44 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            pictureBox1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             pictureBox1.Image = Properties.Resources.usuario1;
-            pictureBox1.Location = new Point(223, 3);
+            pictureBox1.Location = new Point(340, 21);
+            pictureBox1.Margin = new Padding(4);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(165, 135);
+            pictureBox1.Size = new Size(195, 158);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
             // tableLayoutPanel1
             // 
+            tableLayoutPanel1.BackColor = Color.Transparent;
             tableLayoutPanel1.ColumnCount = 3;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 36.00655F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 27.9869061F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 36.006546F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 38.9416542F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 23.4735413F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 37.5848045F));
             tableLayoutPanel1.Controls.Add(label1, 1, 1);
             tableLayoutPanel1.Controls.Add(label2, 1, 3);
             tableLayoutPanel1.Controls.Add(txtClave, 1, 4);
             tableLayoutPanel1.Controls.Add(btnLogin, 1, 5);
             tableLayoutPanel1.Controls.Add(btnSalir, 2, 5);
-            tableLayoutPanel1.Controls.Add(pictureBox1, 1, 0);
             tableLayoutPanel1.Controls.Add(cbUsuarios, 1, 2);
+            tableLayoutPanel1.Controls.Add(pictureBox1, 1, 0);
             tableLayoutPanel1.Dock = DockStyle.Bottom;
-            tableLayoutPanel1.Location = new Point(0, 129);
+            tableLayoutPanel1.Location = new Point(0, 131);
+            tableLayoutPanel1.Margin = new Padding(4);
+            tableLayoutPanel1.MaximumSize = new Size(865, 510);
+            tableLayoutPanel1.MinimumSize = new Size(865, 510);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 6;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 39.4402046F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 9.669211F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 13.9949112F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 8.905852F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 12.4681931F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 15.5216284F));
-            tableLayoutPanel1.Size = new Size(611, 395);
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 39.4014969F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 10.4738159F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 12.4688282F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 7.73067331F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 14.4638405F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 14.9625931F));
+            tableLayoutPanel1.Size = new Size(865, 510);
             tableLayoutPanel1.TabIndex = 1;
             // 
             // label1
@@ -87,9 +92,10 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Orange;
-            label1.Location = new Point(223, 155);
+            label1.Location = new Point(340, 201);
+            label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(165, 23);
+            label1.Size = new Size(195, 30);
             label1.TabIndex = 1;
             label1.Text = "Usuario";
             label1.TextAlign = ContentAlignment.MiddleCenter;
@@ -101,9 +107,10 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Orange;
-            label2.Location = new Point(223, 248);
+            label2.Location = new Point(340, 317);
+            label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new Size(165, 23);
+            label2.Size = new Size(195, 30);
             label2.TabIndex = 3;
             label2.Text = "Contraseña";
             label2.TextAlign = ContentAlignment.MiddleCenter;
@@ -111,9 +118,10 @@
             // txtClave
             // 
             txtClave.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            txtClave.Location = new Point(223, 286);
+            txtClave.Location = new Point(340, 360);
+            txtClave.Margin = new Padding(4);
             txtClave.Name = "txtClave";
-            txtClave.Size = new Size(165, 27);
+            txtClave.Size = new Size(195, 31);
             txtClave.TabIndex = 4;
             txtClave.TextChanged += txtClave_TextChanged;
             // 
@@ -124,9 +132,10 @@
             btnLogin.FlatStyle = FlatStyle.Flat;
             btnLogin.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnLogin.ForeColor = Color.Orange;
-            btnLogin.Location = new Point(258, 335);
+            btnLogin.Location = new Point(378, 434);
+            btnLogin.Margin = new Padding(4);
             btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(94, 39);
+            btnLogin.Size = new Size(118, 42);
             btnLogin.TabIndex = 5;
             btnLogin.Text = "Entrar";
             btnLogin.UseVisualStyleBackColor = false;
@@ -139,9 +148,10 @@
             btnSalir.FlatStyle = FlatStyle.Flat;
             btnSalir.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSalir.ForeColor = Color.Orange;
-            btnSalir.Location = new Point(454, 335);
+            btnSalir.Location = new Point(643, 434);
+            btnSalir.Margin = new Padding(4);
             btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(94, 39);
+            btnSalir.Size = new Size(118, 42);
             btnSalir.TabIndex = 6;
             btnSalir.Text = "Salir";
             btnSalir.UseVisualStyleBackColor = false;
@@ -153,46 +163,54 @@
             cbUsuarios.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             cbUsuarios.ForeColor = SystemColors.Desktop;
             cbUsuarios.FormattingEnabled = true;
-            cbUsuarios.Location = new Point(223, 206);
+            cbUsuarios.Location = new Point(340, 269);
+            cbUsuarios.Margin = new Padding(4);
             cbUsuarios.Name = "cbUsuarios";
-            cbUsuarios.Size = new Size(165, 28);
+            cbUsuarios.Size = new Size(195, 33);
             cbUsuarios.TabIndex = 7;
             cbUsuarios.Text = "Elige un usuario";
             cbUsuarios.SelectedIndexChanged += txtUsuario_SelectedIndexChanged;
             // 
             // tableLayoutPanel2
             // 
+            tableLayoutPanel2.BackColor = Color.Transparent;
             tableLayoutPanel2.ColumnCount = 1;
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel2.Controls.Add(pictureBox2, 0, 0);
             tableLayoutPanel2.Dock = DockStyle.Top;
             tableLayoutPanel2.Location = new Point(0, 0);
+            tableLayoutPanel2.Margin = new Padding(4);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 1;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel2.Size = new Size(611, 101);
+            tableLayoutPanel2.Size = new Size(865, 123);
             tableLayoutPanel2.TabIndex = 2;
             // 
             // pictureBox2
             // 
+            pictureBox2.BackColor = Color.Transparent;
             pictureBox2.Image = Properties.Resources.Logo;
-            pictureBox2.Location = new Point(3, 3);
+            pictureBox2.Location = new Point(4, 4);
+            pictureBox2.Margin = new Padding(4);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(605, 95);
+            pictureBox2.Size = new Size(833, 115);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 0;
             pictureBox2.TabStop = false;
             // 
             // Autenticacion
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Moccasin;
-            ClientSize = new Size(611, 524);
+            BackgroundImage = Properties.Resources.Login_Fondo;
+            BackgroundImageLayout = ImageLayout.Stretch;
+            ClientSize = new Size(865, 641);
             Controls.Add(tableLayoutPanel2);
             Controls.Add(tableLayoutPanel1);
-            MaximumSize = new Size(629, 571);
-            MinimumSize = new Size(629, 571);
+            Margin = new Padding(4);
+            MaximumSize = new Size(887, 697);
+            MinimumSize = new Size(887, 697);
             Name = "Autenticacion";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Inicio de Sesión";
