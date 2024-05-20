@@ -99,8 +99,8 @@ namespace COSMOSCOM
         }
 
         private void btn_Guardar_Click(object sender, EventArgs e)
-        { 
-           
+        {
+
             //Creacion del objeto Clientes que hace referencia a la clase Clientes
             Clientes objetoClientes = new Clientes()
             {
@@ -144,7 +144,7 @@ namespace COSMOSCOM
 
                     }
                 }
-                
+
                 int.TryParse(txt_Folio.Text, out int numFolio); //Variable para actualizar el número de folio
 
                 // Llamamos al metodo Guardar del clase ClientesLogica y lo  aginamos a una variable de tipo boleano.
@@ -167,7 +167,7 @@ namespace COSMOSCOM
 
                 }
 
-               if (resDetalle)
+                if (resDetalle)
                 {
                     MessageBox.Show("Detalles de venta insertados correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -175,7 +175,7 @@ namespace COSMOSCOM
                 {
                     MessageBox.Show("Error al insertar detalles de venta.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-               
+
                 numFolio++;
 
                 txt_Folio.Text = numFolio.ToString();
@@ -192,7 +192,7 @@ namespace COSMOSCOM
 
         private bool ValidarCampos()
         {
-            
+
             Clientes idCliente = new Clientes();
             Ventas folio = new Ventas();
 
@@ -204,16 +204,16 @@ namespace COSMOSCOM
             bool ConsultaFolio = VentasLogica.Instancia.ver_Folio(folio.Folio);
             bool ConsultaFKClientes = VentasLogica.Instancia.ver_FKCliente(folio.id_Cliente);
             // Validar que los campos de texto no estén vacíos
-            
-            
 
-            
+
+
+
             if (string.IsNullOrWhiteSpace(txt_Nombre.Text))
             {
                 MessageBox.Show("Por favor ingrese el nombre del cliente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            
+
             if (string.IsNullOrWhiteSpace(txt_Apellido_P.Text))
             {
                 MessageBox.Show("Se necesita al menos un apellido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -237,15 +237,15 @@ namespace COSMOSCOM
                 return false;
             }
 
-            
+
             //Verificar si existen fechas de entrega ya  registradas
-            
+
             if (VentasLogica.Instancia.BuscarFechasEntrega(dtp_Fecha_entrega.Text))
             {
                 MessageBox.Show($"Ya existe un registro para la fecha de entrega {dtp_Fecha_entrega.Value.ToShortDateString()}, selecciona otra fecha", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            
+
             // Verificar si alguna celda en alguna fila del DataGridView tiene un valor
 
 
@@ -256,26 +256,26 @@ namespace COSMOSCOM
                 return false;
             }
 
-            
-          if (ConsultaIdClientes)
-          {
-              MessageBox.Show($"Ya existe un registro con el mismo número de cliente{idCliente.id_Cliente} , por favor borre el cliente que se encuentra actualmente registrado", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-              return false;
 
-          }
+            if (ConsultaIdClientes)
+            {
+                MessageBox.Show($"Ya existe un registro con el mismo número de cliente{idCliente.id_Cliente} , por favor borre el cliente que se encuentra actualmente registrado", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
 
-          if (ConsultaFolio)
-          {
-              MessageBox.Show($"Ya existe un registro con el número de folio {txt_Folio.Text}, por favor borre la venta relacionado a este folio", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-              return false;
-          }
-          if (ConsultaFKClientes)
-          {
-              MessageBox.Show($"Ya existe un registro con el número de cliente {folio.id_Cliente}, por favor borre el cliente asociado a esta venta", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-              return false;
-          }
+            }
 
-          
+            if (ConsultaFolio)
+            {
+                MessageBox.Show($"Ya existe un registro con el número de folio {txt_Folio.Text}, por favor borre la venta relacionado a este folio", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (ConsultaFKClientes)
+            {
+                MessageBox.Show($"Ya existe un registro con el número de cliente {folio.id_Cliente}, por favor borre el cliente asociado a esta venta", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+
             return true;
         }
 
@@ -339,7 +339,7 @@ namespace COSMOSCOM
             txt_Folio.Text = folioActual;
             folioActual = txt_Folio.Text;
             txt_Monto.Text = montoActual;
-
+            dgv_Formatos.DefaultCellStyle.ForeColor = Color.MediumBlue;
             CargarFormatos();
             LimpiarDataGridView();
 
@@ -416,10 +416,10 @@ namespace COSMOSCOM
                     dgv_Formatos.EndEdit();
 
                 }
-                if (dgv_Formatos.CurrentRow!=null && !dgv_Formatos.CurrentRow.IsNewRow)
+                if (dgv_Formatos.CurrentRow != null && !dgv_Formatos.CurrentRow.IsNewRow)
                 {
                     dgv_Formatos.Rows.RemoveAt(dgv_Formatos.CurrentRow.Index);
-
+                    ActualizarTotal();
                 }
                 else
                 {
@@ -427,11 +427,11 @@ namespace COSMOSCOM
                 }
 
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
-            
+
         }
 
         private void ActualizarTotal()
@@ -642,6 +642,28 @@ namespace COSMOSCOM
             {
                 ConsultarVentas ventana = new ConsultarVentas();
                 ventana.ShowDialog();
+            }
+        }
+
+        private void camniarTemaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using(OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+                openFileDialog.Filter = "Archivos de Imagen|*.jpg;*.jpeg;*.png;*.bmp";
+                openFileDialog.Title = "Seleccione una imagen para el fondo";
+
+                if (openFileDialog.ShowDialog()==DialogResult.OK)
+                {
+                    string selectedFilePath = openFileDialog.FileName;
+
+                    Image backgroundImage = Image.FromFile(selectedFilePath);
+
+                    this.BackgroundImage = backgroundImage;
+                    this.BackgroundImageLayout = ImageLayout.Stretch;
+
+                    
+                }
             }
         }
     }

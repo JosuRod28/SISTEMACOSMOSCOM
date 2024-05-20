@@ -448,7 +448,7 @@ namespace COSMOSCOM
             txt_Folio.Text = folioActual;
             folioActual = txt_Folio.Text;
             txt_Monto.Text = montoActual;
-
+            dgvFormatos.DefaultCellStyle.ForeColor = Color.MediumBlue;
             CargarFormatos();
             LimpiarDataGridView();
         }
@@ -491,6 +491,7 @@ namespace COSMOSCOM
                 if (dgvFormatos.CurrentRow != null && !dgvFormatos.CurrentRow.IsNewRow)
                 {
                     dgvFormatos.Rows.RemoveAt(dgvFormatos.CurrentRow.Index);
+                    ActualizarTotal();
 
                 }
                 else
@@ -525,6 +526,28 @@ namespace COSMOSCOM
         private void nUpDown_ValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void cambiarFondoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+                openFileDialog.Filter = "Archivos de Imagen|*.jpg;*.jpeg;*.png;*.bmp";
+                openFileDialog.Title = "Seleccione una imagen para el fondo";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string selectedFilePath = openFileDialog.FileName;
+
+                    Image backgroundImage = Image.FromFile(selectedFilePath);
+
+                    this.BackgroundImage = backgroundImage;
+                    this.BackgroundImageLayout = ImageLayout.Stretch;
+
+
+                }
+            }
         }
     }
 }

@@ -94,6 +94,7 @@
             agregarNuevoUsuario = new ToolStripMenuItem();
             administrarUsuarios = new ToolStripMenuItem();
             cambiarTarifaToolStripMenuItem = new ToolStripMenuItem();
+            camniarTemaToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             gbCliente.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
@@ -151,7 +152,7 @@
             // 
             gbCliente.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             gbCliente.AutoSize = true;
-            gbCliente.BackColor = Color.DimGray;
+            gbCliente.BackColor = Color.Transparent;
             gbCliente.Controls.Add(tableLayoutPanel2);
             gbCliente.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             gbCliente.ForeColor = Color.White;
@@ -554,7 +555,7 @@
             // 
             gbOpciones.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             gbOpciones.AutoSize = true;
-            gbOpciones.BackColor = Color.DimGray;
+            gbOpciones.BackColor = Color.Transparent;
             gbOpciones.Controls.Add(tableLayoutPanel3);
             gbOpciones.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             gbOpciones.ForeColor = Color.White;
@@ -662,7 +663,7 @@
             // 
             gbFormato.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             gbFormato.AutoSize = true;
-            gbFormato.BackColor = Color.DimGray;
+            gbFormato.BackColor = Color.Transparent;
             gbFormato.Controls.Add(tableLayoutPanel8);
             gbFormato.Controls.Add(tableLayoutPanel5);
             gbFormato.Controls.Add(tableLayoutPanel4);
@@ -702,7 +703,7 @@
             // 
             // tableLayoutPanel5
             // 
-            tableLayoutPanel5.BackColor = Color.Black;
+            tableLayoutPanel5.BackColor = Color.Transparent;
             tableLayoutPanel5.ColumnCount = 2;
             tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 83.10078F));
             tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 16.8992252F));
@@ -720,7 +721,7 @@
             // tableLayoutPanel6
             // 
             tableLayoutPanel6.Anchor = AnchorStyles.Top;
-            tableLayoutPanel6.BackColor = Color.DimGray;
+            tableLayoutPanel6.BackColor = Color.Transparent;
             tableLayoutPanel6.ColumnCount = 1;
             tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel6.Controls.Add(btn_Agregar, 0, 0);
@@ -801,7 +802,7 @@
             // tableLayoutPanel7
             // 
             tableLayoutPanel7.AutoSize = true;
-            tableLayoutPanel7.BackgroundImage = Properties.Resources.Login_Fondo;
+            tableLayoutPanel7.BackColor = Color.Transparent;
             tableLayoutPanel7.BackgroundImageLayout = ImageLayout.None;
             tableLayoutPanel7.ColumnCount = 4;
             tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 29.08705F));
@@ -841,7 +842,7 @@
             // tableLayoutPanel1
             // 
             tableLayoutPanel1.AutoSize = true;
-            tableLayoutPanel1.BackColor = Color.Black;
+            tableLayoutPanel1.BackColor = Color.Transparent;
             tableLayoutPanel1.ColumnCount = 2;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 36.82771F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 63.17229F));
@@ -967,7 +968,7 @@
             // 
             // opcionesToolStripMenuItem
             // 
-            opcionesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { agregarNuevoUsuario, administrarUsuarios, cambiarTarifaToolStripMenuItem });
+            opcionesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { agregarNuevoUsuario, administrarUsuarios, cambiarTarifaToolStripMenuItem, camniarTemaToolStripMenuItem });
             opcionesToolStripMenuItem.Name = "opcionesToolStripMenuItem";
             opcionesToolStripMenuItem.Size = new Size(141, 29);
             opcionesToolStripMenuItem.Text = "Mas Opciones";
@@ -993,15 +994,25 @@
             cambiarTarifaToolStripMenuItem.Text = "Cambiar tarifa ";
             cambiarTarifaToolStripMenuItem.Click += cambiarTarifaToolStripMenuItem_Click;
             // 
+            // camniarTemaToolStripMenuItem
+            // 
+            camniarTemaToolStripMenuItem.Name = "camniarTemaToolStripMenuItem";
+            camniarTemaToolStripMenuItem.Size = new Size(295, 34);
+            camniarTemaToolStripMenuItem.Text = "Cambiar Tema";
+            camniarTemaToolStripMenuItem.Click += camniarTemaToolStripMenuItem_Click;
+            // 
             // Registro_admin_
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Black;
+            BackgroundImage = Properties.Resources.layout21;
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1391, 1018);
             Controls.Add(tableLayoutPanel1);
             Controls.Add(tableLayoutPanel7);
             Controls.Add(menuStrip1);
+            DoubleBuffered = true;
             MainMenuStrip = menuStrip1;
             Margin = new Padding(4);
             MaximumSize = new Size(1413, 1074);
@@ -1112,5 +1123,6 @@
         private DataGridViewTextBoxColumn Duracion;
         private DataGridViewTextBoxColumn Monto;
         private Button button1;
+        private ToolStripMenuItem camniarTemaToolStripMenuItem;
     }
 }

@@ -90,6 +90,8 @@ namespace COSMOSCOM
         {
             try
             {
+                DialogResult confirma = MessageBox.Show("¿Estas seguro de que desea eliminar el registro de cliente?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
                 if (DataGrid_Clientes.SelectedRows.Count > 0)
                 {
                     DataGridViewRow selectedRow = DataGrid_Clientes.SelectedRows[0];
@@ -104,6 +106,9 @@ namespace COSMOSCOM
                         // Obtener el ID del cliente seleccionado
                         int id_Cliente = clienteSeleccionado.id_Cliente;
 
+                        //Condicion para validar confirmacion de eliminacion de registro
+                        if (confirma==DialogResult.Yes)
+                        {
                         // Verificar si el cliente está siendo referenciado en otra tabla
                         bool refFKVentas = ClientesLogica.Instancia.refFKVentas(id_Cliente);
                         bool refFKDetalleVentas = ClientesLogica.Instancia.refFKDetalleVentas(id_Cliente);
@@ -123,24 +128,28 @@ namespace COSMOSCOM
                         }
 
 
-                        // Eliminar el registro de la base de datos
-                        bool deleteRegistro = ClientesLogica.Instancia.Eliminar(id_Cliente);
-                        //Verificar si la respuesta fue exitosa mostrando un mensaje de confirmación
-                        if (deleteRegistro)
-                        {
-                            // // Remover la fila de la fuente de datos
-                            ClientesLogica.Instancia.consultarTodos().Remove(clienteSeleccionado);
 
-                            // Actualizar el DataGridView
-                            DataGrid_Clientes.DataSource = null;
-                            DataGrid_Clientes.DataSource = ClientesLogica.Instancia.consultarTodos();
 
-                            //Mensaje de confirmación
-                            MessageBox.Show("Registro eliminado", "Confirmación", MessageBoxButtons.OK);
-                        }
-                        else
-                        {
-                            MessageBox.Show("No se pudo eliminar el registro", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            // Eliminar el registro de la base de datos
+                            bool deleteRegistro = ClientesLogica.Instancia.Eliminar(id_Cliente);
+                            //Verificar si la respuesta fue exitosa mostrando un mensaje de confirmación
+                            if (deleteRegistro)
+                            {
+                                // // Remover la fila de la fuente de datos
+                                ClientesLogica.Instancia.consultarTodos().Remove(clienteSeleccionado);
+
+                                // Actualizar el DataGridView
+                                DataGrid_Clientes.DataSource = null;
+                                DataGrid_Clientes.DataSource = ClientesLogica.Instancia.consultarTodos();
+
+                                //Mensaje de confirmación
+                                MessageBox.Show("Registro eliminado", "Confirmación", MessageBoxButtons.OK);
+                            }
+                            else
+                            {
+                                MessageBox.Show("No se pudo eliminar el registro", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                            }
 
                         }
                     }

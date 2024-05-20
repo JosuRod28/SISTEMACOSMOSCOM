@@ -113,6 +113,16 @@ namespace COSMOSCOM.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap layout21 {
+            get {
+                object obj = ResourceManager.GetObject("layout21", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Login_Fondo {
             get {
                 object obj = ResourceManager.GetObject("Login_Fondo", resourceCulture);

@@ -139,36 +139,51 @@ namespace COSMOSCOM
         {
             if (DataGrid_Ventas.DataSource is List<Ventas>)
             {
+                DialogResult confirma = MessageBox.Show("¿Estas seguro de que desea eliminar el registro de venta?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 // Si el origen de datos es una lista de ventas, significa que proviene de VentasLogica
                 // Obtener la fila seleccionada
                 DataGridViewRow selectedRow = DataGrid_Ventas.SelectedRows[0];
                 // Obtener el Folio de la venta desde la fila seleccionada
                 int folio = (int)selectedRow.Cells["Folio"].Value;
-                // Llamar al método para eliminar la venta usando el Folio
-                bool eliminacionExitosa = VentasLogica.Instancia.EliminarVenta(folio);
+               
 
-                if (eliminacionExitosa)
+                //Condicion para validar confirmacion de eliminacion de registro
+                if (confirma==DialogResult.Yes)
                 {
-                    MessageBox.Show("Venta eliminada correctamente.");
-                    // Actualizar el DataGridView después de la eliminación
-                    DataGrid_Ventas.DataSource = VentasLogica.Instancia.ConsultarTodos();
+                    // Llamar a la instancia para eliminar la venta usando el Folio
+                    bool eliminacionExitosa = VentasLogica.Instancia.EliminarVenta(folio);
+
+                    if (eliminacionExitosa)
+                    {
+                        MessageBox.Show("Venta eliminada correctamente.");
+                        // Actualizar el DataGridView después de la eliminación
+                        DataGrid_Ventas.DataSource = VentasLogica.Instancia.ConsultarTodos();
+                    }
                 }
+
             }
             else if (DataGrid_Ventas.DataSource is List<DetalleVenta>)
             {
+                DialogResult confirma = MessageBox.Show("¿Estas seguro de que desea eliminar los detalles de la venta?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 // Si el origen de datos es una lista de detalle de ventas, significa que proviene de DetalleVentasLogica
                 // Obtener la fila seleccionada
                 DataGridViewRow selectedRow = DataGrid_Ventas.SelectedRows[0];
                 // Obtener el Folio  de la venta desde la fila seleccionada
                 int folio = (int)selectedRow.Cells["Folio_Venta"].Value;
-                // Llamar al método para eliminar la venta usando el Folio_Venta
-                bool eliminacionExitosa = DetalleVentaLogica.Instancia.EliminarDetalleVenta(folio);
+                
 
-                if (eliminacionExitosa)
+                //Condicion para validar confirmacion de eliminacion de registro
+                if (confirma == DialogResult.Yes)
                 {
-                    MessageBox.Show("Detalles de la Venta eliminada correctamente.");
-                    // Actualizar el DataGridView después de la eliminación
-                    DataGrid_Ventas.DataSource = DetalleVentaLogica.Instancia.ListarDetalleVenta(folio);
+                    // Llamar al la instancia para eliminar la venta usando el Folio_Venta
+                    bool eliminacionExitosa = DetalleVentaLogica.Instancia.EliminarDetalleVenta(folio);
+
+                    if (eliminacionExitosa)
+                    {
+                        MessageBox.Show("Detalles de la Venta eliminada correctamente.");
+                        // Actualizar el DataGridView después de la eliminación
+                        DataGrid_Ventas.DataSource = DetalleVentaLogica.Instancia.ListarDetalleVenta(folio);
+                    }
                 }
             }
 
