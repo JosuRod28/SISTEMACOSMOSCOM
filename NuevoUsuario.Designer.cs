@@ -45,25 +45,33 @@
             // btnAgregarNuevo
             // 
             btnAgregarNuevo.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            btnAgregarNuevo.Location = new Point(4, 11);
+            btnAgregarNuevo.BackColor = Color.White;
+            btnAgregarNuevo.FlatStyle = FlatStyle.Flat;
+            btnAgregarNuevo.Font = new Font("Segoe UI Black", 11F, FontStyle.Bold);
+            btnAgregarNuevo.ForeColor = Color.Orange;
+            btnAgregarNuevo.Location = new Point(4, 14);
             btnAgregarNuevo.Margin = new Padding(4);
             btnAgregarNuevo.Name = "btnAgregarNuevo";
-            btnAgregarNuevo.Size = new Size(304, 36);
+            btnAgregarNuevo.Size = new Size(304, 48);
             btnAgregarNuevo.TabIndex = 1;
             btnAgregarNuevo.Text = "Agregar";
-            btnAgregarNuevo.UseVisualStyleBackColor = true;
+            btnAgregarNuevo.UseVisualStyleBackColor = false;
             btnAgregarNuevo.Click += button1_Click;
             // 
             // button2
             // 
             button2.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            button2.Location = new Point(316, 11);
+            button2.BackColor = Color.White;
+            button2.FlatStyle = FlatStyle.Flat;
+            button2.Font = new Font("Segoe UI Black", 11F, FontStyle.Bold);
+            button2.ForeColor = Color.Orange;
+            button2.Location = new Point(316, 14);
             button2.Margin = new Padding(4);
             button2.Name = "button2";
-            button2.Size = new Size(304, 36);
+            button2.Size = new Size(304, 48);
             button2.TabIndex = 2;
-            button2.Text = "Cancelar";
-            button2.UseVisualStyleBackColor = true;
+            button2.Text = "Cerrar";
+            button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
             // 
             // tableLayoutPanel1
@@ -74,19 +82,19 @@
             tableLayoutPanel1.Controls.Add(button2, 1, 0);
             tableLayoutPanel1.Controls.Add(btnAgregarNuevo, 0, 0);
             tableLayoutPanel1.Dock = DockStyle.Bottom;
-            tableLayoutPanel1.Location = new Point(0, 292);
+            tableLayoutPanel1.Location = new Point(0, 274);
             tableLayoutPanel1.Margin = new Padding(4);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.Size = new Size(624, 59);
+            tableLayoutPanel1.Size = new Size(624, 77);
             tableLayoutPanel1.TabIndex = 3;
             // 
             // tableLayoutPanel2
             // 
             tableLayoutPanel2.ColumnCount = 2;
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50.6410255F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 49.3589745F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 51.1217957F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 48.8782043F));
             tableLayoutPanel2.Controls.Add(label3, 0, 2);
             tableLayoutPanel2.Controls.Add(label1, 0, 0);
             tableLayoutPanel2.Controls.Add(label2, 0, 1);
@@ -101,65 +109,71 @@
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
-            tableLayoutPanel2.Size = new Size(624, 292);
+            tableLayoutPanel2.Size = new Size(624, 274);
             tableLayoutPanel2.TabIndex = 4;
             // 
             // label3
             // 
             label3.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label3.AutoSize = true;
+            label3.BackColor = Color.Moccasin;
             label3.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(4, 228);
-            label3.Margin = new Padding(4, 0, 4, 0);
+            label3.ForeColor = Color.DarkOrange;
+            label3.Location = new Point(60, 213);
+            label3.Margin = new Padding(60, 0, 4, 0);
             label3.Name = "label3";
-            label3.Size = new Size(308, 30);
+            label3.Size = new Size(255, 30);
             label3.TabIndex = 4;
             label3.Text = "Rol";
-            label3.TextAlign = ContentAlignment.MiddleCenter;
+            label3.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label1
             // 
             label1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label1.AutoSize = true;
+            label1.BackColor = Color.Moccasin;
             label1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(4, 33);
-            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.ForeColor = Color.DarkOrange;
+            label1.Location = new Point(60, 30);
+            label1.Margin = new Padding(60, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(308, 30);
+            label1.Size = new Size(255, 30);
             label1.TabIndex = 0;
             label1.Text = "Usuario";
-            label1.TextAlign = ContentAlignment.MiddleCenter;
+            label1.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label2
             // 
             label2.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label2.AutoSize = true;
+            label2.BackColor = Color.Moccasin;
             label2.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(4, 130);
-            label2.Margin = new Padding(4, 0, 4, 0);
+            label2.ForeColor = Color.DarkOrange;
+            label2.Location = new Point(60, 121);
+            label2.Margin = new Padding(60, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new Size(308, 30);
+            label2.Size = new Size(255, 30);
             label2.TabIndex = 1;
             label2.Text = "Contraseña";
-            label2.TextAlign = ContentAlignment.MiddleCenter;
+            label2.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // txtNuevoUsuario
             // 
             txtNuevoUsuario.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtNuevoUsuario.Location = new Point(320, 33);
+            txtNuevoUsuario.Location = new Point(323, 30);
             txtNuevoUsuario.Margin = new Padding(4);
             txtNuevoUsuario.Name = "txtNuevoUsuario";
-            txtNuevoUsuario.Size = new Size(300, 31);
+            txtNuevoUsuario.Size = new Size(297, 31);
             txtNuevoUsuario.TabIndex = 2;
             txtNuevoUsuario.TextAlign = HorizontalAlignment.Center;
             // 
             // txtNuevoPasswd
             // 
             txtNuevoPasswd.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtNuevoPasswd.Location = new Point(320, 130);
+            txtNuevoPasswd.Location = new Point(323, 121);
             txtNuevoPasswd.Margin = new Padding(4);
             txtNuevoPasswd.Name = "txtNuevoPasswd";
-            txtNuevoPasswd.Size = new Size(300, 31);
+            txtNuevoPasswd.Size = new Size(297, 31);
             txtNuevoPasswd.TabIndex = 3;
             txtNuevoPasswd.TextAlign = HorizontalAlignment.Center;
             // 
@@ -168,9 +182,9 @@
             cbRoles.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             cbRoles.FormattingEnabled = true;
             cbRoles.Items.AddRange(new object[] { "admin", "user" });
-            cbRoles.Location = new Point(319, 226);
+            cbRoles.Location = new Point(322, 211);
             cbRoles.Name = "cbRoles";
-            cbRoles.Size = new Size(302, 33);
+            cbRoles.Size = new Size(299, 33);
             cbRoles.TabIndex = 5;
             // 
             // NuevoUsuario

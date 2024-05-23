@@ -90,10 +90,12 @@ namespace COSMOSCOM
         {
             try
             {
-                DialogResult confirma = MessageBox.Show("¿Estas seguro de que desea eliminar el registro de cliente?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
+                
                 if (DataGrid_Clientes.SelectedRows.Count > 0)
                 {
+                    DialogResult confirma = MessageBox.Show("¿Estas seguro de que desea eliminar el registro de cliente?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    // Si el origen de datos es una lista de ventas, significa que proviene de VentasLogica
+                    // Obtener la fila seleccionada
                     DataGridViewRow selectedRow = DataGrid_Clientes.SelectedRows[0];
                     if (selectedRow != null)
                     {

@@ -91,7 +91,6 @@
             pictureBox7 = new PictureBox();
             menuStrip1 = new MenuStrip();
             opcionesToolStripMenuItem = new ToolStripMenuItem();
-            agregarNuevoUsuario = new ToolStripMenuItem();
             administrarUsuarios = new ToolStripMenuItem();
             cambiarTarifaToolStripMenuItem = new ToolStripMenuItem();
             camniarTemaToolStripMenuItem = new ToolStripMenuItem();
@@ -140,7 +139,7 @@
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial Rounded MT Bold", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.White;
+            label1.ForeColor = Color.Orange;
             label1.Location = new Point(581, 40);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
@@ -152,10 +151,10 @@
             // 
             gbCliente.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             gbCliente.AutoSize = true;
-            gbCliente.BackColor = Color.Transparent;
+            gbCliente.BackColor = SystemColors.Info;
             gbCliente.Controls.Add(tableLayoutPanel2);
             gbCliente.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            gbCliente.ForeColor = Color.White;
+            gbCliente.ForeColor = Color.Orange;
             gbCliente.Location = new Point(4, 4);
             gbCliente.Margin = new Padding(4);
             gbCliente.Name = "gbCliente";
@@ -164,6 +163,7 @@
             gbCliente.TabIndex = 2;
             gbCliente.TabStop = false;
             gbCliente.Text = "Datos del cliente";
+            gbCliente.Enter += gbCliente_Enter;
             // 
             // tableLayoutPanel2
             // 
@@ -204,7 +204,7 @@
             label7.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            label7.ForeColor = Color.White;
+            label7.ForeColor = Color.Orange;
             label7.Location = new Point(4, 19);
             label7.Margin = new Padding(4, 0, 4, 0);
             label7.Name = "label7";
@@ -238,7 +238,7 @@
             label11.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            label11.ForeColor = Color.White;
+            label11.ForeColor = Color.Orange;
             label11.Location = new Point(4, 434);
             label11.Margin = new Padding(4, 0, 4, 0);
             label11.Name = "label11";
@@ -260,7 +260,7 @@
             label2.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            label2.ForeColor = Color.White;
+            label2.ForeColor = Color.Orange;
             label2.Location = new Point(4, 88);
             label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
@@ -274,7 +274,7 @@
             label6.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            label6.ForeColor = Color.White;
+            label6.ForeColor = Color.Orange;
             label6.Location = new Point(4, 364);
             label6.Margin = new Padding(4, 0, 4, 0);
             label6.Name = "label6";
@@ -297,7 +297,7 @@
             label5.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            label5.ForeColor = Color.White;
+            label5.ForeColor = Color.Orange;
             label5.Location = new Point(4, 295);
             label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
@@ -310,7 +310,7 @@
             label3.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            label3.ForeColor = Color.White;
+            label3.ForeColor = Color.Orange;
             label3.Location = new Point(4, 157);
             label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
@@ -334,7 +334,7 @@
             label4.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            label4.ForeColor = Color.White;
+            label4.ForeColor = Color.Orange;
             label4.Location = new Point(4, 226);
             label4.Margin = new Padding(4, 0, 4, 0);
             label4.Name = "label4";
@@ -424,7 +424,7 @@
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = SystemColors.Window;
             dataGridViewCellStyle1.Font = new Font("Segoe UI Black", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.ForeColor = Color.Orange;
             dataGridViewCellStyle1.SelectionBackColor = Color.DarkGray;
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
@@ -463,7 +463,7 @@
             // 
             btn_Agregar.BackColor = SystemColors.HighlightText;
             btn_Agregar.Dock = DockStyle.Fill;
-            btn_Agregar.ForeColor = Color.MediumBlue;
+            btn_Agregar.ForeColor = Color.Orange;
             btn_Agregar.Location = new Point(4, 4);
             btn_Agregar.Margin = new Padding(4);
             btn_Agregar.Name = "btn_Agregar";
@@ -510,7 +510,7 @@
             // 
             cb_Formatos.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             cb_Formatos.FormattingEnabled = true;
-            cb_Formatos.Location = new Point(4, 57);
+            cb_Formatos.Location = new Point(4, 55);
             cb_Formatos.Margin = new Padding(4);
             cb_Formatos.Name = "cb_Formatos";
             cb_Formatos.Size = new Size(278, 36);
@@ -558,7 +558,7 @@
             gbOpciones.BackColor = Color.Transparent;
             gbOpciones.Controls.Add(tableLayoutPanel3);
             gbOpciones.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            gbOpciones.ForeColor = Color.White;
+            gbOpciones.ForeColor = Color.Orange;
             gbOpciones.Location = new Point(4, 541);
             gbOpciones.Margin = new Padding(4);
             gbOpciones.Name = "gbOpciones";
@@ -580,7 +580,7 @@
             tableLayoutPanel3.Controls.Add(btn_salir, 2, 0);
             tableLayoutPanel3.Controls.Add(btn_Cancelar, 1, 0);
             tableLayoutPanel3.Controls.Add(btn_ConsultarC, 0, 1);
-            tableLayoutPanel3.Location = new Point(28, 52);
+            tableLayoutPanel3.Location = new Point(28, 36);
             tableLayoutPanel3.Margin = new Padding(4);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
             tableLayoutPanel3.RowCount = 2;
@@ -593,7 +593,7 @@
             // 
             button1.BackColor = SystemColors.HighlightText;
             button1.Dock = DockStyle.Fill;
-            button1.ForeColor = Color.MediumBlue;
+            button1.ForeColor = Color.Orange;
             button1.Location = new Point(152, 132);
             button1.Margin = new Padding(4);
             button1.Name = "button1";
@@ -607,7 +607,7 @@
             // 
             btn_Guardar.BackColor = SystemColors.HighlightText;
             btn_Guardar.Dock = DockStyle.Fill;
-            btn_Guardar.ForeColor = Color.MediumBlue;
+            btn_Guardar.ForeColor = Color.Orange;
             btn_Guardar.Location = new Point(4, 4);
             btn_Guardar.Margin = new Padding(4);
             btn_Guardar.Name = "btn_Guardar";
@@ -621,7 +621,7 @@
             // 
             btn_salir.BackColor = SystemColors.HighlightText;
             btn_salir.Dock = DockStyle.Fill;
-            btn_salir.ForeColor = Color.MediumBlue;
+            btn_salir.ForeColor = Color.Orange;
             btn_salir.Location = new Point(300, 4);
             btn_salir.Margin = new Padding(4);
             btn_salir.Name = "btn_salir";
@@ -635,7 +635,7 @@
             // 
             btn_Cancelar.BackColor = SystemColors.HighlightText;
             btn_Cancelar.Dock = DockStyle.Fill;
-            btn_Cancelar.ForeColor = Color.MediumBlue;
+            btn_Cancelar.ForeColor = Color.Orange;
             btn_Cancelar.Location = new Point(152, 4);
             btn_Cancelar.Margin = new Padding(4);
             btn_Cancelar.Name = "btn_Cancelar";
@@ -649,7 +649,7 @@
             // 
             btn_ConsultarC.BackColor = SystemColors.HighlightText;
             btn_ConsultarC.Dock = DockStyle.Fill;
-            btn_ConsultarC.ForeColor = Color.MediumBlue;
+            btn_ConsultarC.ForeColor = Color.Orange;
             btn_ConsultarC.Location = new Point(4, 132);
             btn_ConsultarC.Margin = new Padding(4);
             btn_ConsultarC.Name = "btn_ConsultarC";
@@ -663,12 +663,12 @@
             // 
             gbFormato.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             gbFormato.AutoSize = true;
-            gbFormato.BackColor = Color.Transparent;
+            gbFormato.BackColor = SystemColors.Info;
             gbFormato.Controls.Add(tableLayoutPanel8);
             gbFormato.Controls.Add(tableLayoutPanel5);
             gbFormato.Controls.Add(tableLayoutPanel4);
             gbFormato.Font = new Font("Segoe UI Black", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            gbFormato.ForeColor = Color.White;
+            gbFormato.ForeColor = Color.Orange;
             gbFormato.Location = new Point(516, 4);
             gbFormato.Margin = new Padding(4);
             gbFormato.Name = "gbFormato";
@@ -739,7 +739,7 @@
             // 
             btn_Quitar.BackColor = SystemColors.HighlightText;
             btn_Quitar.Dock = DockStyle.Fill;
-            btn_Quitar.ForeColor = Color.MediumBlue;
+            btn_Quitar.ForeColor = Color.Orange;
             btn_Quitar.Location = new Point(4, 82);
             btn_Quitar.Margin = new Padding(4);
             btn_Quitar.Name = "btn_Quitar";
@@ -831,7 +831,7 @@
             label16.AutoSize = true;
             label16.BackColor = Color.Transparent;
             label16.Font = new Font("Segoe UI Black", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label16.ForeColor = Color.White;
+            label16.ForeColor = Color.Orange;
             label16.Location = new Point(1090, 42);
             label16.Margin = new Padding(4, 0, 4, 0);
             label16.Name = "label16";
@@ -968,36 +968,29 @@
             // 
             // opcionesToolStripMenuItem
             // 
-            opcionesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { agregarNuevoUsuario, administrarUsuarios, cambiarTarifaToolStripMenuItem, camniarTemaToolStripMenuItem });
+            opcionesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { administrarUsuarios, cambiarTarifaToolStripMenuItem, camniarTemaToolStripMenuItem });
             opcionesToolStripMenuItem.Name = "opcionesToolStripMenuItem";
             opcionesToolStripMenuItem.Size = new Size(141, 29);
             opcionesToolStripMenuItem.Text = "Mas Opciones";
             // 
-            // agregarNuevoUsuario
-            // 
-            agregarNuevoUsuario.Name = "agregarNuevoUsuario";
-            agregarNuevoUsuario.Size = new Size(295, 34);
-            agregarNuevoUsuario.Text = "Agregar nuevo usuario";
-            agregarNuevoUsuario.Click += agregarNuevoUsuarioToolStripMenuItem_Click;
-            // 
             // administrarUsuarios
             // 
             administrarUsuarios.Name = "administrarUsuarios";
-            administrarUsuarios.Size = new Size(295, 34);
+            administrarUsuarios.Size = new Size(277, 34);
             administrarUsuarios.Text = "Administrar usuarios";
             administrarUsuarios.Click += modificarUsuarioYContraseñaToolStripMenuItem_Click;
             // 
             // cambiarTarifaToolStripMenuItem
             // 
             cambiarTarifaToolStripMenuItem.Name = "cambiarTarifaToolStripMenuItem";
-            cambiarTarifaToolStripMenuItem.Size = new Size(295, 34);
+            cambiarTarifaToolStripMenuItem.Size = new Size(277, 34);
             cambiarTarifaToolStripMenuItem.Text = "Cambiar tarifa ";
             cambiarTarifaToolStripMenuItem.Click += cambiarTarifaToolStripMenuItem_Click;
             // 
             // camniarTemaToolStripMenuItem
             // 
             camniarTemaToolStripMenuItem.Name = "camniarTemaToolStripMenuItem";
-            camniarTemaToolStripMenuItem.Size = new Size(295, 34);
+            camniarTemaToolStripMenuItem.Size = new Size(277, 34);
             camniarTemaToolStripMenuItem.Text = "Cambiar Tema";
             camniarTemaToolStripMenuItem.Click += camniarTemaToolStripMenuItem_Click;
             // 
@@ -1005,8 +998,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Black;
-            BackgroundImage = Properties.Resources.layout21;
+            BackColor = SystemColors.Info;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1391, 1018);
             Controls.Add(tableLayoutPanel1);
@@ -1114,7 +1106,6 @@
         private Label label16;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem opcionesToolStripMenuItem;
-        private ToolStripMenuItem agregarNuevoUsuario;
         private ToolStripMenuItem administrarUsuarios;
         private ToolStripMenuItem cambiarTarifaToolStripMenuItem;
         private TableLayoutPanel tableLayoutPanel10;

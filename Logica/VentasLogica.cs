@@ -34,8 +34,8 @@ namespace COSMOSCOM.Logica
 
         public int idCliente()
         {
-            int idCliente = -1;
-            string query = "SELECT max(id_Cliente)+1 From Venta_Total;";
+            int idCliente = 1;
+            string query = "SELECT COALESCE(MAX(id_Cliente) + 1, 1) FROM Clientes;";
             using (SQLiteConnection connection = new SQLiteConnection(conexion))
             {
                 try
@@ -72,8 +72,8 @@ namespace COSMOSCOM.Logica
                     string queryInsert = "INSERT INTO Venta_Total(Folio,id_Cliente,Fecha_de_atencion,Fecha_de_entrega,Total) values (@folio,(SELECT MAX(id_Cliente) FROM Clientes),@fecha_de_atencion,@fecha_de_entrega,@total)";
                     SQLiteCommand cmdInsert = new SQLiteCommand(queryInsert, conn);
                     cmdInsert.Parameters.Add(new SQLiteParameter("@folio", obj.Folio));
-                    cmdInsert.Parameters.Add(new SQLiteParameter("@fecha_de_atencion", obj.Fecha_atencion));
-                    cmdInsert.Parameters.Add(new SQLiteParameter("@fecha_de_entrega", obj.Fecha_entrega));
+                    cmdInsert.Parameters.Add(new SQLiteParameter("@fecha_de_atencion", obj.Fecha_de_atencion));
+                    cmdInsert.Parameters.Add(new SQLiteParameter("@fecha_de_entrega", obj.Fecha_de_entrega));
                     cmdInsert.Parameters.Add(new SQLiteParameter("@total", obj.Total));
                     cmdInsert.CommandType = System.Data.CommandType.Text;
 
@@ -124,11 +124,14 @@ namespace COSMOSCOM.Logica
                     {
                         olista.Add(new Ventas()
                         {
+                            
                             Folio = int.Parse(dataReader["Folio"].ToString()),
-                            id_Cliente= int.Parse(dataReader["id_Cliente"].ToString()),
-                            Fecha_atencion = dataReader["Fecha_de_atencion"].ToString(),
-                            Fecha_entrega= dataReader["Fecha_de_entrega"].ToString(),
+                            id_Cliente = int.Parse(dataReader["id_Cliente"].ToString()),
+                            Fecha_de_atencion = dataReader["Fecha_de_atencion"].ToString(),
+                            Fecha_de_entrega = dataReader["Fecha_de_entrega"].ToString(),
                             Total = dataReader["Total"].ToString(),
+
+
 
                         });
 
@@ -164,8 +167,8 @@ namespace COSMOSCOM.Logica
                         {
                             Folio = int.Parse(dataReader["Folio"].ToString()),
                             id_Cliente = int.Parse(dataReader["id_Cliente"].ToString()),
-                            Fecha_atencion = dataReader["Fecha_de_atencion"].ToString(),
-                            Fecha_entrega = dataReader["Fecha_de_entrega"].ToString(),
+                            Fecha_de_atencion = dataReader["Fecha_de_atencion"].ToString(),
+                            Fecha_de_entrega = dataReader["Fecha_de_entrega"].ToString(),
                             Total = dataReader["Total"].ToString(),
 
                         });
@@ -205,8 +208,8 @@ namespace COSMOSCOM.Logica
                         {
                             Folio = int.Parse(dataReader["Folio"].ToString()),
                             id_Cliente = int.Parse(dataReader["id_Cliente"].ToString()),
-                            Fecha_atencion = dataReader["Fecha_de_atencion"].ToString(),
-                            Fecha_entrega = dataReader["Fecha_de_entrega"].ToString(),
+                            Fecha_de_atencion = dataReader["Fecha_de_atencion"].ToString(),
+                            Fecha_de_entrega = dataReader["Fecha_de_entrega"].ToString(),
                             Total = dataReader["Total"].ToString(),
 
                         });
@@ -245,8 +248,8 @@ namespace COSMOSCOM.Logica
                         {
                             Folio = int.Parse(dataReader["Folio"].ToString()),
                             id_Cliente = int.Parse(dataReader["id_Cliente"].ToString()),
-                            Fecha_atencion = dataReader["Fecha_de_atencion"].ToString(),
-                            Fecha_entrega = dataReader["Fecha_de_entrega"].ToString(),
+                            Fecha_de_atencion = dataReader["Fecha_de_atencion"].ToString(),
+                            Fecha_de_entrega = dataReader["Fecha_de_entrega"].ToString(),
                             Total = dataReader["Total"].ToString(),
 
                         });
@@ -285,8 +288,8 @@ namespace COSMOSCOM.Logica
                         {
                             Folio = int.Parse(dataReader["Folio"].ToString()),
                             id_Cliente = int.Parse(dataReader["id_Cliente"].ToString()),
-                            Fecha_atencion = dataReader["Fecha_de_atencion"].ToString(),
-                            Fecha_entrega = dataReader["Fecha_de_entrega"].ToString(),
+                            Fecha_de_atencion = dataReader["Fecha_de_atencion"].ToString(),
+                            Fecha_de_entrega = dataReader["Fecha_de_entrega"].ToString(),
                             Total = dataReader["Total"].ToString(),
 
                         });
@@ -325,8 +328,8 @@ namespace COSMOSCOM.Logica
                         {
                             Folio = int.Parse(dataReader["Folio"].ToString()),
                             id_Cliente = int.Parse(dataReader["id_Cliente"].ToString()),
-                            Fecha_atencion = dataReader["Fecha_de_atencion"].ToString(),
-                            Fecha_entrega = dataReader["Fecha_de_entrega"].ToString(),
+                            Fecha_de_atencion = dataReader["Fecha_de_atencion"].ToString(),
+                            Fecha_de_entrega = dataReader["Fecha_de_entrega"].ToString(),
                             Total = dataReader["Total"].ToString(),
 
                         });
@@ -365,7 +368,7 @@ namespace COSMOSCOM.Logica
         public bool ActualizarVentas(string queryActualiza)
         {
             try
-            {
+            {   
                 using (SQLiteConnection conn = new SQLiteConnection(conexion))
                 {
                     conn.Open();

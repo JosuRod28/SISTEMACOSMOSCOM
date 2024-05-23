@@ -203,7 +203,6 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Moccasin;
-            BackgroundImage = Properties.Resources.Login_Fondo;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(865, 641);
             Controls.Add(tableLayoutPanel2);

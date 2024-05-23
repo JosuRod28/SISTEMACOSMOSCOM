@@ -19,20 +19,23 @@ namespace COSMOSCOM
     {
         
         private static string conexion = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
-        public NuevoUsuario()
+        private AdministraUsuarios _administraUsuarios;
+        public NuevoUsuario(AdministraUsuarios administraUsuarios)
         {
             InitializeComponent();
             txtNuevoPasswd.UseSystemPasswordChar = true;
             txtNuevoPasswd.PasswordChar = '*';
+            _administraUsuarios = administraUsuarios;
         }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
 
-
             string rol = cbRoles.SelectedItem?.ToString();
             int idRol = 0;
             
+
             if (!string.IsNullOrEmpty(rol))
             {
                
@@ -60,7 +63,12 @@ namespace COSMOSCOM
             if (respuesta)
             {
                 MessageBox.Show("¡Usuario nuevo ingresado correctamente!", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                this.Close();
+
+
+
+                _administraUsuarios.ActualizarDataGridView();
+               
+
             }
             else
             {

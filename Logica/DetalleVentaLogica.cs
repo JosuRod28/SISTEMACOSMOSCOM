@@ -103,7 +103,7 @@ namespace COSMOSCOM.Logica
 
         }
 
-        public List<DetalleVenta> ListarDetalleVenta(int folio  )
+        public List<DetalleVenta> ListarDetalleVenta(int folio )
         {
 
             List<DetalleVenta> olista = new List<DetalleVenta>();

@@ -38,8 +38,8 @@ namespace COSMOSCOM.Logica
 
         public int idCliente()
         {
-            int idCliente = -1;
-            string query = "SELECT max(id_Cliente)+1 From Clientes;";
+            int idCliente = 1 ;
+            string query = "SELECT COALESCE(MAX(id_Cliente) + 1, 1) FROM Clientes;";
             using (SQLiteConnection connection = new SQLiteConnection(conexion))
             {
                 try

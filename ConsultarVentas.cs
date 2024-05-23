@@ -42,6 +42,7 @@ namespace COSMOSCOM
 
                     if (!string.IsNullOrEmpty(nombreColumna) && nuevoValor != null)
                     {
+
                         // Construir la consulta de actualización
                         string consulta = $"UPDATE Venta_Total SET {nombreColumna} = '{nuevoValor}' WHERE Folio = {folio}";
                         
@@ -132,6 +133,11 @@ namespace COSMOSCOM
                         txt_buscar.Text = ""; // o cualquier otra acción que desees realizar
                         break;
                 }
+
+                if (DataGrid_Ventas.Rows.Count == 0)
+                {
+                    MessageBox.Show("No se encontraron resultados para la búsqueda.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
         }
 
@@ -139,31 +145,39 @@ namespace COSMOSCOM
         {
             if (DataGrid_Ventas.DataSource is List<Ventas>)
             {
-                DialogResult confirma = MessageBox.Show("¿Estas seguro de que desea eliminar el registro de venta?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                // Si el origen de datos es una lista de ventas, significa que proviene de VentasLogica
-                // Obtener la fila seleccionada
-                DataGridViewRow selectedRow = DataGrid_Ventas.SelectedRows[0];
-                // Obtener el Folio de la venta desde la fila seleccionada
-                int folio = (int)selectedRow.Cells["Folio"].Value;
-               
-
-                //Condicion para validar confirmacion de eliminacion de registro
-                if (confirma==DialogResult.Yes)
+                if (DataGrid_Ventas.SelectedRows.Count>0)
                 {
-                    // Llamar a la instancia para eliminar la venta usando el Folio
-                    bool eliminacionExitosa = VentasLogica.Instancia.EliminarVenta(folio);
+                    DialogResult confirma = MessageBox.Show("¿Estas seguro de que desea eliminar el registro de venta?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    // Si el origen de datos es una lista de ventas, significa que proviene de VentasLogica
+                    // Obtener la fila seleccionada
+                    DataGridViewRow selectedRow = DataGrid_Ventas.SelectedRows[0];
+                    // Obtener el Folio de la venta desde la fila seleccionada
+                    int folio = (int)selectedRow.Cells["Folio"].Value;
 
-                    if (eliminacionExitosa)
+
+                    //Condicion para validar confirmacion de eliminacion de registro
+                    if (confirma == DialogResult.Yes)
                     {
-                        MessageBox.Show("Venta eliminada correctamente.");
-                        // Actualizar el DataGridView después de la eliminación
-                        DataGrid_Ventas.DataSource = VentasLogica.Instancia.ConsultarTodos();
+                        // Llamar a la instancia para eliminar la venta usando el Folio
+                        bool eliminarVenta = VentasLogica.Instancia.EliminarVenta(folio);
+                        bool eliminarDetalles = DetalleVentaLogica.Instancia.EliminarDetalleVenta(folio);
+                        if (eliminarVenta && eliminarDetalles)
+                        {
+                            MessageBox.Show("Venta eliminada correctamente.");
+                            // Actualizar el DataGridView después de la eliminación
+                            DataGrid_Ventas.DataSource = VentasLogica.Instancia.ConsultarTodos();
+                        }
                     }
                 }
+
 
             }
             else if (DataGrid_Ventas.DataSource is List<DetalleVenta>)
             {
+                if (DataGrid_Ventas.SelectedRows.Count>0)
+                {
+                    
+                }
                 DialogResult confirma = MessageBox.Show("¿Estas seguro de que desea eliminar los detalles de la venta?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 // Si el origen de datos es una lista de detalle de ventas, significa que proviene de DetalleVentasLogica
                 // Obtener la fila seleccionada

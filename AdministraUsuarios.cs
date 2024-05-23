@@ -17,12 +17,14 @@ namespace COSMOSCOM
         public AdministraUsuarios()
         {
             InitializeComponent();
+
         }
 
         private void AdministraUsuarios_Load(object sender, EventArgs e)
         {
             dGVUsuarios.DataSource = null;
             dGVUsuarios.DataSource = UsuariosLogica.Instancia.ListUsuarios();
+         
 
         }
 
@@ -38,6 +40,7 @@ namespace COSMOSCOM
 
         private void button1_Click(object sender, EventArgs e)
         {
+            DialogResult confirma = MessageBox.Show("¿Estas seguro de que desea eliminar al usuario?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             try
             {
                 if (dGVUsuarios.SelectedRows.Count > 0)
@@ -54,27 +57,34 @@ namespace COSMOSCOM
                         // Obtener el ID del cliente seleccionado
                         int id_usuario = usuarioSeleccionado.id_usuario;
 
-                        // Eliminar el registro de la base de datos
-                        bool deleteRegistro = UsuariosLogica.Instancia.Eliminar(id_usuario);
-                        //Verificar si la respuesta fue exitosa mostrando un mensaje de confirmación
-                        if (deleteRegistro)
+
+                        //Condicion para validar confirmacion de eliminacion de registro
+                        if (confirma == DialogResult.Yes)
                         {
+                            // Eliminar el registro de la base de datos
+                            bool deleteRegistro = UsuariosLogica.Instancia.Eliminar(id_usuario);
+                            //Verificar si la respuesta fue exitosa mostrando un mensaje de confirmación
+                            if (deleteRegistro)
+                            {
 
-                            // Remover la fila de la fuente de datos
-                            UsuariosLogica.Instancia.ListUsuarios().Remove(usuarioSeleccionado);
-                            // Actualizar el DataGridView
-                            dGVUsuarios.DataSource = null;
-                            dGVUsuarios.DataSource = UsuariosLogica.Instancia.ListUsuarios();
+                                // Remover la fila de la fuente de datos
+                                UsuariosLogica.Instancia.ListUsuarios().Remove(usuarioSeleccionado);
+                                // Actualizar el DataGridView
+                                dGVUsuarios.DataSource = null;
+                                dGVUsuarios.DataSource = UsuariosLogica.Instancia.ListUsuarios();
 
-                            //Mensaje de confirmación
+                                //Mensaje de confirmación
 
-                            MessageBox.Show("Registro eliminado", "Confirmación", MessageBoxButtons.OK);
+                                MessageBox.Show("Registro eliminado", "Confirmación", MessageBoxButtons.OK);
+                            }
+                            else
+                            {
+                                MessageBox.Show("No se pudo eliminar el registro", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                            }
+
                         }
-                        else
-                        {
-                            MessageBox.Show("No se pudo eliminar el registro", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                        }
                     }
 
 
@@ -142,6 +152,26 @@ namespace COSMOSCOM
                 MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            NuevoUsuario agregarUsuarioNuevo = new NuevoUsuario(this);
+            
+            agregarUsuarioNuevo.ShowDialog();
+           
+
+
+        }
+        public void ActualizarDataGridView()
+        {
+
+            dGVUsuarios.DataSource = UsuariosLogica.Instancia.ListUsuarios();
+
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

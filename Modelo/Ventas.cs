@@ -10,8 +10,8 @@ namespace COSMOSCOM.Modelo
     {
         public int Folio {  get; set; }
         public int id_Cliente { get; set; }
-        public string? Fecha_atencion { get; set; }
-        public string? Fecha_entrega { get; set; }
+        public string? Fecha_de_atencion { get; set; }
+        public string? Fecha_de_entrega { get; set; }
         public string? Total { get; set; }
 
     }

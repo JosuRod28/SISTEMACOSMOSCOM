@@ -162,8 +162,8 @@ namespace COSMOSCOM
             {
                 //Se inicializan las propiedades con los valores ingresados en los campos de texto.
                 Folio = int.Parse(txt_Folio.Text),
-                Fecha_atencion = dtp_Fecha_atencion.Text,
-                Fecha_entrega = dtp_Fecha_Entrega.Text,
+                Fecha_de_atencion = dtp_Fecha_atencion.Text,
+                Fecha_de_entrega = dtp_Fecha_Entrega.Text,
                 Total = txt_Total.Text,
 
             };
@@ -491,6 +491,7 @@ namespace COSMOSCOM
                 if (dgvFormatos.CurrentRow != null && !dgvFormatos.CurrentRow.IsNewRow)
                 {
                     dgvFormatos.Rows.RemoveAt(dgvFormatos.CurrentRow.Index);
+
                     ActualizarTotal();
 
                 }
@@ -548,6 +549,11 @@ namespace COSMOSCOM
 
                 }
             }
+        }
+
+        private void dgvFormatos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

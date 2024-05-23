@@ -85,7 +85,6 @@
             pictureBox7 = new PictureBox();
             menuStrip1 = new MenuStrip();
             opcionesToolStripMenuItem = new ToolStripMenuItem();
-            agregarNuevoUsuarioToolStripMenuItem = new ToolStripMenuItem();
             adToolStripMenuItem = new ToolStripMenuItem();
             cambiarTarifaToolStripMenuItem = new ToolStripMenuItem();
             cambiarFondoToolStripMenuItem = new ToolStripMenuItem();
@@ -149,7 +148,7 @@
             Opciones.BackColor = Color.Transparent;
             Opciones.Controls.Add(tableLayoutPanel10);
             Opciones.Font = new Font("Segoe UI Black", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            Opciones.ForeColor = Color.White;
+            Opciones.ForeColor = Color.Orange;
             Opciones.Location = new Point(3, 570);
             Opciones.Name = "Opciones";
             Opciones.Size = new Size(521, 329);
@@ -169,23 +168,23 @@
             tableLayoutPanel10.Controls.Add(btn_Salir, 2, 0);
             tableLayoutPanel10.Controls.Add(btn_Cancelar, 1, 0);
             tableLayoutPanel10.Controls.Add(btn_Guardar, 0, 0);
-            tableLayoutPanel10.Location = new Point(38, 52);
+            tableLayoutPanel10.Location = new Point(27, 50);
             tableLayoutPanel10.Name = "tableLayoutPanel10";
             tableLayoutPanel10.RowCount = 2;
             tableLayoutPanel10.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel10.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel10.Size = new Size(421, 254);
+            tableLayoutPanel10.Size = new Size(432, 256);
             tableLayoutPanel10.TabIndex = 0;
             // 
             // btn_concultarC
             // 
             btn_concultarC.BackColor = SystemColors.HighlightText;
             btn_concultarC.Dock = DockStyle.Fill;
-            btn_concultarC.ForeColor = Color.MediumBlue;
-            btn_concultarC.Location = new Point(4, 131);
+            btn_concultarC.ForeColor = Color.Orange;
+            btn_concultarC.Location = new Point(4, 132);
             btn_concultarC.Margin = new Padding(4);
             btn_concultarC.Name = "btn_concultarC";
-            btn_concultarC.Size = new Size(132, 119);
+            btn_concultarC.Size = new Size(135, 120);
             btn_concultarC.TabIndex = 20;
             btn_concultarC.Text = "Consultar Clientes";
             btn_concultarC.UseVisualStyleBackColor = false;
@@ -195,11 +194,11 @@
             // 
             btn_ConsultarV.BackColor = SystemColors.HighlightText;
             btn_ConsultarV.Dock = DockStyle.Fill;
-            btn_ConsultarV.ForeColor = Color.MediumBlue;
-            btn_ConsultarV.Location = new Point(144, 131);
+            btn_ConsultarV.ForeColor = Color.Orange;
+            btn_ConsultarV.Location = new Point(147, 132);
             btn_ConsultarV.Margin = new Padding(4);
             btn_ConsultarV.Name = "btn_ConsultarV";
-            btn_ConsultarV.Size = new Size(132, 119);
+            btn_ConsultarV.Size = new Size(136, 120);
             btn_ConsultarV.TabIndex = 19;
             btn_ConsultarV.Text = "Consultar Ventas";
             btn_ConsultarV.UseVisualStyleBackColor = false;
@@ -209,11 +208,11 @@
             // 
             btn_Salir.BackColor = SystemColors.HighlightText;
             btn_Salir.Dock = DockStyle.Fill;
-            btn_Salir.ForeColor = Color.MediumBlue;
-            btn_Salir.Location = new Point(284, 4);
+            btn_Salir.ForeColor = Color.Orange;
+            btn_Salir.Location = new Point(291, 4);
             btn_Salir.Margin = new Padding(4);
             btn_Salir.Name = "btn_Salir";
-            btn_Salir.Size = new Size(133, 119);
+            btn_Salir.Size = new Size(137, 120);
             btn_Salir.TabIndex = 15;
             btn_Salir.Text = "Salir";
             btn_Salir.UseVisualStyleBackColor = false;
@@ -223,11 +222,11 @@
             // 
             btn_Cancelar.BackColor = SystemColors.HighlightText;
             btn_Cancelar.Dock = DockStyle.Fill;
-            btn_Cancelar.ForeColor = Color.MediumBlue;
-            btn_Cancelar.Location = new Point(144, 4);
+            btn_Cancelar.ForeColor = Color.Orange;
+            btn_Cancelar.Location = new Point(147, 4);
             btn_Cancelar.Margin = new Padding(4);
             btn_Cancelar.Name = "btn_Cancelar";
-            btn_Cancelar.Size = new Size(132, 119);
+            btn_Cancelar.Size = new Size(136, 120);
             btn_Cancelar.TabIndex = 17;
             btn_Cancelar.Text = "Cancelar";
             btn_Cancelar.UseVisualStyleBackColor = false;
@@ -237,11 +236,11 @@
             // 
             btn_Guardar.BackColor = SystemColors.HighlightText;
             btn_Guardar.Dock = DockStyle.Fill;
-            btn_Guardar.ForeColor = Color.MediumBlue;
+            btn_Guardar.ForeColor = Color.Orange;
             btn_Guardar.Location = new Point(4, 4);
             btn_Guardar.Margin = new Padding(4);
             btn_Guardar.Name = "btn_Guardar";
-            btn_Guardar.Size = new Size(132, 119);
+            btn_Guardar.Size = new Size(135, 120);
             btn_Guardar.TabIndex = 16;
             btn_Guardar.Text = "Guardar Registro";
             btn_Guardar.UseVisualStyleBackColor = false;
@@ -253,7 +252,7 @@
             groupBox1.BackColor = Color.Transparent;
             groupBox1.Controls.Add(tableLayoutPanel3);
             groupBox1.Font = new Font("Segoe UI Black", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            groupBox1.ForeColor = Color.White;
+            groupBox1.ForeColor = Color.Orange;
             groupBox1.Location = new Point(3, 3);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(521, 561);
@@ -332,7 +331,7 @@
             label2.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            label2.ForeColor = Color.White;
+            label2.ForeColor = Color.Orange;
             label2.Location = new Point(4, 93);
             label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
@@ -345,7 +344,7 @@
             label3.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            label3.ForeColor = Color.White;
+            label3.ForeColor = Color.Orange;
             label3.Location = new Point(4, 165);
             label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
@@ -358,7 +357,7 @@
             label4.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            label4.ForeColor = Color.White;
+            label4.ForeColor = Color.Orange;
             label4.Location = new Point(4, 237);
             label4.Margin = new Padding(4, 0, 4, 0);
             label4.Name = "label4";
@@ -371,7 +370,7 @@
             label5.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            label5.ForeColor = Color.White;
+            label5.ForeColor = Color.Orange;
             label5.Location = new Point(4, 309);
             label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
@@ -384,7 +383,7 @@
             label6.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            label6.ForeColor = Color.White;
+            label6.ForeColor = Color.Orange;
             label6.Location = new Point(4, 381);
             label6.Margin = new Padding(4, 0, 4, 0);
             label6.Name = "label6";
@@ -397,7 +396,7 @@
             label11.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            label11.ForeColor = Color.White;
+            label11.ForeColor = Color.Orange;
             label11.Location = new Point(4, 455);
             label11.Margin = new Padding(4, 0, 4, 0);
             label11.Name = "label11";
@@ -418,7 +417,7 @@
             label7.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            label7.ForeColor = Color.White;
+            label7.ForeColor = Color.Orange;
             label7.Location = new Point(4, 21);
             label7.Margin = new Padding(4, 0, 4, 0);
             label7.Name = "label7";
@@ -452,7 +451,7 @@
             groupBox2.Controls.Add(tableLayoutPanel6);
             groupBox2.Controls.Add(tableLayoutPanel4);
             groupBox2.Font = new Font("Segoe UI Black", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            groupBox2.ForeColor = Color.White;
+            groupBox2.ForeColor = Color.Orange;
             groupBox2.Location = new Point(530, 3);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(880, 561);
@@ -484,7 +483,7 @@
             // 
             label16.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label16.AutoSize = true;
-            label16.ForeColor = Color.White;
+            label16.ForeColor = Color.Orange;
             label16.Location = new Point(233, 27);
             label16.Margin = new Padding(4, 0, 4, 0);
             label16.Name = "label16";
@@ -496,7 +495,7 @@
             // 
             label13.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label13.AutoSize = true;
-            label13.ForeColor = Color.White;
+            label13.ForeColor = Color.Orange;
             label13.Location = new Point(4, 27);
             label13.Margin = new Padding(4, 0, 4, 0);
             label13.Name = "label13";
@@ -508,7 +507,7 @@
             // 
             label14.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label14.AutoSize = true;
-            label14.ForeColor = Color.White;
+            label14.ForeColor = Color.Orange;
             label14.Location = new Point(291, 27);
             label14.Margin = new Padding(4, 0, 4, 0);
             label14.Name = "label14";
@@ -557,7 +556,7 @@
             // 
             btn_Quitar.BackColor = SystemColors.HighlightText;
             btn_Quitar.Dock = DockStyle.Fill;
-            btn_Quitar.ForeColor = Color.MediumBlue;
+            btn_Quitar.ForeColor = Color.Orange;
             btn_Quitar.Location = new Point(4, 83);
             btn_Quitar.Margin = new Padding(4);
             btn_Quitar.Name = "btn_Quitar";
@@ -571,7 +570,7 @@
             // 
             btn_Agregar.BackColor = SystemColors.HighlightText;
             btn_Agregar.Dock = DockStyle.Fill;
-            btn_Agregar.ForeColor = Color.MediumBlue;
+            btn_Agregar.ForeColor = Color.Orange;
             btn_Agregar.Location = new Point(4, 4);
             btn_Agregar.Margin = new Padding(4);
             btn_Agregar.Name = "btn_Agregar";
@@ -591,6 +590,7 @@
             dgvFormatos.RowHeadersWidth = 62;
             dgvFormatos.Size = new Size(717, 388);
             dgvFormatos.TabIndex = 1;
+            dgvFormatos.CellContentClick += dgvFormatos_CellContentClick;
             // 
             // Formato
             // 
@@ -838,37 +838,30 @@
             // 
             // opcionesToolStripMenuItem
             // 
-            opcionesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { agregarNuevoUsuarioToolStripMenuItem, adToolStripMenuItem, cambiarTarifaToolStripMenuItem, cambiarFondoToolStripMenuItem });
+            opcionesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { adToolStripMenuItem, cambiarTarifaToolStripMenuItem, cambiarFondoToolStripMenuItem });
             opcionesToolStripMenuItem.Name = "opcionesToolStripMenuItem";
             opcionesToolStripMenuItem.Size = new Size(103, 29);
             opcionesToolStripMenuItem.Text = "Opciones";
             opcionesToolStripMenuItem.Click += opcionesToolStripMenuItem_Click;
             // 
-            // agregarNuevoUsuarioToolStripMenuItem
-            // 
-            agregarNuevoUsuarioToolStripMenuItem.Name = "agregarNuevoUsuarioToolStripMenuItem";
-            agregarNuevoUsuarioToolStripMenuItem.Size = new Size(295, 34);
-            agregarNuevoUsuarioToolStripMenuItem.Text = "Agregar nuevo usuario";
-            agregarNuevoUsuarioToolStripMenuItem.Click += agregarNuevoUsuarioToolStripMenuItem_Click;
-            // 
             // adToolStripMenuItem
             // 
             adToolStripMenuItem.Name = "adToolStripMenuItem";
-            adToolStripMenuItem.Size = new Size(295, 34);
+            adToolStripMenuItem.Size = new Size(277, 34);
             adToolStripMenuItem.Text = "Administrar usuarios";
             adToolStripMenuItem.Click += adToolStripMenuItem_Click;
             // 
             // cambiarTarifaToolStripMenuItem
             // 
             cambiarTarifaToolStripMenuItem.Name = "cambiarTarifaToolStripMenuItem";
-            cambiarTarifaToolStripMenuItem.Size = new Size(295, 34);
+            cambiarTarifaToolStripMenuItem.Size = new Size(277, 34);
             cambiarTarifaToolStripMenuItem.Text = "Cambiar Tarifa";
             cambiarTarifaToolStripMenuItem.Click += cambiarTarifaToolStripMenuItem_Click;
             // 
             // cambiarFondoToolStripMenuItem
             // 
             cambiarFondoToolStripMenuItem.Name = "cambiarFondoToolStripMenuItem";
-            cambiarFondoToolStripMenuItem.Size = new Size(295, 34);
+            cambiarFondoToolStripMenuItem.Size = new Size(277, 34);
             cambiarFondoToolStripMenuItem.Text = "Cambiar Tema";
             cambiarFondoToolStripMenuItem.Click += cambiarFondoToolStripMenuItem_Click;
             // 
@@ -935,7 +928,7 @@
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.White;
+            label1.ForeColor = Color.Orange;
             label1.Location = new Point(590, 38);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
@@ -983,8 +976,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Black;
-            BackgroundImage = Properties.Resources.layout2;
+            BackColor = SystemColors.Info;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1413, 1050);
             Controls.Add(tableLayoutPanel2);
@@ -1039,7 +1031,6 @@
         private TableLayoutPanel tableLayoutPanel3;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem opcionesToolStripMenuItem;
-        private ToolStripMenuItem agregarNuevoUsuarioToolStripMenuItem;
         private ToolStripMenuItem adToolStripMenuItem;
         private Label label7;
         private Label label2;

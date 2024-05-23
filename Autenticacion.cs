@@ -127,9 +127,7 @@ namespace COSMOSCOM
 
         private void crearNuevoUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            NuevoUsuario nuevoUsuarioForm = new NuevoUsuario();
 
-            nuevoUsuarioForm.ShowDialog();
         }
 
         private void txtUsuario_SelectedIndexChanged(object sender, EventArgs e)
