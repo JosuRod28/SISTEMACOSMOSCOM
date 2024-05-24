@@ -193,56 +193,29 @@ namespace COSMOSCOM
 
         private void button4_Click(object sender, EventArgs e)
         {
-            try
+
+            if (DataGrid_Clientes.SelectedRows.Count > 0)
             {
-                if (DataGrid_Clientes.SelectedCells.Count > 0)
+                DataGridViewRow selectedRow = DataGrid_Clientes.SelectedRows[0];
+
+                int idCliente = (int)selectedRow.Cells["id_Cliente"].Value;
+                string nombre = selectedRow.Cells["Nombre"].Value.ToString();
+                string apellido_p = selectedRow.Cells["Apellido_P"].Value.ToString();
+                string apellido_m = selectedRow.Cells["Apellido_M"].Value.ToString();
+                string telefono1 = selectedRow.Cells["Telefono1"].Value.ToString();
+                string telefono2 = selectedRow.Cells["Telefono2"].Value.ToString();
+
+                Modificar_Registros_Clientes modificar_Registro = new Modificar_Registros_Clientes(idCliente,nombre,apellido_p,apellido_m,telefono1,telefono2);
+
+                if (modificar_Registro.ShowDialog()== DialogResult.OK)
                 {
-                    // Obtener la celda seleccionada
-                    DataGridViewCell selectedCell = DataGrid_Clientes.SelectedCells[0];
 
-                    // Obtener el ID del cliente
-                    int idCliente = Convert.ToInt32(DataGrid_Clientes.Rows[selectedCell.RowIndex].Cells["id_Cliente"].Value);
-
-                    string nombreColumna = DataGrid_Clientes.Columns[selectedCell.ColumnIndex].Name;
-
-                    string nuevoValor = selectedCell.Value?.ToString();
-
-                    if (!string.IsNullOrEmpty(nombreColumna) && nuevoValor != null)
-                    {
-                        // Construir la consulta de actualización
-                        string consulta = $"UPDATE Clientes SET {nombreColumna} = '{nuevoValor}' WHERE id_Cliente = {idCliente}";
-                        // Actualizar los datos en la base de dato
-
-                        if (ClientesLogica.Instancia.ActualizarCliente(consulta))
-                        {
-                            MessageBox.Show("Datos actualizados correctamente", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
-                            // Actualizar el DataGridView
-                            DataGrid_Clientes.DataSource = ClientesLogica.Instancia.consultarTodos();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Error al actualizar los datos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se pudo determinar la celda seleccionada o el valor de la celda es nulo", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-
-                }
-                else
-                {
-                    MessageBox.Show("No se pudo determinar la celda seleccionada o el valor de la celda es nulo", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    DataGrid_Clientes.DataSource = null;
+                    DataGrid_Clientes.DataSource = ClientesLogica.Instancia.consultarTodos();
+                    
                 }
 
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)

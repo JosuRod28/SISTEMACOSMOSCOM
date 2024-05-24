@@ -51,3 +51,5 @@ C:\Users\Josue\source\repos\COSMOSCOM\COSMOSCOM\obj\Debug\net8.0-windows\COSMOSC
 C:\Users\Josue\source\repos\COSMOSCOM\COSMOSCOM\obj\Debug\net8.0-windows\COSMOSCOM.Registro_admin_.resources
 C:\Users\Josue\source\repos\COSMOSCOM\COSMOSCOM\obj\Debug\net8.0-windows\COSMOSCOM.Registro_user_.resources
 C:\Users\Josue\source\repos\COSMOSCOM\COSMOSCOM\obj\Debug\net8.0-windows\COSMOSCOM.CambiarTarifa.resources
+C:\Users\Josue\source\repos\COSMOSCOM\COSMOSCOM\obj\Debug\net8.0-windows\COSMOSCOM.Modificar_Registros_Clientes.resources
+C:\Users\Josue\source\repos\COSMOSCOM\COSMOSCOM\obj\Debug\net8.0-windows\COSMOSCOM.Modificar_Registros_Ventas.resources

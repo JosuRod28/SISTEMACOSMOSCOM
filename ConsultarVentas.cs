@@ -24,59 +24,28 @@ namespace COSMOSCOM
 
         private void button1_Click(object sender, EventArgs e)
         {
-            try
+
+            if (DataGrid_Ventas.SelectedRows.Count > 0)
             {
-                if (DataGrid_Ventas.SelectedCells.Count > 0)
+                DataGridViewRow selectedRow = DataGrid_Ventas.SelectedRows[0];
+
+                int folio = (int)selectedRow.Cells["Folio"].Value;
+                int idCliente = (int)selectedRow.Cells["id_Cliente"].Value;
+                string fechaAtencion = selectedRow.Cells["Fecha_de_atencion"].Value.ToString();
+                string fechaEntrega = selectedRow.Cells["Fecha_de_entrega"].Value.ToString();
+                string Total = selectedRow.Cells["Total"].Value.ToString();
+
+
+                Modificar_Registros_Ventas modificar_Registro = new Modificar_Registros_Ventas(folio,idCliente,fechaAtencion,fechaEntrega,Total);
+
+                if (modificar_Registro.ShowDialog() == DialogResult.OK)
                 {
-                    // Obtener la celda seleccionada
-                    DataGridViewCell selectedCell = DataGrid_Ventas.SelectedCells[0];
 
-                    // Obtener el folio de la venta
-                    int folio = Convert.ToInt32(DataGrid_Ventas.Rows[selectedCell.RowIndex].Cells["Folio"].Value);
-
-                    //Obtener el nombre de la columna
-                    string nombreColumna = DataGrid_Ventas.Columns[selectedCell.ColumnIndex].Name;
-
-                    //Se guarda el  valor que se modifico en la celda de la tabla
-                    string nuevoValor = selectedCell.Value?.ToString();
-
-                    if (!string.IsNullOrEmpty(nombreColumna) && nuevoValor != null)
-                    {
-
-                        // Construir la consulta de actualización
-                        string consulta = $"UPDATE Venta_Total SET {nombreColumna} = '{nuevoValor}' WHERE Folio = {folio}";
-                        
-                        // Actualizar los datos en la base de datos
-
-                        if (VentasLogica.Instancia.ActualizarVentas(consulta))
-                        {
-                            MessageBox.Show("Datos actualizados correctamente", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
-                            // Actualizar la tabla de las ventas
-                            DataGrid_Ventas.DataSource = VentasLogica.Instancia.ConsultarTodos();
-                        }
-                        else
-                        {
-                            //Mensaje en caso de que haya un error al actualizar los datos 
-                            MessageBox.Show("Error al actualizar los datos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                    else
-                    {
-                        //
-                        MessageBox.Show("No se pudo determinar la celda seleccionada o el valor de la celda es nulo", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
+                    DataGrid_Ventas.DataSource = null;
+                    DataGrid_Ventas.DataSource = ClientesLogica.Instancia.consultarTodos();
 
                 }
-                else
-                {
-                    MessageBox.Show("No se pudo determinar la celda seleccionada o el valor de la celda es nulo", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
