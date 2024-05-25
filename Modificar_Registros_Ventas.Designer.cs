@@ -38,14 +38,15 @@
             btn_Cerrar = new Button();
             txt_Folio = new TextBox();
             txt_id_Cliente = new TextBox();
-            txt_fecha_de_entrega = new TextBox();
             txt_fecha_de_atencion = new TextBox();
             txt_Total = new TextBox();
+            dtp_Fecha_entrega = new DateTimePicker();
             tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
+            tableLayoutPanel1.BackColor = Color.Transparent;
             tableLayoutPanel1.ColumnCount = 2;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
@@ -58,9 +59,9 @@
             tableLayoutPanel1.Controls.Add(btn_Cerrar, 1, 5);
             tableLayoutPanel1.Controls.Add(txt_Folio, 1, 0);
             tableLayoutPanel1.Controls.Add(txt_id_Cliente, 1, 1);
-            tableLayoutPanel1.Controls.Add(txt_fecha_de_entrega, 1, 3);
             tableLayoutPanel1.Controls.Add(txt_fecha_de_atencion, 1, 2);
             tableLayoutPanel1.Controls.Add(txt_Total, 1, 4);
+            tableLayoutPanel1.Controls.Add(dtp_Fecha_entrega, 1, 3);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -166,42 +167,48 @@
             // txt_Folio
             // 
             txt_Folio.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txt_Folio.Location = new Point(237, 24);
+            txt_Folio.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            txt_Folio.Location = new Point(237, 21);
             txt_Folio.Name = "txt_Folio";
-            txt_Folio.Size = new Size(229, 31);
+            txt_Folio.Size = new Size(229, 37);
             txt_Folio.TabIndex = 2;
             // 
             // txt_id_Cliente
             // 
             txt_id_Cliente.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txt_id_Cliente.Location = new Point(237, 104);
+            txt_id_Cliente.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            txt_id_Cliente.Location = new Point(237, 101);
             txt_id_Cliente.Name = "txt_id_Cliente";
-            txt_id_Cliente.Size = new Size(229, 31);
+            txt_id_Cliente.Size = new Size(229, 37);
             txt_id_Cliente.TabIndex = 2;
-            // 
-            // txt_fecha_de_entrega
-            // 
-            txt_fecha_de_entrega.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txt_fecha_de_entrega.Location = new Point(237, 264);
-            txt_fecha_de_entrega.Name = "txt_fecha_de_entrega";
-            txt_fecha_de_entrega.Size = new Size(229, 31);
-            txt_fecha_de_entrega.TabIndex = 2;
             // 
             // txt_fecha_de_atencion
             // 
             txt_fecha_de_atencion.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txt_fecha_de_atencion.Location = new Point(237, 184);
+            txt_fecha_de_atencion.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            txt_fecha_de_atencion.Location = new Point(237, 181);
             txt_fecha_de_atencion.Name = "txt_fecha_de_atencion";
-            txt_fecha_de_atencion.Size = new Size(229, 31);
+            txt_fecha_de_atencion.Size = new Size(229, 37);
             txt_fecha_de_atencion.TabIndex = 2;
             // 
             // txt_Total
             // 
             txt_Total.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txt_Total.Location = new Point(237, 352);
+            txt_Total.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            txt_Total.Location = new Point(237, 349);
             txt_Total.Name = "txt_Total";
-            txt_Total.Size = new Size(229, 31);
+            txt_Total.Size = new Size(229, 37);
             txt_Total.TabIndex = 2;
+            // 
+            // dtp_Fecha_entrega
+            // 
+            dtp_Fecha_entrega.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            dtp_Fecha_entrega.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            dtp_Fecha_entrega.Format = DateTimePickerFormat.Short;
+            dtp_Fecha_entrega.Location = new Point(237, 261);
+            dtp_Fecha_entrega.Name = "dtp_Fecha_entrega";
+            dtp_Fecha_entrega.Size = new Size(229, 37);
+            dtp_Fecha_entrega.TabIndex = 3;
             // 
             // Modificar_Registros_Ventas
             // 
@@ -231,8 +238,8 @@
         private Button btn_Cerrar;
         private TextBox txt_Folio;
         private TextBox txt_id_Cliente;
-        private TextBox txt_fecha_de_entrega;
         private TextBox txt_fecha_de_atencion;
         private TextBox txt_Total;
+        private DateTimePicker dtp_Fecha_entrega;
     }
 }

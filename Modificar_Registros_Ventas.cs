@@ -24,8 +24,26 @@ namespace COSMOSCOM
             txt_Folio.Text = folio.ToString();
             txt_id_Cliente.Text = idCliente.ToString();
             txt_fecha_de_atencion.Text = fechaAtencion;
-            txt_fecha_de_entrega.Text = fechaEntrega;
+            dtp_Fecha_entrega.Text = fechaEntrega;
             txt_Total.Text = Total;
+
+            ApplyBgImage();
+        }
+
+        private void ApplyBgImage()
+        {
+            string backgroundImagePath = Properties.Settings.Default.BackgroundImagePath;
+            if (!string.IsNullOrEmpty(backgroundImagePath) && System.IO.File.Exists(backgroundImagePath))
+            {
+                Image backgroundImage = Image.FromFile(backgroundImagePath);
+                SetBackgroundImage(this, backgroundImage);
+            }
+        }
+
+        private void SetBackgroundImage(Modificar_Registros_Ventas modificar_Registros_Ventas, Image backgroundImage)
+        {
+            modificar_Registros_Ventas.BackgroundImage = backgroundImage;
+            modificar_Registros_Ventas.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -52,10 +70,10 @@ namespace COSMOSCOM
                     // Obtener los datos modificados
 
                     string nuevaFechaAtencion = txt_fecha_de_atencion.Text;
-                    string nuevaFechaEntrega = txt_fecha_de_entrega.Text;
+                    string nuevaFechaEntrega = dtp_Fecha_entrega.Text;
                     string nuevoTotal = txt_Total.Text;
                     // Construir la consulta de actualización
-                    string consulta = $"UPDATE Venta_Total SET Fecha_de_atencion = '{nuevaFechaAtencion}', Fecha_de_entrega = '{nuevaFechaAtencion}', Total = '{nuevoTotal}' WHERE Folio = {folio}";
+                    string consulta = $"UPDATE Venta_Total SET Fecha_de_atencion = '{nuevaFechaAtencion}', Fecha_de_entrega = '{nuevaFechaEntrega}', Total = '{nuevoTotal}' WHERE Folio = {folio}";
 
                     // Actualizar los datos en la base de datos
                     if (VentasLogica.Instancia.ActualizarVentas(consulta))

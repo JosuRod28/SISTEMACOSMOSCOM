@@ -54,7 +54,7 @@
             // 
             // groupBox1
             // 
-            groupBox1.BackColor = Color.Moccasin;
+            groupBox1.BackColor = Color.Transparent;
             groupBox1.Controls.Add(btn_Regresar);
             groupBox1.Controls.Add(btn_Modificar);
             groupBox1.Controls.Add(btn_Eliminar);

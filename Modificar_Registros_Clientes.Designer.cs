@@ -48,6 +48,7 @@
             // 
             // tableLayoutPanel1
             // 
+            tableLayoutPanel1.BackColor = Color.Transparent;
             tableLayoutPanel1.ColumnCount = 2;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 51.65289F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 48.3471069F));
@@ -186,53 +187,60 @@
             btn_Cerrar.TabIndex = 6;
             btn_Cerrar.Text = "Cerrar";
             btn_Cerrar.UseVisualStyleBackColor = false;
+            btn_Cerrar.Click += btn_Cerrar_Click;
             // 
             // txt_id_Cliente
             // 
             txt_id_Cliente.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txt_id_Cliente.Location = new Point(252, 26);
+            txt_id_Cliente.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            txt_id_Cliente.Location = new Point(252, 23);
             txt_id_Cliente.Name = "txt_id_Cliente";
-            txt_id_Cliente.Size = new Size(229, 31);
+            txt_id_Cliente.Size = new Size(229, 37);
             txt_id_Cliente.TabIndex = 7;
             // 
             // txt_Nombre
             // 
             txt_Nombre.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txt_Nombre.Location = new Point(252, 110);
+            txt_Nombre.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            txt_Nombre.Location = new Point(252, 107);
             txt_Nombre.Name = "txt_Nombre";
-            txt_Nombre.Size = new Size(229, 31);
+            txt_Nombre.Size = new Size(229, 37);
             txt_Nombre.TabIndex = 7;
             // 
             // txt_Apellido_P
             // 
             txt_Apellido_P.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txt_Apellido_P.Location = new Point(252, 194);
+            txt_Apellido_P.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            txt_Apellido_P.Location = new Point(252, 191);
             txt_Apellido_P.Name = "txt_Apellido_P";
-            txt_Apellido_P.Size = new Size(229, 31);
+            txt_Apellido_P.Size = new Size(229, 37);
             txt_Apellido_P.TabIndex = 7;
             // 
             // txt_Apellido_M
             // 
             txt_Apellido_M.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txt_Apellido_M.Location = new Point(252, 278);
+            txt_Apellido_M.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            txt_Apellido_M.Location = new Point(252, 275);
             txt_Apellido_M.Name = "txt_Apellido_M";
-            txt_Apellido_M.Size = new Size(229, 31);
+            txt_Apellido_M.Size = new Size(229, 37);
             txt_Apellido_M.TabIndex = 7;
             // 
             // txt_Telefono1
             // 
             txt_Telefono1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txt_Telefono1.Location = new Point(252, 362);
+            txt_Telefono1.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            txt_Telefono1.Location = new Point(252, 359);
             txt_Telefono1.Name = "txt_Telefono1";
-            txt_Telefono1.Size = new Size(229, 31);
+            txt_Telefono1.Size = new Size(229, 37);
             txt_Telefono1.TabIndex = 7;
             // 
             // txt_Telefono2
             // 
             txt_Telefono2.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txt_Telefono2.Location = new Point(252, 458);
+            txt_Telefono2.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            txt_Telefono2.Location = new Point(252, 455);
             txt_Telefono2.Name = "txt_Telefono2";
-            txt_Telefono2.Size = new Size(229, 31);
+            txt_Telefono2.Size = new Size(229, 37);
             txt_Telefono2.TabIndex = 7;
             // 
             // Modificar_Registros_Clientes

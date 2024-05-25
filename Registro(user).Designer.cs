@@ -977,6 +977,7 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Info;
+            BackgroundImage = Properties.Resources.layout2;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1413, 1050);
             Controls.Add(tableLayoutPanel2);

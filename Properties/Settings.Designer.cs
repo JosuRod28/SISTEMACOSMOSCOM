@@ -46,5 +46,17 @@ namespace COSMOSCOM.Properties {
                 this["MontoActual"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string BackgroundImagePath {
+            get {
+                return ((string)(this["BackgroundImagePath"]));
+            }
+            set {
+                this["BackgroundImagePath"] = value;
+            }
+        }
     }
 }

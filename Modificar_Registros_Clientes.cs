@@ -25,6 +25,24 @@ namespace COSMOSCOM
             txt_Telefono1.Text = telefono1;
             txt_Telefono2.Text = telefono2;
 
+            ApplyBgImage();
+
+        }
+
+        private void ApplyBgImage()
+        {
+            string backgroundImagePath = Properties.Settings.Default.BackgroundImagePath;
+            if (!string.IsNullOrEmpty(backgroundImagePath) && System.IO.File.Exists(backgroundImagePath))
+            {
+                Image backgroundImage = Image.FromFile(backgroundImagePath);
+                SetBackgroundImage(this, backgroundImage);
+            }
+        }
+
+        private void SetBackgroundImage(Modificar_Registros_Clientes modificar_Registros_Clientes, Image backgroundImage)
+        {
+            modificar_Registros_Clientes.BackgroundImage = backgroundImage;
+            modificar_Registros_Clientes.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
         private void label6_Click(object sender, EventArgs e)
@@ -33,38 +51,43 @@ namespace COSMOSCOM
         }
 
         private void btn_Modificar_Click(object sender, EventArgs e)
+        {
+            try
             {
-                try
-                {
-                    // Obtener los datos modificados
-                    string nuevoNombre = txt_Nombre.Text;
-                    string nuevoApellidoP = txt_Apellido_P.Text;
-                    string nuevoApellidoM = txt_Apellido_M.Text;
-                    string nuevoTelefono1 = txt_Telefono1.Text;
-                    string nuevoTelefono2 = txt_Telefono2.Text;
-                    // Construir la consulta de actualización
-                    string consulta = $"UPDATE Clientes SET Nombre = '{nuevoNombre}', Apellido_P = '{nuevoApellidoP}', Apellido_M = '{nuevoApellidoM}', Telefono1 = '{nuevoTelefono1}', Telefono2='{nuevoTelefono2}' WHERE id_Cliente = {idCliente}";
+                // Obtener los datos modificados
+                string nuevoNombre = txt_Nombre.Text;
+                string nuevoApellidoP = txt_Apellido_P.Text;
+                string nuevoApellidoM = txt_Apellido_M.Text;
+                string nuevoTelefono1 = txt_Telefono1.Text;
+                string nuevoTelefono2 = txt_Telefono2.Text;
+                // Construir la consulta de actualización
+                string consulta = $"UPDATE Clientes SET Nombre = '{nuevoNombre}', Apellido_P = '{nuevoApellidoP}', Apellido_M = '{nuevoApellidoM}', Telefono1 = '{nuevoTelefono1}', Telefono2='{nuevoTelefono2}' WHERE id_Cliente = {idCliente}";
 
-                    // Actualizar los datos en la base de datos
-                    if (ClientesLogica.Instancia.ActualizarCliente(consulta))
-                    {
-                        MessageBox.Show("Datos actualizados correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        this.DialogResult = DialogResult.OK;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Error al actualizar los datos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-                catch (Exception ex)
+                // Actualizar los datos en la base de datos
+                if (ClientesLogica.Instancia.ActualizarCliente(consulta))
                 {
-                    MessageBox.Show("Error al guardar los datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Datos actualizados correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.DialogResult = DialogResult.OK;
                 }
+                else
+                {
+                    MessageBox.Show("Error al actualizar los datos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al guardar los datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void Modificar_Registros_Clientes_Load(object sender, EventArgs e)
         {
             txt_id_Cliente.ReadOnly = true;
+        }
+
+        private void btn_Cerrar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

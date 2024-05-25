@@ -3,6 +3,7 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Data.SQLite;
 using System.Drawing.Text;
+using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace COSMOSCOM
@@ -17,6 +18,23 @@ namespace COSMOSCOM
             InitializeComponent();
             txtClave.UseSystemPasswordChar = true;
             txtClave.PasswordChar = '*';
+            ApplyBgImage();
+        }
+
+        private void ApplyBgImage()
+        {
+            string backgroundImagePath = Properties.Settings.Default.BackgroundImagePath;
+            if (!string.IsNullOrEmpty(backgroundImagePath) && System.IO.File.Exists(backgroundImagePath))
+            {
+                Image backgroundImage = Image.FromFile(backgroundImagePath);
+                SetBackgroundImage(this, backgroundImage);
+            }
+        }
+
+        private void SetBackgroundImage(Autenticacion autenticacion, Image backgroundImage)
+        {
+            autenticacion.BackgroundImage = backgroundImage;
+            autenticacion.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
         public ComboBox ComboBoxAutenticaion

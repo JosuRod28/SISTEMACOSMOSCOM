@@ -20,6 +20,23 @@ namespace COSMOSCOM
         {
             InitializeComponent();
             DataGrid_Ventas.DataSource = ventas;
+            ApplyBgImage();
+        }
+
+        private void ApplyBgImage()
+        {
+            string backgroundImagePath = Properties.Settings.Default.BackgroundImagePath;
+            if (!string.IsNullOrEmpty(backgroundImagePath) && System.IO.File.Exists(backgroundImagePath))
+            {
+                Image backgroundImage = Image.FromFile(backgroundImagePath);
+                SetBackgroundImage(this, backgroundImage);
+            }
+        }
+
+        private void SetBackgroundImage(ConsultarVentas consultarVentas, Image backgroundImage)
+        {
+            consultarVentas.BackgroundImage = backgroundImage;
+            consultarVentas.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -36,13 +53,13 @@ namespace COSMOSCOM
                 string Total = selectedRow.Cells["Total"].Value.ToString();
 
 
-                Modificar_Registros_Ventas modificar_Registro = new Modificar_Registros_Ventas(folio,idCliente,fechaAtencion,fechaEntrega,Total);
+                Modificar_Registros_Ventas modificar_Registro = new Modificar_Registros_Ventas(folio, idCliente, fechaAtencion, fechaEntrega, Total);
 
                 if (modificar_Registro.ShowDialog() == DialogResult.OK)
                 {
 
                     DataGrid_Ventas.DataSource = null;
-                    DataGrid_Ventas.DataSource = ClientesLogica.Instancia.consultarTodos();
+                    DataGrid_Ventas.DataSource = VentasLogica.Instancia.ConsultarTodos();
 
                 }
 
@@ -114,7 +131,7 @@ namespace COSMOSCOM
         {
             if (DataGrid_Ventas.DataSource is List<Ventas>)
             {
-                if (DataGrid_Ventas.SelectedRows.Count>0)
+                if (DataGrid_Ventas.SelectedRows.Count > 0)
                 {
                     DialogResult confirma = MessageBox.Show("¿Estas seguro de que desea eliminar el registro de venta?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                     // Si el origen de datos es una lista de ventas, significa que proviene de VentasLogica
@@ -143,9 +160,9 @@ namespace COSMOSCOM
             }
             else if (DataGrid_Ventas.DataSource is List<DetalleVenta>)
             {
-                if (DataGrid_Ventas.SelectedRows.Count>0)
+                if (DataGrid_Ventas.SelectedRows.Count > 0)
                 {
-                    
+
                 }
                 DialogResult confirma = MessageBox.Show("¿Estas seguro de que desea eliminar los detalles de la venta?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 // Si el origen de datos es una lista de detalle de ventas, significa que proviene de DetalleVentasLogica
@@ -153,7 +170,7 @@ namespace COSMOSCOM
                 DataGridViewRow selectedRow = DataGrid_Ventas.SelectedRows[0];
                 // Obtener el Folio  de la venta desde la fila seleccionada
                 int folio = (int)selectedRow.Cells["Folio_Venta"].Value;
-                
+
 
                 //Condicion para validar confirmacion de eliminacion de registro
                 if (confirma == DialogResult.Yes)
@@ -212,6 +229,11 @@ namespace COSMOSCOM
         }
 
         private void DataGrid_Ventas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void ConsultarVentas_Load(object sender, EventArgs e)
         {
 
         }

@@ -327,6 +327,7 @@
             Name = "CambiarTarifa";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "CambiarTarifa";
+            Load += CambiarTarifa_Load;
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel2.ResumeLayout(false);
             tableLayoutPanel3.ResumeLayout(false);

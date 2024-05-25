@@ -17,7 +17,7 @@ namespace COSMOSCOM
 {
     public partial class NuevoUsuario : Form
     {
-        
+
         private static string conexion = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
         private AdministraUsuarios _administraUsuarios;
         public NuevoUsuario(AdministraUsuarios administraUsuarios)
@@ -26,40 +26,57 @@ namespace COSMOSCOM
             txtNuevoPasswd.UseSystemPasswordChar = true;
             txtNuevoPasswd.PasswordChar = '*';
             _administraUsuarios = administraUsuarios;
+
+            ApplyBgImage();
         }
 
+        private void ApplyBgImage()
+        {
+            string backgroundImagePath = Properties.Settings.Default.BackgroundImagePath;
+            if (!string.IsNullOrEmpty(backgroundImagePath) && System.IO.File.Exists(backgroundImagePath))
+            {
+                Image backgroundImage = Image.FromFile(backgroundImagePath);
+                SetBackgroundImage(this, backgroundImage);
+            }
+        }
+
+        private void SetBackgroundImage(NuevoUsuario nuevoUsuario, Image backgroundImage)
+        {
+            nuevoUsuario.BackgroundImage = backgroundImage;
+            nuevoUsuario.BackgroundImageLayout = ImageLayout.Stretch;
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
 
             string rol = cbRoles.SelectedItem?.ToString();
             int idRol = 0;
-            
+
 
             if (!string.IsNullOrEmpty(rol))
             {
-               
-                switch(rol)
+
+                switch (rol)
                 {
                     case "admin":
                         idRol = 1;
                         break;
                     case "user":
                         idRol = 2;
-                                
+
                         break;
                     default:
-                         idRol = 0;
+                        idRol = 0;
                         break;
                 }
             }
             Usuarios nuevoUsuario = new Usuarios()
             {
                 Usuario = txtNuevoUsuario.Text,
-                Clave   = txtNuevoPasswd.Text,
+                Clave = txtNuevoPasswd.Text,
                 id_Rol = idRol,
             };
-            bool respuesta= UsuariosLogica.Instancia.IngresarNuevoUsuario(nuevoUsuario);
+            bool respuesta = UsuariosLogica.Instancia.IngresarNuevoUsuario(nuevoUsuario);
             if (respuesta)
             {
                 MessageBox.Show("¡Usuario nuevo ingresado correctamente!", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -67,7 +84,7 @@ namespace COSMOSCOM
 
 
                 _administraUsuarios.ActualizarDataGridView();
-               
+
 
             }
             else
@@ -119,6 +136,11 @@ namespace COSMOSCOM
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void NuevoUsuario_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

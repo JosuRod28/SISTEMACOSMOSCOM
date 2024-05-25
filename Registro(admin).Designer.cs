@@ -151,7 +151,7 @@
             // 
             gbCliente.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             gbCliente.AutoSize = true;
-            gbCliente.BackColor = SystemColors.Info;
+            gbCliente.BackColor = Color.Transparent;
             gbCliente.Controls.Add(tableLayoutPanel2);
             gbCliente.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             gbCliente.ForeColor = Color.Orange;
@@ -663,7 +663,7 @@
             // 
             gbFormato.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             gbFormato.AutoSize = true;
-            gbFormato.BackColor = SystemColors.Info;
+            gbFormato.BackColor = Color.Transparent;
             gbFormato.Controls.Add(tableLayoutPanel8);
             gbFormato.Controls.Add(tableLayoutPanel5);
             gbFormato.Controls.Add(tableLayoutPanel4);
@@ -999,6 +999,7 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Info;
+            BackgroundImage = Properties.Resources.layout2;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1391, 1018);
             Controls.Add(tableLayoutPanel1);

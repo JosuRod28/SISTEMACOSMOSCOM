@@ -17,14 +17,34 @@ namespace COSMOSCOM
         public AdministraUsuarios()
         {
             InitializeComponent();
+            ApplyBgImage();
 
+
+        }
+
+        private void ApplyBgImage()
+        {
+            string backgroundImagePath = Properties.Settings.Default.BackgroundImagePath;
+            if (!string.IsNullOrEmpty(backgroundImagePath) && System.IO.File.Exists(backgroundImagePath))
+            {
+                Image backgroundImage = Image.FromFile(backgroundImagePath);
+                SetBackgroundImage(this, backgroundImage);
+            }
+        }
+
+        private void SetBackgroundImage(AdministraUsuarios administraUsuarios, Image backgroundImage)
+        {
+            administraUsuarios.BackgroundImage = backgroundImage;
+            administraUsuarios.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
         private void AdministraUsuarios_Load(object sender, EventArgs e)
         {
             dGVUsuarios.DataSource = null;
             dGVUsuarios.DataSource = UsuariosLogica.Instancia.ListUsuarios();
-         
+            dGVUsuarios.DefaultCellStyle.ForeColor = Color.MediumBlue;
+
+
 
         }
 

@@ -33,7 +33,18 @@ namespace COSMOSCOM
             txt_ApellidoM.KeyPress += new KeyPressEventHandler(txt_Apellido_M_KeyPress);
             txt_Telefono1.KeyPress += new KeyPressEventHandler(txt_Telefono1_KeyPress);
             txt_Telefono2.KeyPress += new KeyPressEventHandler(txt_Telefono2_KeyPress);
+            ApplyBgImage();
 
+        }
+
+        private void ApplyBgImage()
+        {
+            string backgroundImagePath = Properties.Settings.Default.BackgroundImagePath;
+            if (!string.IsNullOrEmpty(backgroundImagePath) && System.IO.File.Exists(backgroundImagePath))
+            {
+                Image backgroundImage = Image.FromFile(backgroundImagePath);
+                SetBackgroundImage(this, backgroundImage);
+            }
         }
 
         private void txt_Telefono2_KeyPress(object? sender, KeyPressEventArgs e)
@@ -542,13 +553,20 @@ namespace COSMOSCOM
                     string selectedFilePath = openFileDialog.FileName;
 
                     Image backgroundImage = Image.FromFile(selectedFilePath);
+                    // Aplicar el fondo al formulario actual
+                    SetBackgroundImage(this, backgroundImage);
 
-                    this.BackgroundImage = backgroundImage;
-                    this.BackgroundImageLayout = ImageLayout.Stretch;
-
+                    // Aplicar el fondo a otros formularios
+                    
 
                 }
             }
+        }
+
+        private void SetBackgroundImage(Registro_user_ registro_user_, Image backgroundImage)
+        {
+            registro_user_.BackgroundImage = backgroundImage;
+            registro_user_.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
         private void dgvFormatos_CellContentClick(object sender, DataGridViewCellEventArgs e)

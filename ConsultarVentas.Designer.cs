@@ -77,7 +77,7 @@
             // 
             // groupBox1
             // 
-            groupBox1.BackColor = Color.Moccasin;
+            groupBox1.BackColor = Color.Transparent;
             groupBox1.Controls.Add(button5);
             groupBox1.Controls.Add(tableLayoutPanel5);
             groupBox1.Controls.Add(btn_Regresar);
@@ -356,6 +356,7 @@
             Name = "ConsultarVentas";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "ConsultarVentas";
+            Load += ConsultarVentas_Load;
             groupBox1.ResumeLayout(false);
             tableLayoutPanel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)DataGrid_Ventas).EndInit();

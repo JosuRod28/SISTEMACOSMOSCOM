@@ -22,6 +22,23 @@ namespace COSMOSCOM
         {
             InitializeComponent();
             DataGrid_Clientes.DataSource = clientes;
+            ApplyBgImage();
+        }
+
+        private void ApplyBgImage()
+        {
+            string backgroundImagePath = Properties.Settings.Default.BackgroundImagePath;
+            if (!string.IsNullOrEmpty(backgroundImagePath) && System.IO.File.Exists(backgroundImagePath))
+            {
+                Image backgroundImage = Image.FromFile(backgroundImagePath);
+                SetBackgroundImage(this, backgroundImage);
+            }
+        }
+
+        private void SetBackgroundImage(ConsultarClientes consultarClientes, Image backgroundImage)
+        {
+            consultarClientes.BackgroundImage = backgroundImage;
+            consultarClientes.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
         private void button3_Click(object sender, EventArgs e)

@@ -687,16 +687,26 @@ namespace COSMOSCOM
                 {
                     string selectedFilePath = openFileDialog.FileName;
 
+                    Properties.Settings.Default.BackgroundImagePath = selectedFilePath;
+                    Properties.Settings.Default.Save();
+
+
                     Image backgroundImage = Image.FromFile(selectedFilePath);
-
-                    this.BackgroundImage = backgroundImage;
-                    this.BackgroundImageLayout = ImageLayout.Stretch;
-
+                    // Aplicar el fondo al formulario actual
+                    SetBackgroundImage(this, backgroundImage);
 
                 }
             }
         }
 
+        private void SetBackgroundImage(Form form, Image backgroundImage)
+        {
+            form.BackgroundImage = backgroundImage;
+            form.BackgroundImageLayout = ImageLayout.Stretch;
+
+        }
+
+ 
         private void gbCliente_Enter(object sender, EventArgs e)
         {
 
