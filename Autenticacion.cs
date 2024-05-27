@@ -11,7 +11,7 @@ namespace COSMOSCOM
     public partial class Autenticacion : Form
 
     {
-        
+
         private static string conexion = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
         public Autenticacion()
         {
@@ -29,6 +29,22 @@ namespace COSMOSCOM
                 Image backgroundImage = Image.FromFile(backgroundImagePath);
                 SetBackgroundImage(this, backgroundImage);
             }
+            else
+            {
+                Color backgroundColor = Properties.Settings.Default.BackgroundColor;
+                SetBackgroundColor(this, backgroundColor);
+                RemoveBackgroundImage(this);
+            }
+        }
+
+        private void RemoveBackgroundImage(Autenticacion autenticacion)
+        {
+            autenticacion.BackgroundImage = null;
+        }
+
+        private void SetBackgroundColor(Autenticacion autenticacion, Color backgroundColor)
+        {
+            autenticacion.BackColor=backgroundColor;
         }
 
         private void SetBackgroundImage(Autenticacion autenticacion, Image backgroundImage)
@@ -98,10 +114,10 @@ namespace COSMOSCOM
 
         private bool RolAdmin(string usuario)
         {
-            
+
             using (SQLiteConnection conn = new SQLiteConnection(conexion))
             {
-                int id_Rol=1;
+                int id_Rol = 1;
                 conn.Open();
                 string query = "SELECT count(*) from Usuarios where usuario=@usuario AND id_Rol=@id_rol";
                 SQLiteCommand cmd = new SQLiteCommand(query, conn);
@@ -150,7 +166,7 @@ namespace COSMOSCOM
 
         private void txtUsuario_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void Autenticacion_Load(object sender, EventArgs e)
@@ -179,7 +195,12 @@ namespace COSMOSCOM
 
         private void txtClave_TextChanged(object sender, EventArgs e)
         {
-            
+
+        }
+
+        private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

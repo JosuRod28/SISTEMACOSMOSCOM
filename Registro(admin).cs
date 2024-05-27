@@ -42,11 +42,18 @@ namespace COSMOSCOM
             txt_Apellido_M.KeyPress += new KeyPressEventHandler(txt_Apellido_M_KeyPress);
             txt_Telefono1.KeyPress += new KeyPressEventHandler(txt_Telefono1_KeyPress);
             txt_Telefono2.KeyPress += new KeyPressEventHandler(txt_Telefono2_KeyPress);
-
+            ApplyBgImage();
         }
 
-
-
+        private void ApplyBgImage()
+        {
+            string backgroundImagePath = Properties.Settings.Default.BackgroundImagePath;
+            if (!string.IsNullOrEmpty(backgroundImagePath) && System.IO.File.Exists(backgroundImagePath))
+            {
+                Image backgroundImage = Image.FromFile(backgroundImagePath);
+                SetBackgroundImage(this, backgroundImage);
+            }
+        }
 
         private void UpDown_ValueChanged(object sender, EventArgs e)
         {
@@ -221,7 +228,7 @@ namespace COSMOSCOM
                 }
 
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 MessageBox.Show("Error al guardar los datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -677,6 +684,48 @@ namespace COSMOSCOM
 
         private void camniarTemaToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
+        }
+
+
+
+        private void gbCliente_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cambiarColorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (ColorDialog colorDialog = new ColorDialog())
+            {
+                if (colorDialog.ShowDialog() == DialogResult.OK)
+                {
+                    Color selectedColor = colorDialog.Color;
+
+                    Properties.Settings.Default.BackgroundColor = selectedColor;
+                    Properties.Settings.Default.BackgroundImagePath = string.Empty; // Eliminar la imagen de fondo
+                    Properties.Settings.Default.Save();
+                   
+                    // Aplicar el color de fondo al formulario actual
+                    SetBackgroundColor(this, selectedColor);
+                    RemoveBackgroundImage(this);
+                }
+            }
+        }
+
+        private void RemoveBackgroundImage(Form form)
+        {
+            form.BackgroundImage = null;
+        }
+
+        private void SetBackgroundColor(Form form, Color color)
+        {
+            form.BackColor = color;
+            form.BackgroundImageLayout = ImageLayout.Stretch;
+        }
+
+        private void cambiarImagenDeFondoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
@@ -701,15 +750,9 @@ namespace COSMOSCOM
 
         private void SetBackgroundImage(Form form, Image backgroundImage)
         {
-            form.BackgroundImage = backgroundImage;
-            form.BackgroundImageLayout = ImageLayout.Stretch;
 
-        }
-
- 
-        private void gbCliente_Enter(object sender, EventArgs e)
-        {
-
+                form.BackgroundImage = backgroundImage;
+                form.BackgroundImageLayout = ImageLayout.Stretch;       
         }
     }
 }

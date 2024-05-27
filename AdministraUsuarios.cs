@@ -128,44 +128,26 @@ namespace COSMOSCOM
             {
                 if (dGVUsuarios.SelectedCells.Count > 0)
                 {
-                    // Obtener la celda seleccionada
-                    DataGridViewCell selectedCell = dGVUsuarios.SelectedCells[0];
 
-                    // Obtener el ID del usuario
-                    int idUsuario = Convert.ToInt32(dGVUsuarios.Rows[selectedCell.RowIndex].Cells["id_usuario"].Value);
+                    DataGridViewRow selectedRow = dGVUsuarios.SelectedRows[0];
+                    int idUsuario = (int)selectedRow.Cells["id_usuario"].Value;
+                    string? usuario =selectedRow.Cells["usuario"].Value.ToString();
+                    string? clave = selectedRow.Cells["clave"].Value.ToString();
+                    string? id_Rol = selectedRow.Cells["id_Rol"].Value.ToString();
+                    
+                    Modificar_Usuarios modificar_Usuarios = new Modificar_Usuarios(idUsuario,usuario,clave,id_Rol);
 
-                    string nombreColumna = dGVUsuarios.Columns[selectedCell.ColumnIndex].Name;
-
-                    string nuevoValor = selectedCell.Value?.ToString();
-
-                    if (!string.IsNullOrEmpty(nombreColumna) && nuevoValor != null)
+                    if (modificar_Usuarios.ShowDialog() == DialogResult.OK)
                     {
-                        // Construir la consulta de actualización
-                        string consulta = $"UPDATE Usuarios SET {nombreColumna} = '{nuevoValor}' WHERE id_usuario = {idUsuario}";
-                        // Actualizar los datos en la base de datos
 
-                        if (UsuariosLogica.Instancia.ActualizarUsuario(consulta))
-                        {
-                            MessageBox.Show("Datos actualizados correctamente", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        dGVUsuarios.DataSource = null;
+                        dGVUsuarios.DataSource = UsuariosLogica.Instancia.ListUsuarios();
 
-                            // Actualizar el DataGridView
-                            dGVUsuarios.DataSource = UsuariosLogica.Instancia.ListUsuarios();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Error al actualizar los datos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se pudo determinar la celda seleccionada o el valor de la celda es nulo", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
 
+
                 }
-                else
-                {
-                    MessageBox.Show("No se pudo determinar la celda seleccionada o el valor de la celda es nulo", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
+
             }
             catch (Exception ex)
             {

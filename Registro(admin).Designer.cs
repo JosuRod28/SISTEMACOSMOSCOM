@@ -94,6 +94,8 @@
             administrarUsuarios = new ToolStripMenuItem();
             cambiarTarifaToolStripMenuItem = new ToolStripMenuItem();
             camniarTemaToolStripMenuItem = new ToolStripMenuItem();
+            cambiarColorToolStripMenuItem = new ToolStripMenuItem();
+            cambiarImagenDeFondoToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             gbCliente.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
@@ -510,7 +512,7 @@
             // 
             cb_Formatos.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             cb_Formatos.FormattingEnabled = true;
-            cb_Formatos.Location = new Point(4, 55);
+            cb_Formatos.Location = new Point(4, 57);
             cb_Formatos.Margin = new Padding(4);
             cb_Formatos.Name = "cb_Formatos";
             cb_Formatos.Size = new Size(278, 36);
@@ -989,10 +991,25 @@
             // 
             // camniarTemaToolStripMenuItem
             // 
+            camniarTemaToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { cambiarColorToolStripMenuItem, cambiarImagenDeFondoToolStripMenuItem });
             camniarTemaToolStripMenuItem.Name = "camniarTemaToolStripMenuItem";
             camniarTemaToolStripMenuItem.Size = new Size(277, 34);
             camniarTemaToolStripMenuItem.Text = "Cambiar Tema";
             camniarTemaToolStripMenuItem.Click += camniarTemaToolStripMenuItem_Click;
+            // 
+            // cambiarColorToolStripMenuItem
+            // 
+            cambiarColorToolStripMenuItem.Name = "cambiarColorToolStripMenuItem";
+            cambiarColorToolStripMenuItem.Size = new Size(323, 34);
+            cambiarColorToolStripMenuItem.Text = "Cambiar color de fondo";
+            cambiarColorToolStripMenuItem.Click += cambiarColorToolStripMenuItem_Click;
+            // 
+            // cambiarImagenDeFondoToolStripMenuItem
+            // 
+            cambiarImagenDeFondoToolStripMenuItem.Name = "cambiarImagenDeFondoToolStripMenuItem";
+            cambiarImagenDeFondoToolStripMenuItem.Size = new Size(323, 34);
+            cambiarImagenDeFondoToolStripMenuItem.Text = "Cambiar imagen de fondo";
+            cambiarImagenDeFondoToolStripMenuItem.Click += cambiarImagenDeFondoToolStripMenuItem_Click;
             // 
             // Registro_admin_
             // 
@@ -1116,5 +1133,7 @@
         private DataGridViewTextBoxColumn Monto;
         private Button button1;
         private ToolStripMenuItem camniarTemaToolStripMenuItem;
+        private ToolStripMenuItem cambiarColorToolStripMenuItem;
+        private ToolStripMenuItem cambiarImagenDeFondoToolStripMenuItem;
     }
 }

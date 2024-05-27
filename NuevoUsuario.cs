@@ -49,7 +49,7 @@ namespace COSMOSCOM
         private void button1_Click(object sender, EventArgs e)
         {
 
-            string rol = cbRoles.SelectedItem?.ToString();
+            string? rol = cbRoles.SelectedItem?.ToString();
             int idRol = 0;
 
 

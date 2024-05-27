@@ -551,22 +551,21 @@ namespace COSMOSCOM
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     string selectedFilePath = openFileDialog.FileName;
+                    Properties.Settings.Default.BackgroundImagePath = selectedFilePath;
+                    Properties.Settings.Default.Save();
 
                     Image backgroundImage = Image.FromFile(selectedFilePath);
                     // Aplicar el fondo al formulario actual
                     SetBackgroundImage(this, backgroundImage);
 
-                    // Aplicar el fondo a otros formularios
-                    
-
                 }
             }
         }
 
-        private void SetBackgroundImage(Registro_user_ registro_user_, Image backgroundImage)
+        private void SetBackgroundImage(Form form, Image backgroundImage)
         {
-            registro_user_.BackgroundImage = backgroundImage;
-            registro_user_.BackgroundImageLayout = ImageLayout.Stretch;
+            form.BackgroundImage = backgroundImage;
+            form.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
         private void dgvFormatos_CellContentClick(object sender, DataGridViewCellEventArgs e)

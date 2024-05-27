@@ -185,6 +185,7 @@
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel2.Size = new Size(865, 123);
             tableLayoutPanel2.TabIndex = 2;
+            tableLayoutPanel2.Paint += tableLayoutPanel2_Paint;
             // 
             // pictureBox2
             // 
