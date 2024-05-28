@@ -45,6 +45,23 @@ namespace COSMOSCOM
                 Image backgroundImage = Image.FromFile(backgroundImagePath);
                 SetBackgroundImage(this, backgroundImage);
             }
+            else
+            {
+                Color backgroundColor = Properties.Settings.Default.BackgroundColor;
+                SetBackgroundColor(this, backgroundColor);
+                RemoveBackgroundImage(this);
+            }
+        }
+
+        private void RemoveBackgroundImage(Registro_user_ registro_user_)
+        {
+            registro_user_.BackgroundImage = null;
+        }
+
+        private void SetBackgroundColor(Registro_user_ registro_user_, Color backgroundColor)
+        {
+            registro_user_.BackColor = backgroundColor;
+            registro_user_.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
         private void txt_Telefono2_KeyPress(object? sender, KeyPressEventArgs e)

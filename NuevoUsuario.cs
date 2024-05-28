@@ -38,6 +38,23 @@ namespace COSMOSCOM
                 Image backgroundImage = Image.FromFile(backgroundImagePath);
                 SetBackgroundImage(this, backgroundImage);
             }
+            else
+            {
+                Color backgroundColor = Properties.Settings.Default.BackgroundColor;
+                SetBackgroundColor(this, backgroundColor);
+                RemoveBackgroundImage(this);
+            }
+        }
+
+        private void RemoveBackgroundImage(NuevoUsuario nuevoUsuario)
+        {
+            nuevoUsuario.BackgroundImage = null;
+        }
+
+        private void SetBackgroundColor(NuevoUsuario nuevoUsuario, Color backgroundColor)
+        {
+            nuevoUsuario.BackColor = backgroundColor;
+            nuevoUsuario.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
         private void SetBackgroundImage(NuevoUsuario nuevoUsuario, Image backgroundImage)

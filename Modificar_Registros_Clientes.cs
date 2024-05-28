@@ -17,6 +17,7 @@ namespace COSMOSCOM
         public Modificar_Registros_Clientes(int idCliente, string nombre, string apellido_p, string apellido_m, string telefono1, string telefono2)
         {
             InitializeComponent();
+            //Mostrar los datos del cliente en los campos de textbox
             this.idCliente = idCliente;
             txt_id_Cliente.Text = idCliente.ToString();
             txt_Nombre.Text = nombre;
@@ -25,6 +26,7 @@ namespace COSMOSCOM
             txt_Telefono1.Text = telefono1;
             txt_Telefono2.Text = telefono2;
 
+            //Lamar el metodo para aplicar el fondo
             ApplyBgImage();
 
         }
@@ -37,6 +39,23 @@ namespace COSMOSCOM
                 Image backgroundImage = Image.FromFile(backgroundImagePath);
                 SetBackgroundImage(this, backgroundImage);
             }
+            else
+            {
+                Color backgroundColor = Properties.Settings.Default.BackgroundColor;
+                SetBackgroundColor(this, backgroundColor);
+                RemoveBackgroundImage(this);
+            }
+        }
+
+        private void RemoveBackgroundImage(Modificar_Registros_Clientes modificar_Registros_Clientes)
+        {
+            modificar_Registros_Clientes.BackgroundImage= null;
+        }
+
+        private void SetBackgroundColor(Modificar_Registros_Clientes modificar_Registros_Clientes, Color backgroundColor)
+        {
+            modificar_Registros_Clientes.BackColor = backgroundColor;
+            modificar_Registros_Clientes.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
         private void SetBackgroundImage(Modificar_Registros_Clientes modificar_Registros_Clientes, Image backgroundImage)
