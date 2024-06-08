@@ -401,10 +401,10 @@
             // txt_Total
             // 
             txt_Total.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txt_Total.Location = new Point(390, 24);
+            txt_Total.Location = new Point(374, 24);
             txt_Total.Margin = new Padding(4);
             txt_Total.Name = "txt_Total";
-            txt_Total.Size = new Size(270, 35);
+            txt_Total.Size = new Size(197, 35);
             txt_Total.TabIndex = 15;
             txt_Total.TextChanged += textBox1_TextChanged;
             // 
@@ -415,7 +415,7 @@
             label13.Location = new Point(260, 28);
             label13.Margin = new Padding(4, 0, 4, 0);
             label13.Name = "label13";
-            label13.Size = new Size(122, 28);
+            label13.Size = new Size(106, 28);
             label13.TabIndex = 6;
             label13.Text = "Total:";
             // 
@@ -436,7 +436,7 @@
             dgv_Formatos.Margin = new Padding(4);
             dgv_Formatos.Name = "dgv_Formatos";
             dgv_Formatos.RowHeadersWidth = 51;
-            dgv_Formatos.Size = new Size(709, 340);
+            dgv_Formatos.Size = new Size(709, 293);
             dgv_Formatos.TabIndex = 3;
             dgv_Formatos.CellContentClick += dataGridView1_CellContentClick;
             // 
@@ -512,7 +512,7 @@
             // 
             cb_Formatos.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             cb_Formatos.FormattingEnabled = true;
-            cb_Formatos.Location = new Point(4, 57);
+            cb_Formatos.Location = new Point(4, 55);
             cb_Formatos.Margin = new Padding(4);
             cb_Formatos.Name = "cb_Formatos";
             cb_Formatos.Size = new Size(278, 36);
@@ -687,9 +687,9 @@
             tableLayoutPanel8.ColumnCount = 5;
             tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 24.4868031F));
             tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 5.27859259F));
-            tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 15.1026392F));
-            tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 32.2580643F));
-            tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 22.8739F));
+            tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 13.209734F));
+            tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 23.7543449F));
+            tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.2560844F));
             tableLayoutPanel8.Controls.Add(label14, 0, 0);
             tableLayoutPanel8.Controls.Add(label15, 1, 0);
             tableLayoutPanel8.Controls.Add(label13, 2, 0);
@@ -717,7 +717,7 @@
             tableLayoutPanel5.Name = "tableLayoutPanel5";
             tableLayoutPanel5.RowCount = 1;
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel5.Size = new Size(863, 348);
+            tableLayoutPanel5.Size = new Size(863, 301);
             tableLayoutPanel5.TabIndex = 19;
             // 
             // tableLayoutPanel6

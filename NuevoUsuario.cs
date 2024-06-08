@@ -87,32 +87,33 @@ namespace COSMOSCOM
                         break;
                 }
             }
+
+
             Usuarios nuevoUsuario = new Usuarios()
             {
                 Usuario = txtNuevoUsuario.Text,
                 Clave = txtNuevoPasswd.Text,
                 id_Rol = idRol,
             };
-            bool respuesta = UsuariosLogica.Instancia.IngresarNuevoUsuario(nuevoUsuario);
-            if (respuesta)
-            {
-                MessageBox.Show("¡Usuario nuevo ingresado correctamente!", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
 
+                bool respuesta = UsuariosLogica.Instancia.IngresarNuevoUsuario(nuevoUsuario);
+                if (respuesta)
+                {
+                    MessageBox.Show("¡Usuario nuevo ingresado correctamente!", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    _administraUsuarios.ActualizarDataGridView();
+                    SeleccionarUsuario();
 
-                _administraUsuarios.ActualizarDataGridView();
 
+                }
+                else
+                {
+                    MessageBox.Show("Algo salió mal intentelo de nuevo", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
 
-            }
-            else
-            {
-                MessageBox.Show("Algo salió mal intentelo de nuevo", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-            SeleccionarUsuario();
+               
+            
         }
-
-
         private void SeleccionarUsuario()
         {
 

@@ -44,7 +44,7 @@ namespace COSMOSCOM
 
         private void SetBackgroundColor(Autenticacion autenticacion, Color backgroundColor)
         {
-            autenticacion.BackColor=backgroundColor;
+            autenticacion.BackColor = backgroundColor;
         }
 
         private void SetBackgroundImage(Autenticacion autenticacion, Image backgroundImage)
@@ -75,11 +75,29 @@ namespace COSMOSCOM
         private void button1_Click(object sender, EventArgs e)
         {
 
+            if (string.IsNullOrWhiteSpace(txtClave.Text) && cbUsuarios.SelectedIndex == -1)
+            {
+                MessageBox.Show("Por favor ingrese un usuario y una contraseña", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                cbUsuarios.Focus();
+
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtClave.Text))
+            {
+                MessageBox.Show("Por favor ingrese un una contraseña", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtClave.Focus();
+
+                return;
+            }
+
+
             Usuarios usuarios = new Usuarios()
             {
                 Usuario = cbUsuarios.Text,
                 Clave = txtClave.Text,
             };
+
 
             if (ValidarUsuario(usuarios))
             {
@@ -106,11 +124,15 @@ namespace COSMOSCOM
             }
             else
             {
-                MessageBox.Show("Usuario o contraseña incorrecta", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Contraseña incorrecta","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
 
 
+
         }
+
+
+
 
         private bool RolAdmin(string usuario)
         {
@@ -148,13 +170,15 @@ namespace COSMOSCOM
             using (SQLiteConnection conn = new SQLiteConnection(conexion))
             {
                 conn.Open();
-                string query = "SELECT COUNT(*) FROM usuarios WHERE usuario = @usuario AND clave = @clave";
+                string query = "SELECT COUNT(*) FROM Usuarios WHERE usuario = @usuario AND clave = @clave";
                 SQLiteCommand cmd = new SQLiteCommand(query, conn);
                 cmd.Parameters.AddWithValue("@usuario", obj.Usuario);
                 cmd.Parameters.AddWithValue("@clave", obj.Clave);
                 int count = Convert.ToInt32(cmd.ExecuteScalar());
                 return count > 0;
             }
+
+
         }
 
 
@@ -201,6 +225,20 @@ namespace COSMOSCOM
         private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Bienvenido bienvenido = new Bienvenido();
+            bienvenido.Show();
+            this.Hide();
+
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            SolicitarTokenForm solicitarTokenForm = new SolicitarTokenForm();
+            solicitarTokenForm.ShowDialog();
         }
     }
 }

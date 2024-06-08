@@ -150,9 +150,10 @@ namespace COSMOSCOM
                     int idUsuario = (int)selectedRow.Cells["id_usuario"].Value;
                     string? usuario =selectedRow.Cells["usuario"].Value.ToString();
                     string? clave = selectedRow.Cells["clave"].Value.ToString();
+                    string? correo = selectedRow.Cells["correo"].Value.ToString();
                     string? id_Rol = selectedRow.Cells["id_Rol"].Value.ToString();
                     
-                    Modificar_Usuarios modificar_Usuarios = new Modificar_Usuarios(idUsuario,usuario,clave,id_Rol);
+                    Modificar_Usuarios modificar_Usuarios = new Modificar_Usuarios(idUsuario,usuario,clave,correo,id_Rol);
 
                     if (modificar_Usuarios.ShowDialog() == DialogResult.OK)
                     {
@@ -161,7 +162,6 @@ namespace COSMOSCOM
                         dGVUsuarios.DataSource = UsuariosLogica.Instancia.ListUsuarios();
 
                     }
-
 
                 }
 
@@ -175,17 +175,12 @@ namespace COSMOSCOM
         private void button4_Click(object sender, EventArgs e)
         {
             NuevoUsuario agregarUsuarioNuevo = new NuevoUsuario(this);
-            
             agregarUsuarioNuevo.ShowDialog();
            
-
-
         }
         public void ActualizarDataGridView()
         {
-
             dGVUsuarios.DataSource = UsuariosLogica.Instancia.ListUsuarios();
-
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)

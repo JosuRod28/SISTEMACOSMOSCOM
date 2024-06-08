@@ -11,16 +11,21 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace COSMOSCOM.Logica
 {
+    //Clase ClientesLógic
     public class DetalleVentaLogica
     {
+        //Variable de tipo string que guarda la conexion a la bd
         private static string conexion = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
+        //Variable de instancia
         private static DetalleVentaLogica _instancia = null;
 
+        // Constructor privado para evitar la creación de instancias externas
         public DetalleVentaLogica()
         {
 
         }
 
+        //Propiedad estatica 
         public static DetalleVentaLogica Instancia
         {
             get
@@ -34,15 +39,17 @@ namespace COSMOSCOM.Logica
 
 
         }
-
+        //Metodo para seleccionar el ID del último cliente registrado
         public int idCliente()
         {
+            //Variable idCliente que inicia en -1;
             int idCliente = -1;
-            string query = "SELECT max(id_Cliente) From Clientes;";
+            //Variable de tipo cadena para realizar la consulta
             using (SQLiteConnection connection = new SQLiteConnection(conexion))
             {
                 try
                 {
+                    string query = "SELECT max(id_Cliente) From Clientes;";
                     connection.Open();
                     SQLiteCommand cmd = new SQLiteCommand(query, connection);
                     cmd.CommandType = System.Data.CommandType.Text;
@@ -64,6 +71,7 @@ namespace COSMOSCOM.Logica
             return idCliente;
         }
 
+        //Metodo para insertar el detalle de venta
         public bool InsertarDetalleVenta(int folioVenta, int idCliente, List<DetalleVenta> detallesVenta)
         {
             try
@@ -103,6 +111,7 @@ namespace COSMOSCOM.Logica
 
         }
 
+        //Metodo para listar los detalles de la venta
         public List<DetalleVenta> ListarDetalleVenta(int folio )
         {
 

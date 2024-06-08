@@ -17,7 +17,7 @@ namespace COSMOSCOM
     {
 
         private int idUsuario;
-        public Modificar_Usuarios(int idUsuario, string usuario, string clave, string id_Rol)
+        public Modificar_Usuarios(int idUsuario, string usuario, string clave,string correo, string id_Rol)
         {
             InitializeComponent();
 
@@ -25,6 +25,7 @@ namespace COSMOSCOM
             txt_id_usuario.Text = idUsuario.ToString();
             txt_Usuario.Text = usuario;
             txt_passwd.Text = clave;
+            txt_correo.Text = correo;
             txt_Rol.Text = id_Rol;
 
             ApplyBgImage();
@@ -40,7 +41,7 @@ namespace COSMOSCOM
             }
             else
             {
-                Color backgroundColor =Properties.Settings.Default.BackgroundColor;
+                Color backgroundColor = Properties.Settings.Default.BackgroundColor;
                 SetBackgroundColor(this, backgroundColor);
                 RemoveBackgroundImage(this);
             }
@@ -103,6 +104,16 @@ namespace COSMOSCOM
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_passwd_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

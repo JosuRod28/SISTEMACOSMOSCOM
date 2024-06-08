@@ -12,5 +12,6 @@ namespace COSMOSCOM.Modelo
         public string? Usuario { get; set; }
         public string? Clave { get; set; }
         public int id_Rol {  get; set; }
+        public string? Correo { get; set; }
     }
 }

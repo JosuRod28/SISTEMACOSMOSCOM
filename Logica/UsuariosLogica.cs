@@ -60,6 +60,7 @@ namespace COSMOSCOM.Logica
                             Usuario = dataReader["usuario"].ToString(),
                             Clave = dataReader["clave"].ToString(),
                             id_Rol = int.Parse(dataReader["id_Rol"].ToString()),
+                            Correo= dataReader["correo"].ToString(),
 
                         });
 
@@ -80,11 +81,12 @@ namespace COSMOSCOM.Logica
             using (SQLiteConnection conn = new SQLiteConnection(conexion))
             {
                 conn.Open();
-                string query = "INSERT INTO Usuarios (usuario,clave,id_Rol) values (@nuevoUsuario,@nuevaClave,@id_rol)";
+                string query = "INSERT INTO Usuarios (usuario,clave,id_Rol,correo) values (@nuevoUsuario,@nuevaClave,@id_rol,@correo)";
                 SQLiteCommand cmd = new SQLiteCommand(query, conn);
                 cmd.Parameters.AddWithValue("@nuevoUsuario", obj.Usuario);
                 cmd.Parameters.AddWithValue("@nuevaClave", obj.Clave);
                 cmd.Parameters.AddWithValue("@id_rol", obj.id_Rol);
+                cmd.Parameters.AddWithValue("@correo", obj.Correo);
                 cmd.CommandType = System.Data.CommandType.Text;
 
                 if (cmd.ExecuteNonQuery() < 1)
