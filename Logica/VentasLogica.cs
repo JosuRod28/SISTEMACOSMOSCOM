@@ -35,9 +35,10 @@ namespace COSMOSCOM.Logica
         public int idCliente()
         {
             int idCliente = 1;
-            string query = "SELECT COALESCE(MAX(id_Cliente) + 1, 1) FROM Clientes;";
+            
             using (SQLiteConnection connection = new SQLiteConnection(conexion))
             {
+                string query = "SELECT COALESCE(MAX(id_Cliente) + 1, 1) FROM Clientes;";
                 try
                 {
                     connection.Open();
@@ -63,15 +64,17 @@ namespace COSMOSCOM.Logica
 
         public bool Guardar(Ventas obj)
         {
+            int idCliente = ObtenerIdCliente();
             bool respuesta = true;
             
             using (SQLiteConnection conn = new SQLiteConnection(conexion))
             {
                 conn.Open();
 
-                    string queryInsert = "INSERT INTO Venta_Total(Folio,id_Cliente,Fecha_de_atencion,Fecha_de_entrega,Total) values (@folio,(SELECT MAX(id_Cliente) FROM Clientes),@fecha_de_atencion,@fecha_de_entrega,@total)";
+                    string queryInsert = "INSERT INTO Venta_Total(Folio,id_Cliente,Fecha_de_atencion,Fecha_de_entrega,Total) values (@folio,@id_cliente,@fecha_de_atencion,@fecha_de_entrega,@total)";
                     SQLiteCommand cmdInsert = new SQLiteCommand(queryInsert, conn);
                     cmdInsert.Parameters.Add(new SQLiteParameter("@folio", obj.Folio));
+                    cmdInsert.Parameters.Add(new SQLiteParameter("@id_cliente", idCliente));
                     cmdInsert.Parameters.Add(new SQLiteParameter("@fecha_de_atencion", obj.Fecha_de_atencion));
                     cmdInsert.Parameters.Add(new SQLiteParameter("@fecha_de_entrega", obj.Fecha_de_entrega));
                     cmdInsert.Parameters.Add(new SQLiteParameter("@total", obj.Total));
@@ -87,6 +90,34 @@ namespace COSMOSCOM.Logica
 
             return respuesta;
 
+        }
+
+        private int ObtenerIdCliente()
+        {
+            using (SQLiteConnection connection = new SQLiteConnection(conexion))
+            {
+                string query = "SELECT (MAX(id_Cliente)) FROM Clientes;";
+                try
+                {
+                    connection.Open();
+                    SQLiteCommand cmd = new SQLiteCommand(query, connection);
+                    cmd.CommandType = System.Data.CommandType.Text;
+
+                    // Ejecutar la consulta y obtener el resultado
+                    object result = cmd.ExecuteScalar();
+
+                    // Verificar si se obtuvo un resultado no nulo
+                    if (result != null)
+                    {
+                        return Convert.ToInt32(result);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al obtener el ID del cliente: " + ex.Message);
+                }
+            }
+            return -1;
         }
 
         public bool BuscarFechasEntrega(string Fecha_entrega)

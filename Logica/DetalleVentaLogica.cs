@@ -37,19 +37,16 @@ namespace COSMOSCOM.Logica
                 return _instancia;
             }
 
-
         }
         //Metodo para seleccionar el ID del último cliente registrado
-        public int idCliente()
+        public int ObteneridCliente()
         {
-            //Variable idCliente que inicia en -1;
-            int idCliente = -1;
-            //Variable de tipo cadena para realizar la consulta
+
             using (SQLiteConnection connection = new SQLiteConnection(conexion))
             {
+                string query = "SELECT (MAX(id_Cliente)) FROM Clientes;";
                 try
                 {
-                    string query = "SELECT max(id_Cliente) From Clientes;";
                     connection.Open();
                     SQLiteCommand cmd = new SQLiteCommand(query, connection);
                     cmd.CommandType = System.Data.CommandType.Text;
@@ -58,9 +55,9 @@ namespace COSMOSCOM.Logica
                     object result = cmd.ExecuteScalar();
 
                     // Verificar si se obtuvo un resultado no nulo
-                    if (result != null && result != DBNull.Value)
+                    if (result != null)
                     {
-                        idCliente = Convert.ToInt32(result);
+                        return Convert.ToInt32(result);
                     }
                 }
                 catch (Exception ex)
@@ -68,12 +65,13 @@ namespace COSMOSCOM.Logica
                     MessageBox.Show("Error al obtener el ID del cliente: " + ex.Message);
                 }
             }
-            return idCliente;
+            return -1;
         }
 
         //Metodo para insertar el detalle de venta
-        public bool InsertarDetalleVenta(int folioVenta, int idCliente, List<DetalleVenta> detallesVenta)
+        public bool InsertarDetalleVenta (int folioVenta, List<DetalleVenta> detallesVenta)
         {
+            int idCliente = ObteneridCliente();
             try
             {
                 using (SQLiteConnection conn = new SQLiteConnection(conexion))
@@ -110,6 +108,7 @@ namespace COSMOSCOM.Logica
             }
 
         }
+
 
         //Metodo para listar los detalles de la venta
         public List<DetalleVenta> ListarDetalleVenta(int folio )

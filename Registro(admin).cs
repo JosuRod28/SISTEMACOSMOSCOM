@@ -176,7 +176,7 @@ namespace COSMOSCOM
                 if (ValidarCampos())
                 {
                     int folioVenta = int.Parse(txt_Folio.Text);
-                    int idCliente = DetalleVentaLogica.Instancia.idCliente();
+
 
                     List<DetalleVenta> detalleVentas = new List<DetalleVenta>();
                     foreach (DataGridViewRow fila in dgv_Formatos.Rows)
@@ -202,7 +202,7 @@ namespace COSMOSCOM
                     bool resVentas = VentasLogica.Instancia.Guardar(objetoVentas);
                     //Verificar si la respuesta fue exitosa mostrando un mensaje de confirmación
 
-                    bool resDetalle = DetalleVentaLogica.Instancia.InsertarDetalleVenta(folioVenta, idCliente, detalleVentas);
+                    bool resDetalle = DetalleVentaLogica.Instancia.InsertarDetalleVenta(folioVenta,detalleVentas);
 
 
                     if (resClientes)
