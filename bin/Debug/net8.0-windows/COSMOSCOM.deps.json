@@ -11,7 +11,8 @@
           "FirebaseAdmin": "2.4.1",
           "SQLitePCLRaw.core": "2.1.8",
           "System.Data.SQLite": "1.0.118",
-          "System.Net.Http": "4.3.4"
+          "System.Net.Http": "4.3.4",
+          "signtool": "10.0.17763.132"
         },
         "runtime": {
           "COSMOSCOM.dll": {}
@@ -217,6 +218,7 @@
           }
         }
       },
+      "signtool/10.0.17763.132": {},
       "SQLitePCLRaw.core/2.1.8": {
         "dependencies": {
           "System.Memory": "4.5.3"
@@ -928,6 +930,13 @@
       "sha512": "sha512-YhEdSQUsTx+C8m8Bw7ar5/VesXvCFMItyZF7G1AUY+OM0VPZUOeAVpJ4Wl6fydBGUYZxojTDR3I6Bj/+BPkJNA==",
       "path": "runtime.win-x86.runtime.native.system.data.sqlclient.sni/4.4.0",
       "hashPath": "runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512"
+    },
+    "signtool/10.0.17763.132": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Xwcs7mYfsxz3ACFPfVjmKurl4wdhGwK8nvwxPTcbSAI70vypPOpDzpwDYUm8OsYRbMmXUoZis/hUOSpi03VWiw==",
+      "path": "signtool/10.0.17763.132",
+      "hashPath": "signtool.10.0.17763.132.nupkg.sha512"
     },
     "SQLitePCLRaw.core/2.1.8": {
       "type": "package",

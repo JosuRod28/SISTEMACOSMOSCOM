@@ -21,6 +21,8 @@ namespace COSMOSCOM
         {
             InitializeComponent();
             ApplyBgImage();
+            txt_claveAdmin.UseSystemPasswordChar = true;
+            txt_claveAdmin.PasswordChar = '*';
         }
 
         private void ApplyBgImage()
@@ -57,47 +59,69 @@ namespace COSMOSCOM
 
         private void btn_aceptar_Click(object sender, EventArgs e)
         {
-            Registro_admin_ registroAdmin = new Registro_admin_();
-            Bienvenido campo = Application.OpenForms.OfType<Bienvenido>().FirstOrDefault();
+            
+            Autenticacion login = new Autenticacion();
+            Bienvenido? campo = Application.OpenForms.OfType<Bienvenido>().FirstOrDefault();
 
-            int idRol = 1;
+
+            int idRolUser = 2;
+            Usuarios nuevoUsuario = new Usuarios()
+            {
+                Usuario = campo?.TextBox_Usuario.Text,
+                Clave = campo?.Textbox_Clave.Text,
+                Correo=campo?.Textbox_Correo.Text,
+                id_Rol = idRolUser,
+            };
+            int idRolAdmin = 1;
             Usuarios admin = new Usuarios()
             {
                 Clave = txt_claveAdmin.Text,
-                id_Rol = idRol,
+                id_Rol=idRolAdmin
             };
-
-            Usuarios nuevoUsuario = new Usuarios()
+            bool UserExist = VerificarUsuarioExistente(nuevoUsuario);
+           
+            if (ValidarAdmin(admin))
             {
-                Usuario = campo.TextBox_Usuario.Text,
-                Clave = campo.Textbox_Clave.Text,
-                id_Rol = idRol,
-            };
-
-            if (VerificarClaveAdmin(admin))
-            {
-                if (!VerificarUsuarioExistente(nuevoUsuario))
+                if (UserExist)
                 {
-
-                    bool respuesta = UsuariosLogica.Instancia.IngresarNuevoUsuario(nuevoUsuario);
-
-                    if (respuesta)
-                    {
-                      
-                        registroAdmin.Show();
-                        this.Close();
-                        MessageBox.Show("¡Usuario creado correctamente!", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        campo.Hide();
-                        SeleccionarUsuario();
-                    }
-
+                    MessageBox.Show("Ya existe un usuario con los datos ingresados, por favor ingrese otro usuario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
                 else
-                {
-                    MessageBox.Show("Usuario ya existente, por favor ingrese uno nuevo", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    campo.TextBox_Usuario.Focus();
+                { 
+                    bool resp = UsuariosLogica.Instancia.InsertarNuevoUsuario(nuevoUsuario);
+                    if (resp)
+                    {
+                        MessageBox.Show("Usuario creado correctamente,inicia sesión", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        SeleccionarUsuario();
+                        this.Close();
+                        login.Show();
+                        campo?.Hide();
+                       
+                    }
                 }
+            }
+            else
+            {
+                MessageBox.Show("Contraseña incorrecta vuelva a intentarlo", "Error", MessageBoxButtons.OK,MessageBoxIcon.Error);
+                return;
+            }
 
+
+
+        }
+
+        private bool ValidarAdmin(Usuarios admin)
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(conexion))
+            {
+                conn.Open();
+                string query = "SELECT COUNT(*) FROM Usuarios WHERE clave = @clave AND id_Rol=@idRol";
+                SQLiteCommand cmd = new SQLiteCommand(query, conn);
+                cmd.Parameters.AddWithValue("@clave", admin.Clave);
+                cmd.Parameters.AddWithValue("@idRol",admin.id_Rol);
+                int count = Convert.ToInt32(cmd.ExecuteScalar());
+                return count > 0;
             }
         }
 
@@ -139,28 +163,16 @@ namespace COSMOSCOM
             using (SQLiteConnection conn = new SQLiteConnection(conexion))
             {
                 conn.Open();
-                string query = "SELECT COUNT(*) FROM Usuarios where usuario =@usuario AND clave =@clave";
+                string query = "SELECT COUNT(*) FROM Usuarios where usuario =@usuario AND clave =@clave AND correo=@correo";
                 SQLiteCommand cmd = new SQLiteCommand(query, conn);
                 cmd.Parameters.AddWithValue("@usuario", nuevoUsuario.Usuario);
                 cmd.Parameters.AddWithValue("@clave", nuevoUsuario.Clave);
+                cmd.Parameters.AddWithValue("@correo", nuevoUsuario.Correo);
                 int count = Convert.ToInt32(cmd.ExecuteScalar());
                 return count > 0;
             }
         }
 
-        private bool VerificarClaveAdmin(Usuarios admin)
-        {
-            using (SQLiteConnection conn = new SQLiteConnection(conexion))
-            {
-                conn.Open();
-                string query = "SELECT COUNT(*) FROM usuarios WHERE  clave = @clave and id_Rol=@id_rol";
-                SQLiteCommand cmd = new SQLiteCommand(query, conn);
-                cmd.Parameters.AddWithValue("@clave", admin.Clave);
-                cmd.Parameters.AddWithValue("@id_rol", admin.id_Rol);
-                int count = Convert.ToInt32(cmd.ExecuteScalar());
-                return count > 0;
-            }
-        }
 
 
         private void Clave_Administrador_Load(object sender, EventArgs e)

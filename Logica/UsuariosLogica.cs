@@ -74,19 +74,20 @@ namespace COSMOSCOM.Logica
 
         }
 
-        public bool IngresarNuevoUsuario(Usuarios obj)
+        public bool IngresarNuevoAdmin(Usuarios admin)
         {
             bool respuesta = true;
 
             using (SQLiteConnection conn = new SQLiteConnection(conexion))
             {
+  
                 conn.Open();
                 string query = "INSERT INTO Usuarios (usuario,clave,id_Rol,correo) values (@nuevoUsuario,@nuevaClave,@id_rol,@correo)";
                 SQLiteCommand cmd = new SQLiteCommand(query, conn);
-                cmd.Parameters.AddWithValue("@nuevoUsuario", obj.Usuario);
-                cmd.Parameters.AddWithValue("@nuevaClave", obj.Clave);
-                cmd.Parameters.AddWithValue("@id_rol", obj.id_Rol);
-                cmd.Parameters.AddWithValue("@correo", obj.Correo);
+                cmd.Parameters.AddWithValue("@nuevoUsuario", admin.Usuario);
+                cmd.Parameters.AddWithValue("@nuevaClave", admin.Clave);
+                cmd.Parameters.AddWithValue("@id_rol", admin.id_Rol);
+                cmd.Parameters.AddWithValue("@correo", admin.Correo);
                 cmd.CommandType = System.Data.CommandType.Text;
 
                 if (cmd.ExecuteNonQuery() < 1)
@@ -102,8 +103,18 @@ namespace COSMOSCOM.Logica
 
         }
 
-
-
+        public bool VerificarAdminExistente(Usuarios admin)
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(conexion))
+            {
+                conn.Open();
+                string query = "SELECT COUNT(*) FROM Usuarios where id_Rol = @id_rol";
+                SQLiteCommand cmd = new SQLiteCommand(query, conn);
+                cmd.Parameters.AddWithValue("@id_rol", admin.id_Rol);
+                int count = Convert.ToInt32(cmd.ExecuteScalar());
+                return count > 0;
+            }
+        }
 
         public bool Eliminar(int idUsuario)
         {
@@ -111,6 +122,7 @@ namespace COSMOSCOM.Logica
             bool respuesta = false;
             using (SQLiteConnection conn = new SQLiteConnection(conexion))
             {
+
                 conn.Open();
                 string query = "DELETE FROM Usuarios WHERE id_usuario = @id_usuario";
                 SQLiteCommand cmd = new SQLiteCommand(query, conn);
@@ -149,6 +161,34 @@ namespace COSMOSCOM.Logica
                 return false;
             }
 
+        }
+
+        public bool InsertarNuevoUsuario(Usuarios user)
+        {
+            bool respuesta = true;
+
+            using (SQLiteConnection conn = new SQLiteConnection(conexion))
+            {
+
+                conn.Open();
+                string query = "INSERT INTO Usuarios (usuario,clave,id_Rol,correo) values (@nuevoUsuario,@nuevaClave,@id_rol,@correo)";
+                SQLiteCommand cmd = new SQLiteCommand(query, conn);
+                cmd.Parameters.AddWithValue("@nuevoUsuario", user.Usuario);
+                cmd.Parameters.AddWithValue("@nuevaClave", user.Clave);
+                cmd.Parameters.AddWithValue("@id_rol", user.id_Rol);
+                cmd.Parameters.AddWithValue("@correo", user.Correo);
+                cmd.CommandType = System.Data.CommandType.Text;
+
+                if (cmd.ExecuteNonQuery() < 1)
+                {
+
+                    respuesta = false;
+
+                }
+
+            }
+
+            return respuesta;
         }
     }
 }

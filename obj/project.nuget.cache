@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "5riTqyqKeeNK/t2QtsIr7nnKBEwi/GT7+KQ54sWO/lAPxnfuhx/41JhbZiRwF3m+IgbCeNCwCwvR4o8UVcEtNA==",
+  "dgSpecHash": "dodFI7coqf/fOs3S8j3OH3x5eCl/r6eJI9YrF4rH6xMi0G9iCQn5TYsuFwBzMZKCoiSWj0WACrHW6Z+kUp3b0Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\Josue\\source\\repos\\COSMOSCOM\\COSMOSCOM\\COSMOSCOM.csproj",
   "expectedPackageFiles": [
@@ -37,6 +37,7 @@
     "C:\\Users\\Josue\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\Josue\\.nuget\\packages\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\Josue\\.nuget\\packages\\runtime.win-x86.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\Josue\\.nuget\\packages\\signtool\\10.0.17763.132\\signtool.10.0.17763.132.nupkg.sha512",
     "C:\\Users\\Josue\\.nuget\\packages\\sqlitepclraw.core\\2.1.8\\sqlitepclraw.core.2.1.8.nupkg.sha512",
     "C:\\Users\\Josue\\.nuget\\packages\\stub.system.data.sqlite.core.netstandard\\1.0.118\\stub.system.data.sqlite.core.netstandard.1.0.118.nupkg.sha512",
     "C:\\Users\\Josue\\.nuget\\packages\\system.codedom\\4.7.0\\system.codedom.4.7.0.nupkg.sha512",

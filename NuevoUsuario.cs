@@ -97,7 +97,7 @@ namespace COSMOSCOM
             };
 
 
-                bool respuesta = UsuariosLogica.Instancia.IngresarNuevoUsuario(nuevoUsuario);
+                bool respuesta = UsuariosLogica.Instancia.InsertarNuevoUsuario(nuevoUsuario);
                 if (respuesta)
                 {
                     MessageBox.Show("¡Usuario nuevo ingresado correctamente!", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);

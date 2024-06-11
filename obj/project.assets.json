@@ -428,6 +428,9 @@
           }
         }
       },
+      "signtool/10.0.17763.132": {
+        "type": "package"
+      },
       "SQLitePCLRaw.core/2.1.8": {
         "type": "package",
         "dependencies": {
@@ -2036,6 +2039,29 @@
         "runtimes/win-x86/native/sni.dll",
         "useSharedDesignerContext.txt",
         "version.txt"
+      ]
+    },
+    "signtool/10.0.17763.132": {
+      "sha512": "Xwcs7mYfsxz3ACFPfVjmKurl4wdhGwK8nvwxPTcbSAI70vypPOpDzpwDYUm8OsYRbMmXUoZis/hUOSpi03VWiw==",
+      "type": "package",
+      "path": "signtool/10.0.17763.132",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "signtool.10.0.17763.132.nupkg.sha512",
+        "signtool.nuspec",
+        "tools/Microsoft.Windows.Build.Appx.AppxPackaging.dll.manifest",
+        "tools/Microsoft.Windows.Build.Appx.AppxSip.dll.manifest",
+        "tools/Microsoft.Windows.Build.Appx.OpcServices.dll.manifest",
+        "tools/Microsoft.Windows.Build.Signing.mssign32.dll.manifest",
+        "tools/Microsoft.Windows.Build.Signing.wintrust.dll.manifest",
+        "tools/makecat.exe",
+        "tools/makecat.exe.manifest",
+        "tools/mssign32.dll",
+        "tools/signtool.exe",
+        "tools/signtool.exe.manifest",
+        "tools/wintrust.dll"
       ]
     },
     "SQLitePCLRaw.core/2.1.8": {
@@ -4455,7 +4481,8 @@
       "FirebaseAdmin >= 2.4.1",
       "SQLitePCLRaw.core >= 2.1.8",
       "System.Data.SQLite >= 1.0.118",
-      "System.Net.Http >= 4.3.4"
+      "System.Net.Http >= 4.3.4",
+      "signtool >= 10.0.17763.132"
     ]
   },
   "packageFolders": {
@@ -4517,6 +4544,10 @@
           "System.Net.Http": {
             "target": "Package",
             "version": "[4.3.4, )"
+          },
+          "signtool": {
+            "target": "Package",
+            "version": "[10.0.17763.132, )"
           }
         },
         "imports": [

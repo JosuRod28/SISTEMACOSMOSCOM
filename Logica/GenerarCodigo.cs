@@ -93,10 +93,10 @@ namespace COSMOSCOM.Logica
                     using (SmtpClient client = new SmtpClient("smtp.gmail.com"))
                     {
                         client.Port = 587;
-                        client.Credentials = new NetworkCredential("josuel.rfregoso@gmail.com", "tucurxumdsnavfnf");
+                        client.Credentials = new NetworkCredential("elenaherrera632@gmail.com", "kchklqboxcjadukc");
                         client.EnableSsl = true;
                         MailMessage mailMessage = new MailMessage();
-                        mailMessage.From = new MailAddress("josuel.rfregoso@gmail.com");
+                        mailMessage.From = new MailAddress("elenaherrera632@gmail.com");
                         mailMessage.To.Add(correo);
                         mailMessage.Subject = subject;
                         mailMessage.Body = body;

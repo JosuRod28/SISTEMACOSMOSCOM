@@ -72,6 +72,11 @@ namespace COSMOSCOM
             get { return txt_clave; }
         }
 
+        public TextBox Textbox_Correo
+        {
+            get { return txt_email; }
+        }
+
         private void btn_Crear_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txt_clave.Text) && string.IsNullOrWhiteSpace(txt_usuario.Text))
@@ -101,7 +106,7 @@ namespace COSMOSCOM
 
 
             int idRol = 1;
-            Usuarios nuevoUsuario = new Usuarios()
+            Usuarios admin = new Usuarios()
             {
                 Usuario = txt_usuario.Text,
                 Clave = txt_clave.Text,
@@ -109,22 +114,21 @@ namespace COSMOSCOM
                 id_Rol = idRol,
             };
 
-            if (VerificarAdminExistente(nuevoUsuario))
+            if (UsuariosLogica.Instancia.VerificarAdminExistente(admin))
             {
                 Clave_Administrador clave_Administrador = new Clave_Administrador();
                 clave_Administrador.ShowDialog();
-
             }
             else
             {
-                bool respuesta = UsuariosLogica.Instancia.IngresarNuevoUsuario(nuevoUsuario);
+                bool respuesta = UsuariosLogica.Instancia.IngresarNuevoAdmin(admin);
 
                 if (respuesta)
                 {
-                    Registro_admin_ registroAdmin = new Registro_admin_();
-                    registroAdmin.Show();
+                    Autenticacion login = new Autenticacion();
+                    login.Show();
                     this.Hide();
-                    MessageBox.Show("¡Usuario creado correctamente!", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("¡Usuario creado correctamente!,inicie sesión", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     SeleccionarUsuario();
                 }
             }
@@ -164,18 +168,6 @@ namespace COSMOSCOM
             }
         }
 
-        private bool VerificarAdminExistente(Usuarios admin)
-        {
-            using (SQLiteConnection conn = new SQLiteConnection(conexion))
-            {
-                conn.Open();
-                string query = "SELECT COUNT(*) FROM Usuarios where id_Rol = @id_rol";
-                SQLiteCommand cmd = new SQLiteCommand(query, conn);
-                cmd.Parameters.AddWithValue("@id_rol", admin.id_Rol);
-                int count = Convert.ToInt32(cmd.ExecuteScalar());
-                return count > 0;
-            }
-        }
 
 
         private void btn_cancelar_Click(object sender, EventArgs e)
