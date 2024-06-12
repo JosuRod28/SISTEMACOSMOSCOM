@@ -57,7 +57,7 @@
             // 
             // tableLayoutPanel1
             // 
-            tableLayoutPanel1.BackColor = Color.Transparent;
+            tableLayoutPanel1.BackColor = Color.Moccasin;
             tableLayoutPanel1.ColumnCount = 1;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel1.Controls.Add(tableLayoutPanel2, 0, 0);
@@ -73,7 +73,7 @@
             // 
             // tableLayoutPanel2
             // 
-            tableLayoutPanel2.BackColor = Color.Transparent;
+            tableLayoutPanel2.BackColor = Color.Moccasin;
             tableLayoutPanel2.ColumnCount = 2;
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 13.72796F));
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 86.27204F));
@@ -88,7 +88,7 @@
             // 
             // tableLayoutPanel3
             // 
-            tableLayoutPanel3.BackColor = Color.Transparent;
+            tableLayoutPanel3.BackColor = Color.BlanchedAlmond;
             tableLayoutPanel3.ColumnCount = 1;
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel3.Controls.Add(tableLayoutPanel5, 0, 2);
@@ -301,6 +301,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.Moccasin;
             ClientSize = new Size(800, 603);
             Controls.Add(tableLayoutPanel1);
             MaximumSize = new Size(822, 659);

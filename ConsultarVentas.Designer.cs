@@ -77,7 +77,7 @@
             // 
             // groupBox1
             // 
-            groupBox1.BackColor = Color.Transparent;
+            groupBox1.BackColor = Color.BlanchedAlmond;
             groupBox1.Controls.Add(button5);
             groupBox1.Controls.Add(tableLayoutPanel5);
             groupBox1.Controls.Add(btn_Regresar);
@@ -236,7 +236,7 @@
             // tableLayoutPanel1
             // 
             tableLayoutPanel1.AutoSize = true;
-            tableLayoutPanel1.BackColor = Color.Transparent;
+            tableLayoutPanel1.BackColor = Color.BlanchedAlmond;
             tableLayoutPanel1.ColumnCount = 3;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 626F));

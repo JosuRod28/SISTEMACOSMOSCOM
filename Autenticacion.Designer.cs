@@ -50,7 +50,7 @@
             // 
             pictureBox1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             pictureBox1.Image = Properties.Resources.usuario1;
-            pictureBox1.Location = new Point(325, 22);
+            pictureBox1.Location = new Point(325, 21);
             pictureBox1.Margin = new Padding(4);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(229, 204);
@@ -60,7 +60,7 @@
             // 
             // tableLayoutPanel1
             // 
-            tableLayoutPanel1.BackColor = Color.Transparent;
+            tableLayoutPanel1.BackColor = Color.BlanchedAlmond;
             tableLayoutPanel1.ColumnCount = 3;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 35.62708F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 26.3858089F));
@@ -75,7 +75,7 @@
             tableLayoutPanel1.Controls.Add(btnSalir, 2, 7);
             tableLayoutPanel1.Controls.Add(linkLabel2, 1, 7);
             tableLayoutPanel1.Dock = DockStyle.Bottom;
-            tableLayoutPanel1.Location = new Point(0, 138);
+            tableLayoutPanel1.Location = new Point(0, 142);
             tableLayoutPanel1.Margin = new Padding(4);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 8;
@@ -87,7 +87,7 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 12.1351767F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 9.831029F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 12.9032259F));
-            tableLayoutPanel1.Size = new Size(902, 651);
+            tableLayoutPanel1.Size = new Size(902, 647);
             tableLayoutPanel1.TabIndex = 1;
             // 
             // label1
@@ -96,7 +96,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(325, 248);
+            label1.Location = new Point(325, 246);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
             label1.Size = new Size(229, 30);
@@ -111,7 +111,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(325, 337);
+            label2.Location = new Point(325, 334);
             label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
             label2.Size = new Size(229, 30);
@@ -122,7 +122,7 @@
             // txtClave
             // 
             txtClave.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            txtClave.Location = new Point(325, 385);
+            txtClave.Location = new Point(325, 382);
             txtClave.Margin = new Padding(4);
             txtClave.Name = "txtClave";
             txtClave.Size = new Size(229, 31);
@@ -135,7 +135,7 @@
             cbUsuarios.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             cbUsuarios.ForeColor = SystemColors.Desktop;
             cbUsuarios.FormattingEnabled = true;
-            cbUsuarios.Location = new Point(325, 294);
+            cbUsuarios.Location = new Point(325, 291);
             cbUsuarios.Margin = new Padding(4);
             cbUsuarios.Name = "cbUsuarios";
             cbUsuarios.Size = new Size(229, 33);
@@ -150,7 +150,7 @@
             btnLogin.FlatStyle = FlatStyle.Flat;
             btnLogin.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnLogin.ForeColor = Color.Orange;
-            btnLogin.Location = new Point(325, 440);
+            btnLogin.Location = new Point(325, 437);
             btnLogin.Margin = new Padding(4);
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(229, 48);
@@ -166,7 +166,7 @@
             linkLabel1.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
             linkLabel1.ForeColor = Color.DarkOrange;
             linkLabel1.LinkColor = Color.White;
-            linkLabel1.Location = new Point(324, 506);
+            linkLabel1.Location = new Point(324, 503);
             linkLabel1.Name = "linkLabel1";
             linkLabel1.Size = new Size(231, 56);
             linkLabel1.TabIndex = 8;
@@ -182,7 +182,7 @@
             btnSalir.FlatStyle = FlatStyle.Flat;
             btnSalir.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSalir.ForeColor = Color.Orange;
-            btnSalir.Location = new Point(671, 584);
+            btnSalir.Location = new Point(671, 580);
             btnSalir.Margin = new Padding(4);
             btnSalir.Name = "btnSalir";
             btnSalir.Size = new Size(118, 48);
@@ -197,7 +197,7 @@
             linkLabel2.AutoSize = true;
             linkLabel2.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
             linkLabel2.LinkColor = Color.Black;
-            linkLabel2.Location = new Point(324, 578);
+            linkLabel2.Location = new Point(324, 574);
             linkLabel2.Name = "linkLabel2";
             linkLabel2.Size = new Size(231, 60);
             linkLabel2.TabIndex = 9;
@@ -208,7 +208,7 @@
             // 
             // tableLayoutPanel2
             // 
-            tableLayoutPanel2.BackColor = Color.Transparent;
+            tableLayoutPanel2.BackColor = Color.Moccasin;
             tableLayoutPanel2.ColumnCount = 1;
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel2.Controls.Add(pictureBox2, 0, 0);
@@ -225,7 +225,7 @@
             // pictureBox2
             // 
             pictureBox2.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            pictureBox2.BackColor = Color.Transparent;
+            pictureBox2.BackColor = Color.BlanchedAlmond;
             pictureBox2.Image = Properties.Resources.Logo;
             pictureBox2.Location = new Point(4, 4);
             pictureBox2.Margin = new Padding(4);
@@ -239,7 +239,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Moccasin;
+            BackColor = Color.BlanchedAlmond;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(902, 789);
             Controls.Add(tableLayoutPanel2);

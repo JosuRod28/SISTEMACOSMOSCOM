@@ -153,7 +153,7 @@
             // 
             gbCliente.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             gbCliente.AutoSize = true;
-            gbCliente.BackColor = Color.Transparent;
+            gbCliente.BackColor = Color.BlanchedAlmond;
             gbCliente.Controls.Add(tableLayoutPanel2);
             gbCliente.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             gbCliente.ForeColor = Color.Orange;
@@ -512,7 +512,7 @@
             // 
             cb_Formatos.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             cb_Formatos.FormattingEnabled = true;
-            cb_Formatos.Location = new Point(4, 55);
+            cb_Formatos.Location = new Point(4, 57);
             cb_Formatos.Margin = new Padding(4);
             cb_Formatos.Name = "cb_Formatos";
             cb_Formatos.Size = new Size(278, 36);
@@ -665,7 +665,7 @@
             // 
             gbFormato.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             gbFormato.AutoSize = true;
-            gbFormato.BackColor = Color.Transparent;
+            gbFormato.BackColor = Color.BlanchedAlmond;
             gbFormato.Controls.Add(tableLayoutPanel8);
             gbFormato.Controls.Add(tableLayoutPanel5);
             gbFormato.Controls.Add(tableLayoutPanel4);
@@ -804,7 +804,7 @@
             // tableLayoutPanel7
             // 
             tableLayoutPanel7.AutoSize = true;
-            tableLayoutPanel7.BackColor = Color.Transparent;
+            tableLayoutPanel7.BackColor = Color.BlanchedAlmond;
             tableLayoutPanel7.BackgroundImageLayout = ImageLayout.None;
             tableLayoutPanel7.ColumnCount = 4;
             tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 29.08705F));
@@ -844,7 +844,7 @@
             // tableLayoutPanel1
             // 
             tableLayoutPanel1.AutoSize = true;
-            tableLayoutPanel1.BackColor = Color.Transparent;
+            tableLayoutPanel1.BackColor = Color.BlanchedAlmond;
             tableLayoutPanel1.ColumnCount = 2;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 36.82771F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 63.17229F));
@@ -1015,8 +1015,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.Info;
-            BackgroundImage = Properties.Resources.layout2;
+            BackColor = Color.Moccasin;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1391, 1018);
             Controls.Add(tableLayoutPanel1);

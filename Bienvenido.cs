@@ -125,48 +125,15 @@ namespace COSMOSCOM
 
                 if (respuesta)
                 {
-                    Autenticacion login = new Autenticacion();
-                    login.Show();
-                    this.Hide();
-                    MessageBox.Show("¡Usuario creado correctamente!,inicie sesión", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    SeleccionarUsuario();
+                    MessageBox.Show("¡Usuario creado correctamente!,inicie sesión", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txt_usuario.Text = "";
+                    txt_email.Text = "";
+                    txt_clave.Text = "";
                 }
             }
 
         }
 
-        private void SeleccionarUsuario()
-        {
-            Autenticacion nuevoitem = Application.OpenForms.OfType<Autenticacion>().FirstOrDefault();
-            if (nuevoitem != null) // Verificar si nuevoitem no es nulo)
-            {
-                using (SQLiteConnection connection = new SQLiteConnection(conexion))
-                {
-                    // Consulta SQL para obtener los nombres de la tabla Usuarios
-                    string query = "SELECT usuario FROM Usuarios";
-                    // Crear un comando SQL con la consulta y la conexión
-                    SQLiteCommand command = new SQLiteCommand(query, connection);
-                    // Abrir la conexión
-                    connection.Open();
-                    // Ejecutar la consulta y obtener los resultados
-                    SQLiteDataReader reader = command.ExecuteReader();
-                    // Recorrer los resultados y agregar cada nombre al ComboBox
-                    while (reader.Read())
-                    {
-                        // Verificar si nuevoitem.ComboBoxAutenticaion no es nulo antes de intentar acceder a él
-                        if (nuevoitem.ComboBoxAutenticaion != null)
-                        {
-                            // Verificar si el ítem ya está en el ComboBox antes de agregarlo
-                            if (!nuevoitem.ComboBoxAutenticaion.Items.Contains(reader["usuario"].ToString()))
-                            {
-                                nuevoitem.ComboBoxAutenticaion.Items.Add(reader["usuario"].ToString());
-                            }
-                        }
-                    }
-                }
-
-            }
-        }
 
 
 

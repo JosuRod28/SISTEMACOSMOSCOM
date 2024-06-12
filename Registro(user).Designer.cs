@@ -124,7 +124,7 @@
             // 
             // tableLayoutPanel2
             // 
-            tableLayoutPanel2.BackColor = Color.Transparent;
+            tableLayoutPanel2.BackColor = Color.BlanchedAlmond;
             tableLayoutPanel2.BackgroundImageLayout = ImageLayout.None;
             tableLayoutPanel2.ColumnCount = 2;
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 37.3673019F));
@@ -953,7 +953,7 @@
             // 
             // tableLayoutPanel1
             // 
-            tableLayoutPanel1.BackColor = Color.Transparent;
+            tableLayoutPanel1.BackColor = Color.BlanchedAlmond;
             tableLayoutPanel1.BackgroundImageLayout = ImageLayout.None;
             tableLayoutPanel1.ColumnCount = 4;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 28.3085632F));
@@ -976,8 +976,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.Info;
-            BackgroundImage = Properties.Resources.layout2;
+            BackColor = Color.Moccasin;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1413, 1050);
             Controls.Add(tableLayoutPanel2);

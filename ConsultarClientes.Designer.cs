@@ -231,7 +231,7 @@
             // 
             tableLayoutPanel1.Anchor = AnchorStyles.Top;
             tableLayoutPanel1.AutoSize = true;
-            tableLayoutPanel1.BackColor = Color.Transparent;
+            tableLayoutPanel1.BackColor = Color.BlanchedAlmond;
             tableLayoutPanel1.ColumnCount = 3;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 576F));
@@ -261,7 +261,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Moccasin;
+            BackColor = Color.BlanchedAlmond;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(948, 805);
             Controls.Add(tableLayoutPanel1);

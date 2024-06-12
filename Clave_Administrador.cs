@@ -60,16 +60,15 @@ namespace COSMOSCOM
         private void btn_aceptar_Click(object sender, EventArgs e)
         {
             
-            Autenticacion login = new Autenticacion();
             Bienvenido? campo = Application.OpenForms.OfType<Bienvenido>().FirstOrDefault();
-
+            Bienvenido ventana = new Bienvenido();
 
             int idRolUser = 2;
             Usuarios nuevoUsuario = new Usuarios()
             {
-                Usuario = campo?.TextBox_Usuario.Text,
-                Clave = campo?.Textbox_Clave.Text,
-                Correo=campo?.Textbox_Correo.Text,
+                Usuario = campo.TextBox_Usuario.Text,
+                Clave = campo.Textbox_Clave.Text,
+                Correo=campo.Textbox_Correo.Text,
                 id_Rol = idRolUser,
             };
             int idRolAdmin = 1;
@@ -93,10 +92,11 @@ namespace COSMOSCOM
                     if (resp)
                     {
                         MessageBox.Show("Usuario creado correctamente,inicia sesión", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        SeleccionarUsuario();
                         this.Close();
-                        login.Show();
-                        campo?.Hide();
+                        campo.Textbox_Clave.Text = "";
+                        campo.Textbox_Correo.Text = "";
+                        campo.TextBox_Usuario.Text = "";  
+
                        
                     }
                 }
@@ -122,39 +122,6 @@ namespace COSMOSCOM
                 cmd.Parameters.AddWithValue("@idRol",admin.id_Rol);
                 int count = Convert.ToInt32(cmd.ExecuteScalar());
                 return count > 0;
-            }
-        }
-
-        private void SeleccionarUsuario()
-        {
-            Autenticacion nuevoitem = Application.OpenForms.OfType<Autenticacion>().FirstOrDefault();
-            if (nuevoitem != null) // Verificar si nuevoitem no es nulo)
-            {
-                using (SQLiteConnection connection = new SQLiteConnection(conexion))
-                {
-                    // Consulta SQL para obtener los nombres de la tabla Usuarios
-                    string query = "SELECT usuario FROM Usuarios";
-                    // Crear un comando SQL con la consulta y la conexión
-                    SQLiteCommand command = new SQLiteCommand(query, connection);
-                    // Abrir la conexión
-                    connection.Open();
-                    // Ejecutar la consulta y obtener los resultados
-                    SQLiteDataReader reader = command.ExecuteReader();
-                    // Recorrer los resultados y agregar cada nombre al ComboBox
-                    while (reader.Read())
-                    {
-                        // Verificar si nuevoitem.ComboBoxAutenticaion no es nulo antes de intentar acceder a él
-                        if (nuevoitem.ComboBoxAutenticaion != null)
-                        {
-                            // Verificar si el ítem ya está en el ComboBox antes de agregarlo
-                            if (!nuevoitem.ComboBoxAutenticaion.Items.Contains(reader["usuario"].ToString()))
-                            {
-                                nuevoitem.ComboBoxAutenticaion.Items.Add(reader["usuario"].ToString());
-                            }
-                        }
-                    }
-                }
-
             }
         }
 

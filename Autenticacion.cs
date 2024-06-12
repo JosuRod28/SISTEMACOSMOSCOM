@@ -127,8 +127,6 @@ namespace COSMOSCOM
                 MessageBox.Show("Contraseña incorrecta","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
 
-
-
         }
 
 
