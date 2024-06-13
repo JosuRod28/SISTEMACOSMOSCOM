@@ -18,7 +18,7 @@ namespace COSMOSCOM
         private string folioActual = "";
         private string montoActual = CambiarTarifa.PrecioFormato.ToString();
         private bool seAgregoFila;
-
+        ConexionBD conexionBD = new ConexionBD();
 
         public Registro_user_()
         {
@@ -152,14 +152,14 @@ namespace COSMOSCOM
         {
             MessageBox.Show("No tienes permisos de administrador para realizar esta acción", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
+        private Autenticacion loginForm;
         private void btn_Salir_Click(object sender, EventArgs e)
         {
             //Mensaje de confirmación para salir del sistema
             DialogResult confirma = MessageBox.Show("¿Estas Seguro de salir del sistema?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (confirma == DialogResult.Yes)
             {
-                this.Hide();
+
                 folioActual = txt_Folio.Text;
                 // Actualiza el TextBox con el último valor ingresado
                 txt_Folio.Text = folioActual;
@@ -167,95 +167,141 @@ namespace COSMOSCOM
 
                 Properties.Settings.Default.FolioActual = folioActual;
                 Properties.Settings.Default.Save();
-                Autenticacion form = new Autenticacion();
-                form.Show();
+                loginForm= new Autenticacion();
+                loginForm.Show();
+                this.Hide();
+
             }
         }
 
         private void btn_Guardar_Click(object sender, EventArgs e)
         {
-            //Creacion del objeto Clientes que hace referencia a la clase Clientes
-            Clientes objetoClientes = new Clientes()
+            try
             {
-                //Se inicializan las propiedades con los valores ingresados en os campos de texto.
-                Nombre = txt_Nombre.Text,
-                Apellido_P = txt_ApellidoP.Text,
-                Apellido_M = txt_ApellidoM.Text,
-                Telefono1 = txt_Telefono1.Text,
-                Telefono2 = txt_Telefono2.Text,
+                int folio;
+                int total;
 
-            };
-
-            Ventas objetoVentas = new Ventas()
-            {
-                //Se inicializan las propiedades con los valores ingresados en los campos de texto.
-                Folio = int.Parse(txt_Folio.Text),
-                Fecha_de_atencion = dtp_Fecha_atencion.Text,
-                Fecha_de_entrega = dtp_Fecha_Entrega.Text,
-                Total = txt_Total.Text,
-
-            };
-
-
-            if (ValidarCampos())
-            {
-                int folioVenta = int.Parse(txt_Folio.Text);
-                
-
-                List<DetalleVenta> detalleVentas = new List<DetalleVenta>();
-                foreach (DataGridViewRow fila in dgvFormatos.Rows)
+                // Validar y convertir el texto a un entero para el Folio
+                if (string.IsNullOrEmpty(txt_Folio.Text) || !int.TryParse(txt_Folio.Text, out folio))
                 {
-                    // Verificar si la fila es una fila nueva
-                    if (!fila.IsNewRow)
+                    MessageBox.Show("Por favor, ingresa un número de folio válido.", "Error de formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Validar y convertir el texto a un decimal para el Total
+                if (string.IsNullOrEmpty(txt_Total.Text) || !int.TryParse(txt_Total.Text, out total))
+                {
+                    MessageBox.Show("Por favor, ingresa un total válido.", "Error de formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Validar que las fechas no estén vacías
+                if (string.IsNullOrEmpty(dtp_Fecha_atencion.Text) || string.IsNullOrEmpty(dtp_Fecha_Entrega.Text))
+                {
+                    MessageBox.Show("Por favor, ingresa fechas válidas.", "Error de formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Validar que las fechas no estén vacías
+                if (string.IsNullOrEmpty(dtp_Fecha_atencion.Text) || string.IsNullOrEmpty(dtp_Fecha_Entrega.Text))
+                {
+                    MessageBox.Show("Por favor, ingresa fechas válidas.", "Error de formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                //Creacion del objeto Clientes que hace referencia a la clase Clientes
+                Clientes objetoClientes = new Clientes()
+                {
+                    //Se inicializan las propiedades con los valores ingresados en os campos de texto.
+                    Nombre = txt_Nombre.Text,
+                    Apellido_P = txt_ApellidoP.Text,
+                    Apellido_M = txt_ApellidoM.Text,
+                    Telefono1 = txt_Telefono1.Text,
+                    Telefono2 = txt_Telefono2.Text,
+
+                };
+
+                Ventas objetoVentas = new Ventas()
+                {
+                    //Se inicializan las propiedades con los valores ingresados en los campos de texto.
+                    Folio = int.Parse(txt_Folio.Text),
+                    Fecha_de_atencion = dtp_Fecha_atencion.Text,
+                    Fecha_de_entrega = dtp_Fecha_Entrega.Text,
+                    Total = txt_Total.Text,
+
+                };
+
+
+                if (ValidarCampos())
+                {
+                    int folioVenta = int.Parse(txt_Folio.Text);
+
+
+                    List<DetalleVenta> detalleVentas = new List<DetalleVenta>();
+                    foreach (DataGridViewRow fila in dgvFormatos.Rows)
                     {
-                        DetalleVenta detalle = new DetalleVenta();
-                        detalle.Formato = fila.Cells["Formato"].Value.ToString();
-                        detalle.Duracion = fila.Cells["Duracion"].Value.ToString();
-                        detalle.Monto = fila.Cells["Monto"].Value.ToString();
-                        detalleVentas.Add(detalle);
+                        // Verificar si la fila es una fila nueva
+                        if (!fila.IsNewRow)
+                        {
+                            DetalleVenta detalle = new DetalleVenta();
+                            detalle.Formato = fila.Cells["Formato"].Value.ToString();
+                            detalle.Duracion = fila.Cells["Duracion"].Value.ToString();
+                            detalle.Monto = fila.Cells["Monto"].Value.ToString();
+                            detalleVentas.Add(detalle);
+
+                        }
+                    }
+
+                    int.TryParse(txt_Folio.Text, out int numFolio); //Variable para actualizar el número de folio
+
+                    // Llamamos al metodo Guardar del clase ClientesLogica y lo  aginamos a una variable de tipo boleano.
+                    //Se utiliza la propiedad Instancia de la clase ClientesLogica.
+                    bool resClientes = ClientesLogica.Instancia.Guardar(objetoClientes);
+                    //Se utiliza la propiedad Instancia de la clase VentasLogica.
+                    bool resVentas = VentasLogica.Instancia.Guardar(objetoVentas);
+                    //Verificar si la respuesta fue exitosa mostrando un mensaje de confirmación
+
+                    bool resDetalle = DetalleVentaLogica.Instancia.InsertarDetalleVenta(folioVenta, detalleVentas);
+
+
+                    if (resClientes)
+                    {
+                        MessageBox.Show("Registro de clientes guardado", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                    if (resVentas)
+                    {
+                        MessageBox.Show("Registro de ventas guardado", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
                     }
-                }
 
-                int.TryParse(txt_Folio.Text, out int numFolio); //Variable para actualizar el número de folio
+                    if (resDetalle)
+                    {
+                        MessageBox.Show("Detalles de venta insertados correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error al insertar detalles de venta.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
 
-                // Llamamos al metodo Guardar del clase ClientesLogica y lo  aginamos a una variable de tipo boleano.
-                //Se utiliza la propiedad Instancia de la clase ClientesLogica.
-                bool resClientes = ClientesLogica.Instancia.Guardar(objetoClientes);
-                //Se utiliza la propiedad Instancia de la clase VentasLogica.
-                bool resVentas = VentasLogica.Instancia.Guardar(objetoVentas);
-                //Verificar si la respuesta fue exitosa mostrando un mensaje de confirmación
+                    numFolio++;
 
-                bool resDetalle = DetalleVentaLogica.Instancia.InsertarDetalleVenta(folioVenta, detalleVentas);
+                    txt_Folio.Text = numFolio.ToString();
 
+                    LimpiarDatos();
 
-                if (resClientes)
-                {
-                    MessageBox.Show("Registro de clientes guardado", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-                if (resVentas)
-                {
-                    MessageBox.Show("Registro de ventas guardado", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
                 }
-
-                if (resDetalle)
-                {
-                    MessageBox.Show("Detalles de venta insertados correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show("Error al insertar detalles de venta.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-
-                numFolio++;
-
-                txt_Folio.Text = numFolio.ToString();
-
-                LimpiarDatos();
-
-
             }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Error al guardar los datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                conexionBD.CerrarConexion();
+            }
+
+
 
         }
 

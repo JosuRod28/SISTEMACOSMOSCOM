@@ -27,7 +27,7 @@ namespace COSMOSCOM
         private string folioActual = "";
         private string montoActual = CambiarTarifa.PrecioFormato.ToString();
         private bool seAgregoFila;
-
+        ConexionBD conexionBD = new ConexionBD();
         public Registro_admin_()
         {
 
@@ -89,14 +89,14 @@ namespace COSMOSCOM
         {
 
         }
-
+        private Autenticacion loginForm;
         private void btn_salir_Click(object sender, EventArgs e)
         {
             //Mensaje de confirmación para salir del sistema
             DialogResult confirma = MessageBox.Show("¿Estas Seguro de salir del sistema?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (confirma == DialogResult.Yes)
             {
-                this.Hide();
+
                 folioActual = txt_Folio.Text;
                 // Actualiza el TextBox con el último valor ingresado
                 txt_Folio.Text = folioActual;
@@ -104,12 +104,14 @@ namespace COSMOSCOM
 
                 Properties.Settings.Default.FolioActual = folioActual;
                 Properties.Settings.Default.Save();
-                Autenticacion form = new Autenticacion();
-                form.Show();
+                loginForm = new Autenticacion();
+                loginForm.Show();
+                this.Hide();
             }
 
-
         }
+
+
 
         private void btn_Guardar_Click(object sender, EventArgs e)
         {
@@ -202,12 +204,14 @@ namespace COSMOSCOM
                     bool resVentas = VentasLogica.Instancia.Guardar(objetoVentas);
                     //Verificar si la respuesta fue exitosa mostrando un mensaje de confirmación
 
-                    bool resDetalle = DetalleVentaLogica.Instancia.InsertarDetalleVenta(folioVenta,detalleVentas);
+                    bool resDetalle = DetalleVentaLogica.Instancia.InsertarDetalleVenta(folioVenta, detalleVentas);
 
 
                     if (resClientes)
                     {
                         MessageBox.Show("Registro de clientes guardado", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+
                     }
                     if (resVentas)
                     {
@@ -231,12 +235,17 @@ namespace COSMOSCOM
                     LimpiarDatos();
 
 
+
                 }
 
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al guardar los datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                conexionBD.CerrarConexion();
             }
 
 
@@ -711,7 +720,7 @@ namespace COSMOSCOM
                     Properties.Settings.Default.BackgroundColor = selectedColor;
                     Properties.Settings.Default.BackgroundImagePath = string.Empty; // Eliminar la imagen de fondo
                     Properties.Settings.Default.Save();
-                   
+
                     // Aplicar el color de fondo al formulario actual
                     SetBackgroundColor(this, selectedColor);
                     RemoveBackgroundImage(this);
@@ -757,8 +766,10 @@ namespace COSMOSCOM
         private void SetBackgroundImage(Form form, Image backgroundImage)
         {
 
-                form.BackgroundImage = backgroundImage;
-                form.BackgroundImageLayout = ImageLayout.Stretch;       
+            form.BackgroundImage = backgroundImage;
+            form.BackgroundImageLayout = ImageLayout.Stretch;
         }
+
+
     }
 }

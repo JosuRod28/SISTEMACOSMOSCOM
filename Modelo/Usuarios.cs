@@ -8,10 +8,10 @@ namespace COSMOSCOM.Modelo
 {
     public class Usuarios
     {
-        public int id_usuario { get; set; }
+        public int id_Usuario { get; set; }
         public string? Usuario { get; set; }
         public string? Clave { get; set; }
-        public int id_Rol {  get; set; }
         public string? Correo { get; set; }
+        public int id_Rol { get; set; }
     }
 }

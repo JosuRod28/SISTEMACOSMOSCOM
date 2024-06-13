@@ -250,7 +250,6 @@
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel4.Size = new Size(524, 47);
             tableLayoutPanel4.TabIndex = 1;
-            tableLayoutPanel4.Paint += tableLayoutPanel4_Paint;
             // 
             // btn_Crear
             // 
@@ -309,6 +308,7 @@
             Name = "Bienvenido";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Bienvenido";
+            Load += Bienvenido_Load;
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel2.ResumeLayout(false);
             tableLayoutPanel3.ResumeLayout(false);

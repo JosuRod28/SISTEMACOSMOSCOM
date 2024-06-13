@@ -147,7 +147,7 @@ namespace COSMOSCOM
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (DataGrid_Ventas.DataSource is List<Ventas>)
+                    if (DataGrid_Ventas.DataSource is List<Ventas>)
             {
                 if (DataGrid_Ventas.SelectedRows.Count > 0)
                 {

@@ -1,3 +1,5 @@
+using Microsoft.VisualBasic.ApplicationServices;
+
 namespace COSMOSCOM
 {
     internal static class Program
@@ -11,7 +13,7 @@ namespace COSMOSCOM
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new Bienvenido());
+            Application.Run(new MyApplicationContext()); 
 
 
         }

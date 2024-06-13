@@ -17,6 +17,8 @@ namespace COSMOSCOM
     public partial class Clave_Administrador : Form
     {
         private static string conexion = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
+        private ConexionBD conexionBD = new ConexionBD();
+        private Bienvenido bienvenidosForm;
         public Clave_Administrador()
         {
             InitializeComponent();
@@ -61,8 +63,8 @@ namespace COSMOSCOM
         {
             
             Bienvenido? campo = Application.OpenForms.OfType<Bienvenido>().FirstOrDefault();
-            Bienvenido ventana = new Bienvenido();
-
+            
+          
             int idRolUser = 2;
             Usuarios nuevoUsuario = new Usuarios()
             {
@@ -77,12 +79,14 @@ namespace COSMOSCOM
                 Clave = txt_claveAdmin.Text,
                 id_Rol=idRolAdmin
             };
-            bool UserExist = VerificarUsuarioExistente(nuevoUsuario);
-           
+
+   
             if (ValidarAdmin(admin))
-            {
+            {       
+                bool UserExist = VerificarUsuarioExistente(nuevoUsuario);
                 if (UserExist)
                 {
+
                     MessageBox.Show("Ya existe un usuario con los datos ingresados, por favor ingrese otro usuario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
@@ -91,13 +95,12 @@ namespace COSMOSCOM
                     bool resp = UsuariosLogica.Instancia.InsertarNuevoUsuario(nuevoUsuario);
                     if (resp)
                     {
-                        MessageBox.Show("Usuario creado correctamente,inicia sesión", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Usuario creado correctamente,inicia sesión", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         this.Close();
                         campo.Textbox_Clave.Text = "";
                         campo.Textbox_Correo.Text = "";
-                        campo.TextBox_Usuario.Text = "";  
+                        campo.TextBox_Usuario.Text = "";
 
-                       
                     }
                 }
             }
@@ -107,8 +110,10 @@ namespace COSMOSCOM
                 return;
             }
 
-
-
+         }
+        private void BienvenidosForm_FormClosed(object? sender, FormClosedEventArgs e)
+        {
+            bienvenidosForm = null;
         }
 
         private bool ValidarAdmin(Usuarios admin)
@@ -124,6 +129,7 @@ namespace COSMOSCOM
                 return count > 0;
             }
         }
+
 
         private bool VerificarUsuarioExistente(Usuarios nuevoUsuario)
         {
@@ -144,7 +150,7 @@ namespace COSMOSCOM
 
         private void Clave_Administrador_Load(object sender, EventArgs e)
         {
-
+            conexionBD.AbrirConexion(conexion);
         }
     }
 }

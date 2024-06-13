@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("COSMOSCOM")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+be77f742421cc925700a70bbdd99eec12f4802b8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+14232eb5312d79e05e3f1b43742674e56ce183d8")]
 [assembly: System.Reflection.AssemblyProductAttribute("COSMOSCOM")]
 [assembly: System.Reflection.AssemblyTitleAttribute("COSMOSCOM")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

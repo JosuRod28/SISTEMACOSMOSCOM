@@ -12,7 +12,7 @@ namespace COSMOSCOM.Logica
     public  class UsuariosLogica
     {
         private static string conexion = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
-
+        private ConexionBD conexionBD = new ConexionBD();
         private static UsuariosLogica _instancia = null;
         public UsuariosLogica()
         {
@@ -56,7 +56,7 @@ namespace COSMOSCOM.Logica
                     {
                         olista.Add(new Usuarios()
                         {
-                            id_usuario = int.Parse(dataReader["id_usuario"].ToString()),
+                            id_Usuario = int.Parse(dataReader["id_usuario"].ToString()),
                             Usuario = dataReader["usuario"].ToString(),
                             Clave = dataReader["clave"].ToString(),
                             id_Rol = int.Parse(dataReader["id_Rol"].ToString()),
@@ -78,29 +78,88 @@ namespace COSMOSCOM.Logica
         {
             bool respuesta = true;
 
-            using (SQLiteConnection conn = new SQLiteConnection(conexion))
+            try
             {
-  
-                conn.Open();
-                string query = "INSERT INTO Usuarios (usuario,clave,id_Rol,correo) values (@nuevoUsuario,@nuevaClave,@id_rol,@correo)";
-                SQLiteCommand cmd = new SQLiteCommand(query, conn);
-                cmd.Parameters.AddWithValue("@nuevoUsuario", admin.Usuario);
-                cmd.Parameters.AddWithValue("@nuevaClave", admin.Clave);
-                cmd.Parameters.AddWithValue("@id_rol", admin.id_Rol);
-                cmd.Parameters.AddWithValue("@correo", admin.Correo);
-                cmd.CommandType = System.Data.CommandType.Text;
-
-                if (cmd.ExecuteNonQuery() < 1)
+                using (SQLiteConnection conn = new SQLiteConnection(conexion))
                 {
+  
+                    conn.Open();
+                    string query = "INSERT INTO Usuarios (usuario,clave,correo,id_Rol) values (@nuevoUsuario,@nuevaClave,@correo,@id_rol)";
+                    using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@nuevoUsuario", admin.Usuario);
+                        cmd.Parameters.AddWithValue("@nuevaClave", admin.Clave);
+                        cmd.Parameters.AddWithValue("@correo", admin.Correo);
+                        cmd.Parameters.AddWithValue("@id_rol", admin.id_Rol);
+                        cmd.CommandType = System.Data.CommandType.Text;
 
-                    respuesta = false;
+                        if (cmd.ExecuteNonQuery() < 1)
+                        {
 
+                            respuesta = false;
+
+                        }
+                    }
+                    conn.Close();
                 }
-
+                
+            }catch(Exception ex)
+            {
+                // Manejar la excepción (por ejemplo, registrar el error o mostrar un mensaje al usuario)
+                Console.WriteLine($"Error al ingresar un nuevo administrador: {ex.Message}");
+                respuesta = false;
             }
+            finally
+            {
+                conexionBD.CerrarConexion();
+            }
+
 
             return respuesta;
 
+        }        
+        public bool InsertarNuevoUsuario(Usuarios user)
+        
+        {
+            bool respuesta = true;
+
+            try
+            {
+                    using (SQLiteConnection conn = new SQLiteConnection(conexion))
+                    {
+
+                        conn.Open();
+                        string query = "INSERT INTO Usuarios (usuario,clave,correo,id_Rol) values (@nuevoUsuario,@nuevaClave,@correo,@id_rol)";
+                        using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@nuevoUsuario", user.Usuario);
+                            cmd.Parameters.AddWithValue("@nuevaClave", user.Clave);
+                            cmd.Parameters.AddWithValue("@id_rol", user.id_Rol);
+                            cmd.Parameters.AddWithValue("@correo", user.Correo);
+                            cmd.CommandType = System.Data.CommandType.Text;
+
+                            if (cmd.ExecuteNonQuery() < 1)
+                            {
+
+                                respuesta = false;
+
+                            }
+                        }
+                        conn.Close();
+
+                    }
+            }catch(Exception ex)
+            {
+                Console.WriteLine($"Error al ingresar un nuevo administrador: {ex.Message}");
+                respuesta = false;
+            }
+            finally
+            {
+                conexionBD.CerrarConexion();
+            }
+
+
+            return respuesta;
         }
 
         public bool VerificarAdminExistente(Usuarios admin)
@@ -163,32 +222,6 @@ namespace COSMOSCOM.Logica
 
         }
 
-        public bool InsertarNuevoUsuario(Usuarios user)
-        {
-            bool respuesta = true;
 
-            using (SQLiteConnection conn = new SQLiteConnection(conexion))
-            {
-
-                conn.Open();
-                string query = "INSERT INTO Usuarios (usuario,clave,id_Rol,correo) values (@nuevoUsuario,@nuevaClave,@id_rol,@correo)";
-                SQLiteCommand cmd = new SQLiteCommand(query, conn);
-                cmd.Parameters.AddWithValue("@nuevoUsuario", user.Usuario);
-                cmd.Parameters.AddWithValue("@nuevaClave", user.Clave);
-                cmd.Parameters.AddWithValue("@id_rol", user.id_Rol);
-                cmd.Parameters.AddWithValue("@correo", user.Correo);
-                cmd.CommandType = System.Data.CommandType.Text;
-
-                if (cmd.ExecuteNonQuery() < 1)
-                {
-
-                    respuesta = false;
-
-                }
-
-            }
-
-            return respuesta;
-        }
     }
 }

@@ -1,3 +1,4 @@
+using COSMOSCOM.Logica;
 using COSMOSCOM.Modelo;
 using System.Configuration;
 using System.Data.SqlClient;
@@ -13,6 +14,8 @@ namespace COSMOSCOM
     {
 
         private static string conexion = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
+        private ConexionBD conexionBD = new ConexionBD();
+        private Bienvenido  bienvenidosForm;
         public Autenticacion()
         {
             InitializeComponent();
@@ -72,6 +75,8 @@ namespace COSMOSCOM
             }
         }
 
+        private Registro_admin_ registro_admin;
+        private Registro_user_ registro_user;
         private void button1_Click(object sender, EventArgs e)
         {
 
@@ -104,18 +109,18 @@ namespace COSMOSCOM
 
                 if (RolAdmin(cbUsuarios.Text))
                 {
-                    Registro_admin_ registroAdmin = new Registro_admin_();
-                    registroAdmin.Show();
-                    this.Hide();
+                    registro_admin = new Registro_admin_();
+                    registro_admin.Show();
+                    this.Close();
                     MessageBox.Show("Login Exitoso");
 
                 }
 
                 if (RolUser(cbUsuarios.Text))
                 {
-                    Registro_user_ registroUser = new Registro_user_();
-                    registroUser.Show();
-                    this.Hide();
+                    registro_user = new Registro_user_();
+                    registro_user.Show();
+                    this.Close();
                     MessageBox.Show("Login Exitoso");
 
                 }
@@ -193,6 +198,7 @@ namespace COSMOSCOM
 
         private void Autenticacion_Load(object sender, EventArgs e)
         {
+            conexionBD.AbrirConexion(conexion);
             using (SQLiteConnection connection = new SQLiteConnection(conexion))
             {
                 // Consulta SQL para obtener los nombres de la tabla TablaDatos
@@ -213,6 +219,7 @@ namespace COSMOSCOM
                     }
                 }
             }
+            
         }
 
         private void txtClave_TextChanged(object sender, EventArgs e)
@@ -227,10 +234,11 @@ namespace COSMOSCOM
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Bienvenido bienvenido = new Bienvenido();
-            bienvenido.Show();
-            this.Hide();
 
+            // Crear una nueva instancia del formulario de Bienvenido
+            bienvenidosForm = new Bienvenido();
+            bienvenidosForm.Show();
+            this.Close(); // Ocultar el formulario actual (MainForm)
         }
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

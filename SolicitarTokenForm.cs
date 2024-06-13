@@ -83,9 +83,11 @@ namespace COSMOSCOM
                 bool resp = reset.VerificarClave(claveReset);
                 if (resp)
                 {
-                    this.Hide();
+                    
                     ResetPassword resetPassword = new ResetPassword(idUsuario);
-                    resetPassword.Show();
+                    resetPassword.ShowDialog();
+                    this.Hide();
+                    this.Dispose();
                 }
                 else
                 {

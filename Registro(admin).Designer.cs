@@ -512,7 +512,7 @@
             // 
             cb_Formatos.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             cb_Formatos.FormattingEnabled = true;
-            cb_Formatos.Location = new Point(4, 57);
+            cb_Formatos.Location = new Point(4, 55);
             cb_Formatos.Margin = new Padding(4);
             cb_Formatos.Name = "cb_Formatos";
             cb_Formatos.Size = new Size(278, 36);

@@ -92,7 +92,7 @@ namespace COSMOSCOM
                         Usuarios usuarioSeleccionado = (Usuarios)dGVUsuarios.Rows[rowIndex].DataBoundItem;
 
                         // Obtener el ID del cliente seleccionado
-                        int id_usuario = usuarioSeleccionado.id_usuario;
+                        int id_usuario = usuarioSeleccionado.id_Usuario;
 
 
                         //Condicion para validar confirmacion de eliminacion de registro

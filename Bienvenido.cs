@@ -1,5 +1,6 @@
 ﻿using COSMOSCOM.Logica;
 using COSMOSCOM.Modelo;
+using Microsoft.VisualBasic.Logging;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,12 +17,13 @@ namespace COSMOSCOM
 {
     public partial class Bienvenido : Form
     {
-
+        private ConexionBD conexionBD = new ConexionBD();
+        private bool formReiniciado;
         private static string conexion = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
-        private AdministraUsuarios _administraUsuarios;
         public Bienvenido()
         {
             InitializeComponent();
+            formReiniciado = false;
             txt_clave.UseSystemPasswordChar = true;
             txt_clave.PasswordChar = '*';
 
@@ -63,19 +65,6 @@ namespace COSMOSCOM
         }
 
 
-        public TextBox TextBox_Usuario
-        {
-            get { return txt_usuario; }
-        }
-        public TextBox Textbox_Clave
-        {
-            get { return txt_clave; }
-        }
-
-        public TextBox Textbox_Correo
-        {
-            get { return txt_email; }
-        }
 
         private void btn_Crear_Click(object sender, EventArgs e)
         {
@@ -109,33 +98,49 @@ namespace COSMOSCOM
             Usuarios admin = new Usuarios()
             {
                 Usuario = txt_usuario.Text,
-                Clave = txt_clave.Text,
-                Correo = txt_email.Text,
-                id_Rol = idRol,
+                Clave   = txt_clave.Text,
+                Correo  = txt_email.Text,
+                id_Rol  = idRol,
             };
 
             if (UsuariosLogica.Instancia.VerificarAdminExistente(admin))
             {
                 Clave_Administrador clave_Administrador = new Clave_Administrador();
                 clave_Administrador.ShowDialog();
+
             }
+
             else
             {
                 bool respuesta = UsuariosLogica.Instancia.IngresarNuevoAdmin(admin);
 
                 if (respuesta)
                 {
-                    MessageBox.Show("¡Usuario creado correctamente!,inicie sesión", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("¡Usuario creado correctamente!,inicie sesión", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     txt_usuario.Text = "";
                     txt_email.Text = "";
                     txt_clave.Text = "";
+                    LimpiarFormulario();
                 }
             }
 
         }
 
+        private void LimpiarFormulario()
+        {
+            LimpiarControles(this);
+        }
 
-
+        private void LimpiarControles(Control control)
+        {
+            foreach (Control c in control.Controls)
+            {
+                if (c is TextBox)
+                {
+                    ((TextBox)c).Text = string.Empty;
+                }
+            }
+        }
 
         private void btn_cancelar_Click(object sender, EventArgs e)
         {
@@ -145,17 +150,43 @@ namespace COSMOSCOM
                 Application.Exit();
             }
         }
-
+        private Autenticacion loginForm;
         private void btn_iniciar_sesion_Click(object sender, EventArgs e)
         {
-            Autenticacion autenticacion = new Autenticacion();
-            autenticacion.Show();
-            this.Hide();
+            // Verificar si el formulario de autenticación ya está abierto
+            if (loginForm != null && !loginForm.IsDisposed)
+            {
+                loginForm.BringToFront(); // Traer la instancia existente al frente
+                return;
+            }
+            // Crear una nueva instancia del formulario de autenticación
+            loginForm = new Autenticacion();
+            loginForm.Show();
+            this.Hide(); // Ocultar el formulario actual
+            this.Dispose(); //Liberar todos los recursos
         }
 
-        private void tableLayoutPanel4_Paint(object sender, PaintEventArgs e)
+
+
+        private void Bienvenido_Load(object sender, EventArgs e)
         {
 
+            conexionBD.AbrirConexion(conexion);
+
         }
+        public TextBox TextBox_Usuario
+        {
+            get { return txt_usuario; }
+        }
+        public TextBox Textbox_Clave
+        {
+            get { return txt_clave; }
+        }
+
+        public TextBox Textbox_Correo
+        {
+            get { return txt_email; }
+        }
+
     }
 }
