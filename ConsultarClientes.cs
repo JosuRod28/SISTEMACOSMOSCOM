@@ -163,9 +163,6 @@ namespace COSMOSCOM
                             return; // Salir del método sin eliminar el registro
                         }
 
-
-
-
                             // Eliminar el registro de la base de datos
                             bool deleteRegistro = ClientesLogica.Instancia.Eliminar(id_Cliente);
                             //Verificar si la respuesta fue exitosa mostrando un mensaje de confirmación
